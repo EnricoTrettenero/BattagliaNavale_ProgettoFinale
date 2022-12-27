@@ -6,13 +6,14 @@
 #define BATTAGLIANAVALE_LIB_DEF_UTILITY_H_
 #include <stdexcept>
 #include <ostream>
+#include "../board/Board.h"
 namespace battleships
 {
 
 class coordinate
 {
  private:
-  static constexpr int kDim = 11;
+  static constexpr int kDim = board::kDimBoard-1;
   static constexpr int kMinX = 1;
   static constexpr int kMinY = 65; //ascii code for A
   int x_;
