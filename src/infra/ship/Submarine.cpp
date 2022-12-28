@@ -4,7 +4,8 @@
 
 #include "../../../lib/ship/Submarine.h"
 submarine::submarine(const battleships::coordinate &center, orientation orientation) : ship(
-    std::vector<char>(kSubmarineDim, kSubmarineChar),
+   'S',
+    std::vector<char>(kSubmarineDim, 'S'),
     kSubmarineDim,
     center,
     orientation

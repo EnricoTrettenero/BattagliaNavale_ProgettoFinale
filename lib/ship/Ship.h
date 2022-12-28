@@ -27,7 +27,8 @@ class ship
   std::vector<char> armor_;
 
  protected:
-  ship(std::vector<char> armor, unsigned int dim, const battleships::coordinate &center, orientation orientation)
-      : armor_(std::move(armor)), dim_(dim), center_(center), orientation_(orientation) {}
+  ship(char shipChar,std::vector<char> armor, unsigned int dim, const battleships::coordinate &center, orientation orientation)
+      : shipChar_{shipChar}, armor_(std::move(armor)), dim_(dim), center_(center), orientation_(orientation) {}
+  char shipChar_;
 };
 #endif //BATTAGLIANAVALE_LIB_DEF_SHIP_H_

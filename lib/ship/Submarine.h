@@ -9,7 +9,6 @@
 class submarine : public ship
 {
   static constexpr int kSubmarineDim = 3;
-  static constexpr char kSubmarineChar = 'S';
  public:
   bool action(battleships::coordinate c) override;
  public:

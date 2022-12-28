@@ -5,7 +5,8 @@
 #include "../../../lib/ship/Support.h"
 
 support::support(const battleships::coordinate &center, orientation orientation) : ship(
-    std::vector<char>(kSupportDim, kSupportChar),
+    'E',
+    std::vector<char>(kSupportDim, 'E'),
     kSupportDim,
     center,
     orientation

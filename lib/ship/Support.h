@@ -10,7 +10,6 @@
 class support : public ship
 {
   static constexpr int kSupportDim = 1;
-  static constexpr char kSupportChar = 'E';
  public:
   bool action(battleships::coordinate c) override;
  public:

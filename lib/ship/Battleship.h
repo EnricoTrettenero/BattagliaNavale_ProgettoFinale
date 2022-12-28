@@ -9,10 +9,9 @@
 class battleship : public ship
 {
   static constexpr int kBattleshipDim = 5;
-  static constexpr char kBattleshipChar = 'C';
+
  public:
   bool action(battleships::coordinate c) override;
- public:
   battleship(const battleships::coordinate &center, orientation orientation);
 };
 

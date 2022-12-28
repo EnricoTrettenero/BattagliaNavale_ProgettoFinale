@@ -4,11 +4,11 @@
 
 #include "../../../lib/ship/Battleship.h"
 battleship::battleship(const battleships::coordinate &center, ship::orientation orientation) : ship(
-    std::vector<char>(kBattleshipDim, kBattleshipChar),
+    'C',
+    std::vector<char>(kBattleshipDim, 'C'),
     kBattleshipDim,
     center,
-    orientation
-) {}
+    orientation) {}
 
 bool battleship::action(battleships::coordinate c)
 {
