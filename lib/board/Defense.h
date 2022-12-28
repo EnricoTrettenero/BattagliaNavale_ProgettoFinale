@@ -7,9 +7,19 @@
 
 #include "../ship/Ship.h"
 
-class defense
+class defense : public board
 {
+ public:
+  static constexpr int kMaxBoat = 8;
+
+  bool isShip(battleships::coordinate xy);
+  std::vector<int> isShip(battleships::coordinate xy, int radius);
+  bool fire(battleships::coordinate xy); //true if center
+  bool useShip(battleships::coordinate xyShip, battleships::coordinate xyTarget);
+  defense();
+ private:
   std::vector<ship> ships;
+  void filler();
 };
 
 #endif //BATTAGLIANAVALE_LIB_BOARD_DEFENSE_H_

@@ -9,9 +9,8 @@ class board
 {
  public:
   static constexpr int kDimBoard = 12;
- private:
-  static constexpr int kMaxBoat = 8;
-  char matrix_[kDimBoard][kDimBoard];
+ protected:
+  char _matrix[kDimBoard][kDimBoard];
 };
 
 #endif //BATTAGLIANAVALE_LIB_BOARD_H_
