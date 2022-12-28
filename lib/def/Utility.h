@@ -25,7 +25,7 @@ class coordinate
     if (y < kMinY || y > kMinY + kDim) throw std::invalid_argument("coordinate y not valid");
   }
 
-  int x() const { return x_; }
+  int x() const { return x_-kMinX; }
 
   void setX(int x)
   {
@@ -33,7 +33,7 @@ class coordinate
     x_ = x;
   }
 
-  int y() const { return y_; }
+  int y() const { return y_-kMinY; }
 
   void setY(char y)
   {

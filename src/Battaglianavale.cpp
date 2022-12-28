@@ -3,12 +3,11 @@
 //
 #include <iostream>
 #include "../lib/ship/Battleship.h"
+#include "../lib/board/Attack.h"
 using namespace std;
 
 int main()
 {
-  battleships::coordinate d(2, 'B');
-  battleship b{d, ship::VERTICAL};
-  battleships::coordinate c{2,'B'};
+
   return 0;
 }

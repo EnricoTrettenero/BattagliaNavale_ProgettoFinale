@@ -9,7 +9,7 @@ attack::attack() : board()
     {
         for (int j = 0; j < kDimBoard; ++j)
         {
-            _matrix[i][j] = ' ';
+            _matrix[i][j] = '*';
             turnMatrix[i][j] = 0;
         }
     }

@@ -11,10 +11,10 @@ class board
 {
  public:
   static constexpr int kDimBoard = 12;
-std::vector<std::vector<char>> matrix() const;
+[[nodiscard]] std::vector<std::vector<char>> matrix() const;
  protected:
   char _matrix[kDimBoard][kDimBoard];
-
+  friend std::ostream& operator<<(std::ostream& os, const board& b);
 
 };
 #endif //BATTAGLIANAVALE_LIB_BOARD_H_
