@@ -21,6 +21,7 @@ class defense : public board
 
  private:
   std::vector<std::unique_ptr<ship>> ships;
+  void sunk(battleships::coordinate xy);
 
 };
 

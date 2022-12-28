@@ -46,6 +46,14 @@ class coordinate
     os << "(" << coordinate.x_ << ", " << coordinate.y_ << ")";
     return os;
   }
+  bool operator==(const coordinate& input) const
+  {
+      return this->x()==input.x()&&this->y()==input.y();
+  }
+  bool operator!=(const coordinate&input) const
+  {
+      return this->x()!=input.x()||this->y()!=input.y();
+  }
 };
 
 };
