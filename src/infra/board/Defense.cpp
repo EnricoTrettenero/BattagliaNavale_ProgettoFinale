@@ -12,8 +12,8 @@ defense::defense()
             _matrix[i][j]= ' ';
         }
     }
-    filler();
 }
-void defense::filler() {
+bool defense::setShip(ship &s)
+{
 
 }

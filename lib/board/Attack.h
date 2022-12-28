@@ -10,13 +10,15 @@
 class attack : public board
 {
  private:
-  int turnMatrix[kDimBoard][kDimBoard];
+  int turnMatrix[kDimBoard][kDimBoard]{};
  public:
   void hit(battleships::coordinate xy);
   void water(battleships::coordinate xy);
+  void find(battleships::coordinate xy);
   void reset();
   void reset(int turn);
   void nextTurn(); //add 1 to every cell of turnMatrix
+  attack();
 };
 
 #endif //BATTAGLIANAVALE_LIB_BOARD_ATTACK_H_

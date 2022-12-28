@@ -17,9 +17,11 @@ class defense : public board
   bool fire(battleships::coordinate xy); //true if center
   bool useShip(battleships::coordinate xyShip, battleships::coordinate xyTarget);
   defense();
+  bool setShip(ship& s);
+
  private:
   std::vector<ship> ships;
-  void filler();
+
 };
 
 #endif //BATTAGLIANAVALE_LIB_BOARD_DEFENSE_H_
