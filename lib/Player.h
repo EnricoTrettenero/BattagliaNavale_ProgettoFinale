@@ -7,6 +7,8 @@
 
 class player
 {
+ public:
+    virtual void doMove() =0;
 
 };
 

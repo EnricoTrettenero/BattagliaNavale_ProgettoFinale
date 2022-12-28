@@ -8,8 +8,6 @@
 #include "Player.h"
 class game
 {
-player p1_;
-player p2_;
 
 
 

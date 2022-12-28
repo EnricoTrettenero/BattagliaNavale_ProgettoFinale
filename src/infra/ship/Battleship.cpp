@@ -4,7 +4,7 @@
 
 #include "../../../lib/ship/Battleship.h"
 battleship::battleship(const battleships::coordinate &center, ship::orientation orientation) : ship(
-    std::vector(kBattleshipDim, kBattleshipChar),
+    std::vector<char>(kBattleshipDim, kBattleshipChar),
     kBattleshipDim,
     center,
     orientation

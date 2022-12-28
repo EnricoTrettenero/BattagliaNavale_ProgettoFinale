@@ -3,41 +3,43 @@
 //
 
 #include "../../../lib/board/Defense.h"
-defense::defense()
+defense::defense() : board()
 {
-    for (int i = 0; i < kDimBoard; ++i)
+    for (auto & i : _matrix)
     {
-        for (int j = 0; j < kDimBoard; ++j)
+        for (char & j : i)
         {
-            _matrix[i][j] = '*';
+            j = '*';
         }
     }
+    ships = std::vector<std::unique_ptr<ship>>();
 }
-bool defense::setShip(ship &s)
+bool defense::setShip(std::unique_ptr<ship> s)
 {
     //check space on board
-    for (int i = 0; i < s.dim(); ++i)
+    for (int i = 0; i < s->dim(); ++i)
     {
-        if (s.getOrientation() == ship::HORIZONTAL)
+        if (s->getOrientation() == ship::HORIZONTAL)
         {
-            if ((s.center().y() + i - s.dim() / 2)<0||s.center().y() + i - s.dim() / 2>11||_matrix[s.center().x() ][s.center().y()+ i - s.dim() / 2] != '*') //assume all ship is odd
+            if ((s->center().y() + i - s->dim() / 2)<0||s->center().y() + i - s->dim() / 2>11||_matrix[s->center().x() ][s->center().y()+ i - s->dim() / 2] != '*') //assume all ship is odd
 
                 return false;
         } else
         {
-            if ((s.center().x() + i - s.dim() / 2)<0||s.center().x() + i - s.dim() / 2>11||_matrix[s.center().x() + i - s.dim() / 2][s.center().y()] != '*') //assume all ship is odd
+            if ((s->center().x() + i - s->dim() / 2)<0||s->center().x() + i - s->dim() / 2>11||_matrix[s->center().x() + i - s->dim() / 2][s->center().y()] != '*') //assume all ship is odd
                 return false;
         }
     }
-    for (int i = 0; i < s.dim(); ++i)
+    for (int i = 0; i < s->dim(); ++i)
     {
-        if (s.getOrientation() == ship::HORIZONTAL)
+        if (s->getOrientation() == ship::HORIZONTAL)
         {
-            _matrix[s.center().x() ][s.center().y()+ i - s.dim() / 2] = s.armor()[i];//assume all ship is odd
+            _matrix[s->center().x() ][s->center().y()+ i - s->dim() / 2] = s->armor()[i];//assume all ship is odd
         } else
         {
-            _matrix[s.center().x() + i - s.dim() / 2][s.center().y()] = s.armor()[i];
+            _matrix[s->center().x() + i - s->dim() / 2][s->center().y()] = s->armor()[i];
         }
     }
+    ships.push_back(std::move(s)); //siummm
     return true;
 }

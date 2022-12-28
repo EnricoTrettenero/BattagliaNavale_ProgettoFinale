@@ -6,7 +6,7 @@
 #define BATTAGLIANAVALE_LIB_BOARD_DEFENSE_H_
 
 #include "../ship/Ship.h"
-
+#include <memory>
 class defense : public board
 {
  public:
@@ -17,10 +17,10 @@ class defense : public board
   bool fire(battleships::coordinate xy); //true if center
   bool useShip(battleships::coordinate xyShip, battleships::coordinate xyTarget);
   defense();
-  bool setShip(ship& s);
+  bool setShip(std::unique_ptr<ship> s);
 
  private:
-  std::vector<ship> ships;
+  std::vector<std::unique_ptr<ship>> ships;
 
 };
 
