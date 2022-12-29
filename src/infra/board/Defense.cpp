@@ -132,49 +132,49 @@ bool defense::move(battleships::coordinate init_xy, battleships::coordinate fina
 {
     if(isShip(init_xy))
     {
-        for(int i = 0; i < ships.size(); ++i)
+        for(auto & i : ships)
         {
-            if(ships.at(i)->center() == init_xy)
+            if(i->center() == init_xy)
             {
-                ships.at(i)->set_center_(final_xy);
-                for (int j = 0; j < ships.at(i)->dim(); ++j)
+                i->set_center_(final_xy);
+                for (int j = 0; j < i->dim(); ++j)
                 {
-                    if (ships.at(i)->getOrientation() == ship::HORIZONTAL)
+                    if (i->getOrientation() == ship::HORIZONTAL)
                     {
-                        if ((ships.at(i)->center().y() + j - ships.at(i)->dim() / 2) < 0 || ships.at(i)->center().y() + j - ships.at(i)->dim() / 2 > 11
-                            || _matrix[ships.at(i)->center().x()][ships.at(i)->center().y() + j - ships.at(i)->dim() / 2] != '*') //assume all ship is odd
+                        if ((i->center().y() + j - i->dim() / 2) < 0 || i->center().y() + j - i->dim() / 2 > 11
+                            || _matrix[i->center().x()][i->center().y() + j - i->dim() / 2] != '*') //assume all ship is odd
                             return false;
                     } else
                     {
-                        if ((ships.at(i)->center().x() + j - ships.at(i)->dim() / 2) < 0 || ships.at(i)->center().x() + j - ships.at(i)->dim() / 2 > 11
-                            || _matrix[ships.at(i)->center().x() + j - ships.at(i)->dim() / 2][ships.at(i)->center().y()] != '*') //assume all ship is odd
+                        if ((i->center().x() + j - i->dim() / 2) < 0 || i->center().x() + j - i->dim() / 2 > 11
+                            || _matrix[i->center().x() + j - i->dim() / 2][i->center().y()] != '*') //assume all ship is odd
                             return false;
                     }
                 }
-                ships.at(i)->set_center_(init_xy);
+                i->set_center_(init_xy);
 
-                if(ships.at(i)->getOrientation() == ship::HORIZONTAL)
+                if(i->getOrientation() == ship::HORIZONTAL)
                 {
-                    for (int j = 0; j < ships.at(i)->dim(); ++j)
-                        _matrix[ships.at(i)->center().x()][ships.at(i)->center().y() - ships.at(i)->dim() / 2 + j] =
+                    for (int j = 0; j < i->dim(); ++j)
+                        _matrix[i->center().x()][i->center().y() - i->dim() / 2 + j] =
                                 '*';
                 }
                 else
                 {
-                    for (int j = 0; j < ships.at(i)->dim(); ++j)
-                        _matrix[ships.at(i)->center().x() - ships.at(i)->dim() / 2 + j][ships.at(i)->center().y()] =
+                    for (int j = 0; j < i->dim(); ++j)
+                        _matrix[i->center().x() - i->dim() / 2 + j][i->center().y()] =
                                 '*';
                 }
-                ships.at(i)->set_center_(final_xy);
+                i->set_center_(final_xy);
 
-                for (int j = 0; j < ships.at(i)->dim(); ++j)
+                for (int j = 0; j < i->dim(); ++j)
                 {
-                    if (ships.at(i)->getOrientation() == ship::HORIZONTAL)
+                    if (i->getOrientation() == ship::HORIZONTAL)
                     {
-                        _matrix[ships.at(i)->center().x()][ships.at(i)->center().y() + j - ships.at(i)->dim() / 2] = ships.at(i)->armor()[j];//assume all ship is odd
+                        _matrix[i->center().x()][i->center().y() + j - i->dim() / 2] = i->armor()[j];//assume all ship is odd
                     } else
                     {
-                        _matrix[ships.at(i)->center().x() + j - ships.at(i)->dim() / 2][ships.at(i)->center().y()] = ships.at(i)->armor()[j];
+                        _matrix[i->center().x() + j - i->dim() / 2][i->center().y()] = i->armor()[j];
                     }
                 }
                 return true;
