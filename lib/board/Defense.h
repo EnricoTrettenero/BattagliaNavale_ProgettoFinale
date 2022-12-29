@@ -13,7 +13,7 @@ class defense : public board
   static constexpr int kMaxBoat = 8;
 
   bool isShip(battleships::coordinate xy);
-  std::vector<int> isShip(battleships::coordinate xy, int radius);
+  std::vector<battleships::coordinate> isShip(battleships::coordinate xy,unsigned int radius);
   bool fire(battleships::coordinate xy); //true if center
   bool useShip(battleships::coordinate xyShip, battleships::coordinate xyTarget);
   defense();
@@ -21,7 +21,7 @@ class defense : public board
 
  private:
   std::vector<std::unique_ptr<ship>> ships;
-  void sunk(battleships::coordinate xy);
+  void sunk(int index);
 
 };
 

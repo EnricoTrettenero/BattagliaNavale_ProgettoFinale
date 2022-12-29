@@ -52,7 +52,7 @@ bool defense::useShip(battleships::coordinate xyShip, battleships::coordinate xy
             return ship->action(xyTarget);
     return false;
 }
-bool defense::fire(battleships::coordinate xy) //TODO
+bool defense::fire(battleships::coordinate xy)
 {
     if (_matrix[xy.x()][xy.y()] != ' ')
     {
@@ -66,16 +66,27 @@ bool defense::fire(battleships::coordinate xy) //TODO
                         && ships.at(i)->center().y() - ships.at(i)->dim() / 2 + j == xy.y())
                     {
 
-                      // _matrix[ships.at(i)->center().x()]
-                        if(ships.at(i)->hit(j))
-                            sunk(ships.at(i)->center());
+                        _matrix[ships.at(i)->center().x()][ships.at(i)->center().y() - ships.at(i)->dim() / 2 + j] =
+                            tolower(_matrix[ships.at(i)->center().x()][ships.at(i)->center().y()
+                                - ships.at(i)->dim() / 2 + j]);
+                        if (ships.at(i)->hit(j))
+                        {
+                            sunk(i);
+                        }
                     }
                 } else
                 {
                     if (ships.at(i)->center().y() == xy.y()
                         && ships.at(i)->center().x() - ships.at(i)->dim() / 2 + j == xy.x())
                     {
+                        _matrix[ships.at(i)->center().x() - ships.at(i)->dim() / 2 + j][ships.at(i)->center().y()] =
+                            tolower(_matrix[ships.at(i)->center().x() - ships.at(i)->dim() / 2
+                                + j][ships.at(i)->center().y()]);
+                        if (ships.at(i)->hit(j))
+                        {
+                            sunk(i);
 
+                        }
                     }
                 }
             }
@@ -83,7 +94,34 @@ bool defense::fire(battleships::coordinate xy) //TODO
     }
     return false;
 }
-void defense::sunk(battleships::coordinate xy)
+void defense::sunk(int index) //destroy the ship
 {
+    if (ships.at(index)->getOrientation() == ship::HORIZONTAL)
+        for (int i = 0; i < ships.at(index)->dim(); ++i)
+            _matrix[ships.at(index)->center().x()][ships.at(index)->center().y() - ships.at(index)->dim() + i] = ' ';
+    else
+        for (int i = 0; i < ships.at(index)->dim(); ++i)
+            _matrix[ships.at(index)->center().x() - ships.at(index)->dim() + i][ships.at(index)->center().y()] = ' ';
 
+    auto i = ships.begin()+index;
+    ships.at(index).reset();
+    ships.erase(i);
 }
+bool defense::isShip(battleships::coordinate xy) //coordinate self-check validity
+{
+    return _matrix[xy.x()][xy.y()]!=' ';
+}
+std::vector<battleships::coordinate> defense::isShip(battleships::coordinate xy, unsigned int radius) //radius must be and odd number
+{
+    std::vector<battleships::coordinate> output = std::vector<battleships::coordinate>();
+    for (int i = 0; i < radius; ++i)
+    {
+        for (int j = 0; j < radius; ++j)
+        {
+            if(xy.x()+i-radius/2<0||xy.x()+i-radius/2>11||xy.y()+j-radius/2<0||xy.y()+j-radius/2>11) throw std::invalid_argument("radius error");
+            if(_matrix[xy.x()+i-radius/2][xy.y()+j-radius/2]!=' ') output.emplace_back(xy.x()+i-radius/2,xy.y()+j-radius/2+'A'-1);
+        }
+    }
+    return output; //copy
+}
+
