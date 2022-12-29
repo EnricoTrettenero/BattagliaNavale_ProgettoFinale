@@ -31,7 +31,7 @@ void attack::reset()
         for (int j = 0; j < kDimBoard; ++j)
         {
             turnMatrix[i][j]=0;
-            _matrix[i][j]=' ';
+            _matrix[i][j]='*';
         }
     }
 }
@@ -57,9 +57,9 @@ void attack::reset(int turn)
     {
         for (int j = 0; j < kDimBoard; ++j)
         {
-            if(turnMatrix[i][j]>=turn)
+            if(turnMatrix[i][j]>turn)
             {
-                _matrix[i][j]=' ';
+                _matrix[i][j]='*';
                 turnMatrix[i][j]=0;
             }
         }
