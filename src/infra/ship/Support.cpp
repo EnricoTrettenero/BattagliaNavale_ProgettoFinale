@@ -14,5 +14,11 @@ support::support(const battleships::coordinate &center, orientation orientation)
 
 bool support::action(battleships::coordinate c)
 {
+    //std::vector<battleships::coordinate> isShip(battleships::coordinate xy,unsigned int radius);
+    //bool setShip(std::unique_ptr<ship> s);
+
+
+
+
   return false;
 }

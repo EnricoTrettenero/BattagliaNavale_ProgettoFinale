@@ -8,7 +8,7 @@
 #include "Ship.h"
 class submarine : public ship
 {
-  static constexpr int kSubmarineDim = 3;
+  static constexpr int kSubmarineDim = 1;
  public:
   bool action(battleships::coordinate c) override;
  public:

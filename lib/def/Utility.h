@@ -18,6 +18,7 @@ class coordinate
   static constexpr int kMinY = 65; //ascii code for A
   int x_;
   char y_;
+
  public:
   coordinate(int x, char y) : x_{x}, y_{y}
   {
@@ -34,6 +35,8 @@ class coordinate
   }
 
   int y() const { return y_-kMinY; }
+
+  char y_ch() const {return y_; }
 
   void setY(char y)
   {
@@ -54,6 +57,14 @@ class coordinate
   {
       return this->x()!=input.x()||this->y()!=input.y();
   }
+
+  coordinate& operator=(coordinate new_coord)
+  {
+      this->x_ = new_coord.x()+1;
+      this->y_ = new_coord.y_ch();
+      return *this;
+  }
+
 };
 
 };

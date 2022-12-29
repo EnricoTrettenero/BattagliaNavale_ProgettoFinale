@@ -27,6 +27,8 @@ class ship
   { return armor_; }
   virtual bool action(battleships::coordinate c) = 0;
   bool hit(int position);
+  void set_center_(battleships::coordinate new_center)
+  {center_ = new_center;}
  private:
 
   unsigned int dim_;

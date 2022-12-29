@@ -9,7 +9,7 @@
 #include "Ship.h"
 class support : public ship
 {
-  static constexpr int kSupportDim = 1;
+  static constexpr int kSupportDim = 3;
  public:
   bool action(battleships::coordinate c) override;
  public:
