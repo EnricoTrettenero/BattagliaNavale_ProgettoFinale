@@ -4,11 +4,11 @@
 
 #ifndef BATTAGLIANAVALE_LIB_PLAYER_H_
 #define BATTAGLIANAVALE_LIB_PLAYER_H_
-
+#include <string>
 class player
 {
  public:
-    virtual void doMove() =0;
+    virtual std::string doMove(std::string input) =0;
 
 };
 

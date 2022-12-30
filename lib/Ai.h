@@ -8,6 +8,6 @@
 class ai : public player
 {
  public:
-  virtual void doMove();
+  virtual std::string doMove(std::string input) =0;
 };
 #endif //BATTAGLIANAVALE_LIB_AI_H_
