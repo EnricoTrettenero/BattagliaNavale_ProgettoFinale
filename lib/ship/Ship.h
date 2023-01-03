@@ -12,29 +12,29 @@
 class ship
 {
  public:
-  enum orientation
-  {
-    VERTICAL, HORIZONTAL
-  };
+  enum orientation { VERTICAL, HORIZONTAL };
 
-  unsigned int dim() const
-  { return dim_; }
-  const battleships::coordinate &center() const
-  { return center_; }
-  orientation getOrientation() const
-  { return orientation_; }
-  const std::vector<char> &armor() const
-  { return armor_; }
+  //getters
+  unsigned int dim() const { return dim_; }
+  const battleships::coordinate &center() const { return center_; }
+  orientation getOrientation() const { return orientation_; }
+  const std::vector<char> &armor() const { return armor_; }
+
+  //virtual method
   virtual bool action(battleships::coordinate c) = 0;
+
+  //utilities
   bool hit(int position);
-  void set_center_(battleships::coordinate new_center)
-  {center_ = new_center;}
+  void set_center_(battleships::coordinate new_center) { center_ = new_center; }
+
+  virtual ~ship(); //https://stackoverflow.com/questions/69081119/that-is-abstract-but-has-non-virtual-destructor-the-delete-is-causing-an-error
  private:
 
   unsigned int dim_;
   battleships::coordinate center_;
   enum orientation orientation_;
   std::vector<char> armor_;
+  char shipChar_;
 
  protected:
   ship(char shipChar,
@@ -42,9 +42,7 @@ class ship
        unsigned int dim,
        const battleships::coordinate &center,
        orientation orientation)
-      : shipChar_{shipChar}, armor_(std::move(armor)), dim_(dim), center_(center), orientation_(orientation)
-  {}
-  char shipChar_;
+      : shipChar_{shipChar}, armor_(std::move(armor)), dim_(dim), center_(center), orientation_(orientation) {}
 };
 
 #endif //BATTAGLIANAVALE_LIB_DEF_SHIP_H_

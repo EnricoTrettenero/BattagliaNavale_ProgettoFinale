@@ -9,7 +9,6 @@
 #include "../lib/ship/Support.h"
 #include "../lib/ship/Submarine.h"
 using namespace std;
-
 int main()
 {
     defense d = defense();

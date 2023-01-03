@@ -8,10 +8,7 @@ defense::defense() : board()
 {
     for (auto &i : _matrix)
     {
-        for (char &j : i)
-        {
-            j = '*';
-        }
+        for (char &j : i) { j = '*'; }
     }
     ships = std::vector<std::unique_ptr<ship>>();
 }
@@ -130,11 +127,11 @@ std::vector<battleships::coordinate> defense::isShip(battleships::coordinate xy,
 
 bool defense::move(battleships::coordinate init_xy, battleships::coordinate final_xy)
 {
-    if(isShip(init_xy))
+    if (isShip(init_xy))
     {
-        for(auto & i : ships)
+        for (auto &i : ships)
         {
-            if(i->center() == init_xy)
+            if (i->center() == init_xy)
             {
                 i->set_center_(final_xy);
                 for (int j = 0; j < i->dim(); ++j)
@@ -153,17 +150,16 @@ bool defense::move(battleships::coordinate init_xy, battleships::coordinate fina
                 }
                 i->set_center_(init_xy);
 
-                if(i->getOrientation() == ship::HORIZONTAL)
+                if (i->getOrientation() == ship::HORIZONTAL)
                 {
                     for (int j = 0; j < i->dim(); ++j)
                         _matrix[i->center().x()][i->center().y() - i->dim() / 2 + j] =
-                                '*';
-                }
-                else
+                            '*';
+                } else
                 {
                     for (int j = 0; j < i->dim(); ++j)
                         _matrix[i->center().x() - i->dim() / 2 + j][i->center().y()] =
-                                '*';
+                            '*';
                 }
                 i->set_center_(final_xy);
 

@@ -4,18 +4,18 @@
 
 #include "../../../lib/board/Board.h"
 
- std::ostream &operator<<(std::ostream &os, const board &b)
+std::ostream &operator<<(std::ostream &os, const board &b)
 {
     std::string output;
     for (int i = 0; i < board::kDimBoard; ++i)
     {
         for (int j = 0; j < board::kDimBoard; ++j)
         {
-            output+=b.matrix()[i][j];
+            output += b.matrix()[i][j];
         }
-        output+="\n";
+        output += "\n";
     }
-    return os<<output;
+    return os << output;
 }
 
 std::vector<std::vector<char>> board::matrix() const

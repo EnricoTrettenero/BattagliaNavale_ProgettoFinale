@@ -13,7 +13,7 @@ class defense : public board
   static constexpr int kMaxBoat = 8;
 
   bool isShip(battleships::coordinate xy); //true if the coordinate xy contains a ship
-  std::vector<battleships::coordinate> isShip(battleships::coordinate xy,unsigned int radius); //
+  std::vector<battleships::coordinate> isShip(battleships::coordinate xy, unsigned int radius); //
   bool fire(battleships::coordinate xy); //true if hit
   bool useShip(battleships::coordinate xyShip, battleships::coordinate xyTarget);
   defense();

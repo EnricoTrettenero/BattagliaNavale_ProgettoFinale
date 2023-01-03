@@ -9,6 +9,6 @@ class human : public player
 {
  public:
 
-  virtual std::string doMove(std::string input) =0;
+  virtual std::string doMove(std::string input) = 0;
 };
 #endif //BATTAGLIANAVALE_LIB_HUMAN_H_

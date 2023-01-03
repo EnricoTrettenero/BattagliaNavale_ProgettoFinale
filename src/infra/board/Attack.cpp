@@ -16,12 +16,9 @@ attack::attack() : board()
 }
 void attack::nextTurn()
 {
-    for (int i = 0; i < kDimBoard; ++i)
+    for (auto &i : turnMatrix)
     {
-        for (int j = 0; j < kDimBoard; ++j)
-        {
-            turnMatrix[i][j]++;
-        }
+        for (int &j : i) { j++; }
     }
 }
 void attack::reset()
@@ -30,26 +27,26 @@ void attack::reset()
     {
         for (int j = 0; j < kDimBoard; ++j)
         {
-            turnMatrix[i][j]=0;
-            _matrix[i][j]='*';
+            turnMatrix[i][j] = 0;
+            _matrix[i][j] = '*';
         }
     }
 }
 void attack::find(battleships::coordinate xy)
 {
     _matrix[xy.x()][xy.y()] = 'Y';
-    turnMatrix[xy.x()][xy.y()]= 0;
+    turnMatrix[xy.x()][xy.y()] = 0;
 }
 void attack::hit(battleships::coordinate xy)
 {
     _matrix[xy.x()][xy.y()] = 'X';
-    turnMatrix[xy.x()][xy.y()]= 0;
+    turnMatrix[xy.x()][xy.y()] = 0;
 }
 
 void attack::water(battleships::coordinate xy)
 {
     _matrix[xy.x()][xy.y()] = 'O';
-    turnMatrix[xy.x()][xy.y()]= 0;
+    turnMatrix[xy.x()][xy.y()] = 0;
 }
 void attack::reset(int turn)
 {
@@ -57,10 +54,10 @@ void attack::reset(int turn)
     {
         for (int j = 0; j < kDimBoard; ++j)
         {
-            if(turnMatrix[i][j]>turn)
+            if (turnMatrix[i][j] > turn)
             {
-                _matrix[i][j]='*';
-                turnMatrix[i][j]=0;
+                _matrix[i][j] = '*';
+                turnMatrix[i][j] = 0;
             }
         }
     }

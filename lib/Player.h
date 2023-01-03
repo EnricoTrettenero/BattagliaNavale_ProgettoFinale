@@ -8,7 +8,7 @@
 class player
 {
  public:
-    virtual std::string doMove(std::string input) =0;
+  virtual std::string doMove(std::string input) = 0;
 
 };
 
