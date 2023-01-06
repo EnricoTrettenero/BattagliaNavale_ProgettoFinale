@@ -20,23 +20,23 @@ int main()
     d.setShip(std::move(sm));
     d.setShip(std::move(make_unique<battleship>(battleships::coordinate(5,'E'),ship::HORIZONTAL)));
     cout<<endl<<d<<endl;
-    cout<<d.isShip(battleships::coordinate(5,'C'))<<endl;
-    cout<<d.isShip(battleships::coordinate(5,'B'))<<endl;
-    cout<<d.isShip(battleships::coordinate(4,'E'))<<endl;
-    cout<<d.move(battleships::coordinate(5,'E'),battleships::coordinate(7,'D'))<<endl;
-    cout<<d.move(battleships::coordinate(7,'D'),battleships::coordinate(10,'H'))<<endl;
-    cout<<d.move(battleships::coordinate(5,'E'),battleships::coordinate(7,'D'))<<endl;
-    cout<<endl<<d<<endl;
+//    cout<<d.isShip(battleships::coordinate(5,'C'))<<endl;
+//    cout<<d.isShip(battleships::coordinate(5,'B'))<<endl;
+//    cout<<d.isShip(battleships::coordinate(4,'E'))<<endl;
+//    cout<<d.move(battleships::coordinate(5,'E'),battleships::coordinate(7,'D'))<<endl;
+//    cout<<d.move(battleships::coordinate(7,'D'),battleships::coordinate(10,'H'))<<endl;
+//    cout<<d.move(battleships::coordinate(5,'E'),battleships::coordinate(7,'D'))<<endl;
+//    cout<<endl<<d<<endl;
 //    auto tmp = d.isShip(battleships::coordinate(10,'F'),5);
 //    for (int i = 0; i < tmp.size(); ++i)
 //    {
 //        cout<<tmp.at(i)<<endl;
 //    }
-//    cout<<d.fire(battleships::coordinate(12,'G'));
-//    cout<<d.fire(battleships::coordinate(12,'B'));
-//    cout<<d.fire(battleships::coordinate(10,'B'));
-//    cout<<d.fire(battleships::coordinate(10,'F'));
-//    cout<<endl<<d<<endl;
+    cout<<d.fire(battleships::coordinate(12,'G'));
+    cout<<d.fire(battleships::coordinate(12,'B'));
+    cout<<d.fire(battleships::coordinate(10,'B'));
+    cout<<d.fire(battleships::coordinate(10,'F'));
+    cout<<endl<<d<<endl;
 
 
 //attack a = attack();

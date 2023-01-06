@@ -10,6 +10,10 @@
 namespace battleships
 {
 
+namespace colors{
+static constexpr auto& reset() { return "\033[0m"; }
+}
+
 class coordinate
 {
  private:
