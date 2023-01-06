@@ -17,8 +17,13 @@ class board
   char _matrix[kDimBoard][kDimBoard]; //creazione matrice di char
   friend std::ostream &operator<<(std::ostream &os, const board &b);
  private:
-  static constexpr int kDimForTable = 3; //dimensione degli spazi tra un carattere e l'altro quando si stampa (si consiglia come minimo 2 )
+  //dimensione degli spazi tra un carattere e l'altro quando si stampa (si consiglia come minimo 3, NUMERI DISPARI PLIS)
+  static constexpr int kDimForTable =3;
+  static constexpr int kLeftSpace = (kDimForTable - 1) / 2;
+  static constexpr int kRightSpace = (kDimForTable - 1) % 2 + 1;
+
   static const std::string &padWithSpace(std::string &s);
-  static std::string spaced(const std::string& s);
+  static std::string spaced(const std::string &s);
+  static void colorString(std::string &s);
 };
 #endif //BATTAGLIANAVALE_LIB_BOARD_H_
