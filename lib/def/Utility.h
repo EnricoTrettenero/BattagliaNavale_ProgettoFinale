@@ -14,12 +14,13 @@ class coordinate
 {
  private:
   static constexpr int kDim = board::kDimBoard - 1;
-  static constexpr int kMinX = 1;
-  static constexpr int kMinY = 65; //ascii code for A
+
   int x_;
   char y_;
 
  public:
+  static constexpr int kMinX = 1;
+  static constexpr int kMinY = 65; //ascii code for A
   //constructor
   coordinate(int x, char y) : x_{x}, y_{y}
   {
@@ -57,5 +58,5 @@ class coordinate
 
 };
 
-};
+}
 #endif //BATTAGLIANAVALE_LIB_DEF_UTILITY_H_
