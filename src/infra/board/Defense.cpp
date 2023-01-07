@@ -220,3 +220,13 @@ void defense::repair_ship(battleships::coordinate xy)
             }
         }
 }
+
+bool defense::isDamaged(battleships::coordinate xy)
+{
+    if(_matrix[xy.x()][xy.y()] != '*')
+    {
+        if(islower(_matrix[xy.x()][xy.y()]))
+            return true;
+    }
+    return false;
+}

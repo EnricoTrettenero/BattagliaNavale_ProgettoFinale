@@ -20,6 +20,7 @@ class defense : public board
   bool setShip(std::unique_ptr<ship> s);
   bool move(battleships::coordinate init_xy, battleships::coordinate final_xy);
   void repair_ship(battleships::coordinate xy);
+  bool isDamaged(battleships::coordinate xy);
 
  private:
   std::vector<std::unique_ptr<ship>> ships;
