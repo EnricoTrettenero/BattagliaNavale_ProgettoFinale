@@ -2,6 +2,7 @@
 // Created by Enry on 29/12/2022.
 //
 
+#include <algorithm>
 #include "../../../lib/ship/Ship.h"
 
 bool ship::hit(int position) //true if health=0, position reference the position on the array
@@ -11,6 +12,15 @@ bool ship::hit(int position) //true if health=0, position reference the position
     armor_.at(position) = char(tolower((unsigned char) armor_.at(position)));
     return std::all_of(armor_.begin(), armor_.end(), [](char i)
     { return islower(i); });
+}
+
+void ship::repair_armor()
+{
+    for(int i = 0; i<dim(); i++)
+    {
+        armor_[i] = toupper(armor_[i]);
+    }
+        //std::vector<char> armor_;
 }
 
 ship::~ship() = default;

@@ -180,3 +180,43 @@ bool defense::move(battleships::coordinate init_xy, battleships::coordinate fina
     return false;
 }
 
+void defense::repair_ship(battleships::coordinate xy)
+{
+    if (_matrix[xy.x()][xy.y()] != '*')
+        for (const auto &ship : ships)
+        {
+            if (ship->getOrientation() == ship::HORIZONTAL)
+            {
+                for(int i = 0; i < ship->dim(); ++i)
+                {
+                    if (ship->center().x() == xy.x()
+                        && ship->center().y() - ship->dim() / 2 + i == xy.y()) {
+
+                        ship->repair_armor();
+                        for(int j = 0; j < ship->dim(); ++j)
+                        {
+                            _matrix[ship->center().x()][ship->center().y() - ship->dim() / 2 + j] =
+                                    toupper(_matrix[ship->center().x()][ship->center().y()
+                                                                               - ship->dim() / 2 + j]);
+                        }
+                    }
+                }
+            } else
+            {
+                for(int i = 0; i < ship->dim(); ++i)
+                {
+                    if (ship->center().y() == xy.y()
+                        && ship->center().x() - ship->dim() / 2 + i == xy.x()) {
+
+                        ship->repair_armor();
+                        for(int j = 0; j < ship->dim(); ++j)
+                        {
+                            _matrix[ship->center().x() - ship->dim() / 2 + j][ship->center().y()] =
+                                    tolower(_matrix[ship->center().x() - ship->dim() / 2
+                                                    + j][ship->center().y()]);
+                        }
+                    }
+                }
+            }
+        }
+}

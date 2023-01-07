@@ -11,7 +11,7 @@ submarine::submarine(const battleships::coordinate &center, orientation orientat
     orientation
 ) {}
 
-bool submarine::action(battleships::coordinate c)
+bool submarine::action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack enemy_attack)
 {
     return false;  //TODO
 }

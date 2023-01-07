@@ -11,7 +11,7 @@ battleship::battleship(const battleships::coordinate &center, ship::orientation 
     orientation
 ) {}
 
-bool battleship::action(battleships::coordinate c)
+bool battleship::action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack enemy_attack)
 {
     return false;  //TODO
 }

@@ -12,13 +12,25 @@ support::support(const battleships::coordinate &center, orientation orientation)
     orientation
 ) {}
 
-bool support::action(battleships::coordinate c)
+bool support::action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack enemy_attack)
 {
-    //std::vector<battleships::coordinate> isShip(battleships::coordinate xy,unsigned int radius);
-    //bool setShip(std::unique_ptr<ship> s);
-
-
-
-
-    return false;
+    ally_defense.move(center(),c); //muovo la nave di supporto nella nuova posizione
+    std::vector<battleships::coordinate> toBeRepairedShip = ally_defense.isShip(c,1); //ottengo le coordinate delle porzioni di nave nel raggio
+    for(auto & i : toBeRepairedShip)
+    {
+        if(getOrientation() == HORIZONTAL) //escludo le coordinate della nave di supporto stessa
+        {
+            if(i != center() || (i.x() != center().x() && i.y() != center().y()+1) || (i.x() != center().x() && i.y() != center().y()-1))
+            {
+                ally_defense.repair_ship(i);
+            }
+        }
+        else{
+            if(i != center() || (i.y() != center().y() && i.x() != center().x()+1) || (i.y() != center().y() && i.x() != center().x()-1))
+            {
+                ally_defense.repair_ship(i);
+            }
+        }
+    }
+    return true;
 }

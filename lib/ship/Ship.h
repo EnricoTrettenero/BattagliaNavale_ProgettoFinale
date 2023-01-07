@@ -9,6 +9,9 @@
 #include <utility>
 #include <vector>
 #include "../def/Utility.h"
+#include "../board/Defense.h"
+#include "../board/Attack.h"
+
 class ship
 {
  public:
@@ -21,11 +24,12 @@ class ship
   const std::vector<char> &armor() const { return armor_; }
 
   //virtual method
-  virtual bool action(battleships::coordinate c) = 0;
+  virtual bool action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack enemy_attack) = 0;
 
   //utilities
   bool hit(int position);
   void set_center_(battleships::coordinate new_center) { center_ = new_center; }
+  void repair_armor();
 
   virtual ~ship(); //https://stackoverflow.com/questions/69081119/that-is-abstract-but-has-non-virtual-destructor-the-delete-is-causing-an-error
  private:
