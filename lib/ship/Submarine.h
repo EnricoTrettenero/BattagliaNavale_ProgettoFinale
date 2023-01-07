@@ -11,7 +11,7 @@ class submarine : public ship
   static constexpr int kSubmarineDim = 1;
 
  public:
-  bool action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack enemy_attack) override;
+  bool action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack ally_attack) override;
   static constexpr int kSubmarineChar = 'S';
   //static constexpr char red[] = "\033[42;1m"; //molto più elegante ma c++11 non lo permette
   static constexpr auto& color() { return "\033[43m"; }

@@ -11,8 +11,14 @@ submarine::submarine(const battleships::coordinate &center, orientation orientat
     orientation
 ) {}
 
-bool submarine::action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack enemy_attack)
+bool submarine::action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack ally_attack)
 {
-    return false;  //TODO
+    ally_defense.move(center(),c); //muovo la nave nella nuova posizione
+    std::vector<battleships::coordinate> found_ships = ally_defense.isShip(c,2); //ottengo le coordinate delle porzioni di nave nel raggio
+    for(auto & i : found_ships)
+    {
+        ally_attack.find(i); //setto ad Y nella mia board le coordinate delle navi trovate
+    }
+    return true;
 }
 

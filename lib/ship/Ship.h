@@ -24,7 +24,7 @@ class ship
   const std::vector<char> &armor() const { return armor_; }
 
   //virtual method
-  virtual bool action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack enemy_attack) = 0;
+  virtual bool action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack ally_attack) = 0;
 
   //utilities
   bool hit(int position);

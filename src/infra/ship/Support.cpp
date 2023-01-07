@@ -12,7 +12,7 @@ support::support(const battleships::coordinate &center, orientation orientation)
     orientation
 ) {}
 
-bool support::action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack enemy_attack)
+bool support::action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack ally_attack)
 {
     ally_defense.move(center(),c); //muovo la nave di supporto nella nuova posizione
     std::vector<battleships::coordinate> toBeRepairedShip = ally_defense.isShip(c,1); //ottengo le coordinate delle porzioni di nave nel raggio
