@@ -10,8 +10,7 @@ submarine::submarine(const battleships::coordinate &center, orientation orientat
     center,
     orientation
 ) {}
-std::vector<std::pair<std::string, battleships::coordinate>> submarine::action(battleships::coordinate c)
+std::vector<std::pair<char, battleships::coordinate>> submarine::action(battleships::coordinate c)
 {
-    return std::vector<std::pair<std::string, battleships::coordinate>>();
+    return std::vector<std::pair<char, battleships::coordinate>>();
 }
-

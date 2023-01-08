@@ -22,7 +22,7 @@ class ship
   const std::vector<char> &armor() const { return armor_; }
 
   //virtual method
-  virtual std::vector<std::pair<std::string,battleships::coordinate>> action(battleships::coordinate c) = 0;
+  virtual std::vector<std::pair<char,battleships::coordinate>> action(battleships::coordinate c) = 0;
 
   //utilities
   bool hit(int position);

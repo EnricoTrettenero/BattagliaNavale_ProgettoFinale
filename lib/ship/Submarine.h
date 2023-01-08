@@ -11,7 +11,7 @@ class submarine : public ship
   static constexpr int kSubmarineDim = 1;
 
  public:
-  virtual std::vector<std::pair<std::string,battleships::coordinate>> action(battleships::coordinate c) override;
+  virtual std::vector<std::pair<char,battleships::coordinate>> action(battleships::coordinate c) override;
 
   static constexpr int kSubmarineChar = 'S';
   //static constexpr char red[] = "\033[42;1m"; //molto più elegante ma c++11 non lo permette

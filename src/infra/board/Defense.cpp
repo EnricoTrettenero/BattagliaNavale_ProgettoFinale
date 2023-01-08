@@ -43,7 +43,7 @@ bool defense::setShip(std::unique_ptr<ship> s)
     ships.push_back(std::move(s)); //siummm
     return true;
 }
-std::vector<std::pair<std::string,battleships::coordinate>> defense::useShip(battleships::coordinate xyShip, battleships::coordinate xyTarget)
+std::vector<std::pair<char,battleships::coordinate>> defense::useShip(battleships::coordinate xyShip, battleships::coordinate xyTarget)
 {
     for (const auto &ship : ships)
         if (ship->center() == xyShip)

@@ -11,7 +11,7 @@ class battleship : public ship
   static constexpr int kBattleshipDim = 5;
 
  public:
-  virtual std::vector<std::pair<std::string,battleships::coordinate>> action(battleships::coordinate c) override;
+  virtual std::vector<std::pair<char,battleships::coordinate>> action(battleships::coordinate c) override;
 
   battleship(const battleships::coordinate &center, orientation orientation);
   static constexpr int kBattleshipChar = 'C';

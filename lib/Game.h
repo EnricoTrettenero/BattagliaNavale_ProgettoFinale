@@ -20,6 +20,8 @@ class game
   attack attackBoardP1_, attackBoardP2_;
   defense defenseBoardP1_, defenseBoardP2_;
   void filler(std::unique_ptr<player> &p, defense &d, attack &a);
+  void make_action(const std::vector<std::pair<char,battleships::coordinate>>& vec, defense ally_defense, defense enemy_defense, attack ally_attack);
+
   bool turn;
   int turnCounter;
   std::pair<battleships::coordinate,ship::orientation> getShipData(const std::string &s);

@@ -97,3 +97,32 @@ std::pair<battleships::coordinate, ship::orientation> game::getShipData(const st
 
     return std::make_pair(outputCoordinate, outputOrientation);
 }
+
+void game::make_action(const std::vector<std::pair<char,battleships::coordinate>>& vec, defense ally_defense, defense enemy_defense, attack ally_attack)
+{
+    for(auto it = vec.begin(), end = vec.end(); it != end; ++it)
+    {
+        switch(it->first)
+        {
+            case ('M'):
+                ally_defense.move(it->second,(it+1)->second);
+                it++; //dobbiamo andare al pair successivo
+                break;
+
+            case ('S'):
+                ally_defense.repair_ship(it->second);
+                break;
+
+            case ('C'):
+                enemy_defense.fire(it->second);
+                if(enemy_defense.isDamaged(it->second))
+                    ally_attack.hit(it->second);
+                else
+                    ally_attack.water(it->second);
+                break;
+
+            case ('E'):
+                break;
+        }
+    }
+}

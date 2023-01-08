@@ -15,7 +15,7 @@ class defense : public board
   bool isShip(battleships::coordinate xy); //true if the coordinate xy contains a ship
   std::vector<battleships::coordinate> isShip(battleships::coordinate xy, unsigned int radius); //
   bool fire(battleships::coordinate xy); //true if hit
-  std::vector<std::pair<std::string, battleships::coordinate>> useShip(battleships::coordinate xyShip, battleships::coordinate xyTarget);
+  std::vector<std::pair<char, battleships::coordinate>> useShip(battleships::coordinate xyShip, battleships::coordinate xyTarget);
   defense();
   bool setShip(std::unique_ptr<ship> s);
   bool move(battleships::coordinate init_xy, battleships::coordinate final_xy);
