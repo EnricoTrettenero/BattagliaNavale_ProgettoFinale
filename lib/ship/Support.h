@@ -2,8 +2,8 @@
 // Created by vale on 27/12/22.
 //
 
-#ifndef BATTAGLIANAVALE__SUPPORT_H_
-#define BATTAGLIANAVALE__SUPPORT_H_
+#ifndef BATTAGLIANAVALE_LIB_SHIP_SUPPORT_H_
+#define BATTAGLIANAVALE_LIB_SHIP_SUPPORT_H_
 
 #include "../def/Utility.h"
 #include "Ship.h"
@@ -22,4 +22,4 @@ class support : public ship
 
 };
 
-#endif //BATTAGLIANAVALE__SUPPORT_H_
+#endif //BATTAGLIANAVALE_LIB_SHIP_SUPPORT_H_

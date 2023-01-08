@@ -2,8 +2,8 @@
 // Created by Enry on 22/12/2022.
 //
 
-#ifndef BATTAGLIANAVALE_LIB_DEF_SHIP_H_
-#define BATTAGLIANAVALE_LIB_DEF_SHIP_H_
+#ifndef BATTAGLIANAVALE_LIB_SHIP_SHIP_H_
+#define BATTAGLIANAVALE_LIB_SHIP_SHIP_H_
 
 #include <string>
 #include <utility>
@@ -47,4 +47,4 @@ class ship
       : shipChar_{shipChar}, armor_(std::move(armor)), dim_(dim), center_(center), orientation_(orientation) {}
 };
 
-#endif //BATTAGLIANAVALE_LIB_DEF_SHIP_H_
+#endif //BATTAGLIANAVALE_LIB_SHIP_SHIP_H_

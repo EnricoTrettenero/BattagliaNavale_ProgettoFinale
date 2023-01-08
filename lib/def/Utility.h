@@ -32,6 +32,8 @@ class coordinate
       if (y < kMinY || y > kMinY + kDim) throw std::invalid_argument("coordinate y not valid");
   }
 
+  ~coordinate() = default;
+
   //getter
   int x() const { return x_ - kMinX; }
   int y() const { return y_ - kMinY; }
@@ -65,6 +67,8 @@ class coordinate
 
   }
 };
+
+
 
 }
 #endif //BATTAGLIANAVALE_LIB_DEF_UTILITY_H_

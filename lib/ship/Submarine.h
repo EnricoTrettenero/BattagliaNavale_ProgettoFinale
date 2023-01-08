@@ -2,8 +2,8 @@
 // Created by vale on 27/12/22.
 //
 
-#ifndef BATTAGLIANAVALE_SRC_SUBMARINE_H_
-#define BATTAGLIANAVALE_SRC_SUBMARINE_H_
+#ifndef BATTAGLIANAVALE_LIB_SHIP_SUBMARINE_H_
+#define BATTAGLIANAVALE_LIB_SHIP_SUBMARINE_H_
 
 #include "Ship.h"
 class submarine : public ship
@@ -22,4 +22,4 @@ class submarine : public ship
 
 };
 
-#endif //BATTAGLIANAVALE_SRC_SUBMARINE_H_
+#endif //BATTAGLIANAVALE_LIB_SHIP_SUBMARINE_H_

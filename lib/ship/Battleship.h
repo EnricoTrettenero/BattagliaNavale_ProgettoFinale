@@ -2,8 +2,8 @@
 // Created by vale on 27/12/22.
 //
 
-#ifndef BATTAGLIANAVALE__BATTLESHIP_H_
-#define BATTAGLIANAVALE__BATTLESHIP_H_
+#ifndef BATTAGLIANAVALE_LIB_SHIP_BATTLESHIP_H_
+#define BATTAGLIANAVALE_LIB_SHIP_BATTLESHIP_H_
 
 #include "Ship.h"
 class battleship : public ship
@@ -20,4 +20,4 @@ class battleship : public ship
   static constexpr auto& colorHit() { return "\033[42;7m"; }
 };
 
-#endif //BATTAGLIANAVALE__BATTLESHIP_H_
+#endif //BATTAGLIANAVALE_LIB_SHIP_BATTLESHIP_H_

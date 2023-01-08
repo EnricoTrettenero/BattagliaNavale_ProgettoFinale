@@ -108,3 +108,5 @@ const std::string &board::padWithSpace(std::string &s)
     }
     return s;
 }
+
+board::~board() = default;
