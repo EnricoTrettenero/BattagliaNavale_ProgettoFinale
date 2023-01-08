@@ -122,6 +122,14 @@ void game::make_action(const std::vector<std::pair<char,battleships::coordinate>
                 break;
 
             case ('E'):
+                if(enemy_defense.isShip(it->second)) {
+                    if (enemy_defense.isDamaged(it->second))
+                        ally_attack.hit(it->second);
+                    else
+                        ally_attack.find(it->second);
+                }
+                else
+                    ally_attack.water(it->second);
                 break;
         }
     }

@@ -12,6 +12,8 @@ battleship::battleship(const battleships::coordinate &center, ship::orientation 
 ) {}
 std::vector<std::pair<char, battleships::coordinate>> battleship::action(battleships::coordinate c)
 {
-    return std::vector<std::pair<char, battleships::coordinate>>();
+    std::vector<std::pair<char, battleships::coordinate>> output = std::vector<std::pair<char, battleships::coordinate>>();
+    output.emplace_back(std::make_pair('C', c));
+    return output;
 }
 
