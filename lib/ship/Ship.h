@@ -9,8 +9,6 @@
 #include <utility>
 #include <vector>
 #include "../def/Utility.h"
-#include "../board/Defense.h"
-#include "../board/Attack.h"
 
 class ship
 {
@@ -24,7 +22,7 @@ class ship
   const std::vector<char> &armor() const { return armor_; }
 
   //virtual method
-  virtual bool action(battleships::coordinate c, defense ally_defense, defense enemy_defense, attack ally_attack) = 0;
+  virtual std::vector<std::pair<std::string,battleships::coordinate>> action(battleships::coordinate c) = 0;
 
   //utilities
   bool hit(int position);

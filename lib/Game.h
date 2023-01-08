@@ -22,6 +22,7 @@ class game
   void filler(std::unique_ptr<player> &p, defense &d, attack &a);
   bool turn;
   int turnCounter;
+  std::pair<battleships::coordinate,ship::orientation> getShipData(const std::string &s);
 
 };
 

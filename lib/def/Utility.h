@@ -60,6 +60,10 @@ class coordinate
       return *this;
   }
 
+  explicit coordinate()
+  {
+
+  }
 };
 
 }

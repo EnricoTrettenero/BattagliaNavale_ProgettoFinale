@@ -9,7 +9,7 @@ class player
 {
  public:
   virtual std::string doMove(std::string input) = 0;
-
+  virtual ~player();
 };
 
 #endif //BATTAGLIANAVALE_LIB_PLAYER_H_

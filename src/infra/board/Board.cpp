@@ -7,6 +7,7 @@
 #include "../../../lib/ship/Battleship.h"
 #include "../../../lib/ship/Submarine.h"
 #include "../../../lib/ship/Support.h"
+
 std::ostream &operator<<(std::ostream &os, const board &b)
 {
     //print numbers

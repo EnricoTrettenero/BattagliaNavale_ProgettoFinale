@@ -3,3 +3,5 @@
 //
 
 #include "../../lib/Player.h"
+
+player::~player() = default;
