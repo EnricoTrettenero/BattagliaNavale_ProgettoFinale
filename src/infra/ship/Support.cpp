@@ -13,7 +13,6 @@ support::support(const battleships::coordinate &center, orientation orientation)
 ) {}
 std::vector<std::pair<char, battleships::coordinate>> support::action(battleships::coordinate c)
 {
-
     std::vector<std::pair<char, battleships::coordinate>> output = std::vector<std::pair<char, battleships::coordinate>>();
     int radius = 1;
     output.emplace_back(std::make_pair('M',center()));
