@@ -5,6 +5,7 @@
 #ifndef BATTAGLIANAVALE_LIB_GAME_H_
 #define BATTAGLIANAVALE_LIB_GAME_H_
 #include <memory>
+#include <fstream>
 #include "Player.h"
 #include "board/Attack.h"
 #include "board/Defense.h"
@@ -14,7 +15,7 @@ class game
   static constexpr int kNumberBattleship = 3;
   static constexpr int kNumberSupport = 3;
   static constexpr int kNumberSubmarine = 2;
-  explicit game(std::unique_ptr<player> p1, std::unique_ptr<player> p2);
+  explicit game(std::unique_ptr<player> p1, std::unique_ptr<player> p2,const std::string &fileName);
  private:
   std::unique_ptr<player> p1_, p2_;
   attack attackBoardP1_, attackBoardP2_;
@@ -29,6 +30,7 @@ class game
   battleships::coordinate getCoordinate(const std::string &s);
   bool turn;
   int turnCounter;
+  std::ofstream file_;
   std::pair<battleships::coordinate, ship::orientation> getShipData(const std::string &s);
 
 };
