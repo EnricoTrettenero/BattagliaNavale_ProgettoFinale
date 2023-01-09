@@ -57,7 +57,7 @@ class coordinate
 
   coordinate &operator=(coordinate new_coord)
   {
-      this->x_ = new_coord.x();
+      this->x_ = new_coord.x()+1;
       this->y_ = new_coord.y_ch();
       return *this;
   }

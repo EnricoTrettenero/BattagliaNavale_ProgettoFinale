@@ -195,7 +195,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
             } else if (strFirst == "XX" && strLast == "XX")
             {
                 input = p->doMove(d.to_string() + "\n" + a.to_string() + "\n Special Move XX XX, insert new Move ");
-
+                repeat=true;
             } else //coordinate case
             {
                 try
