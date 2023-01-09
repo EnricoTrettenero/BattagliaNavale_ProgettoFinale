@@ -135,7 +135,6 @@ void game::make_action(const std::vector<std::pair<char, battleships::coordinate
                 else
                     ally_attack.water(it->second);
                 break;
-            case ('E'):break;
         }
     }
 }
