@@ -8,8 +8,9 @@
 class human : public player
 {
  public:
-
+  std::string to_string() override;
   std::string doMove(std::string input) override;
+  explicit human(const std::string &name);
 };
 
 #endif //BATTAGLIANAVALE_LIB_HUMAN_H_

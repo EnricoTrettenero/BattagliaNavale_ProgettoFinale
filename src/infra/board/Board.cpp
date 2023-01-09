@@ -11,28 +11,10 @@
 std::ostream &operator<<(std::ostream &os, const board &b)
 {
     //print numbers
-    std::string output;
-    std::string lineWitNumber(board::kDimForTable, ' '); //spazio iniziale nella riga
-    for (int i = battleships::coordinate::kMinX; i <= board::kDimBoard; ++i)
-    {
-        std::string s = std::to_string(i);
-        lineWitNumber += board::padWithSpace(s);
-    }
-    output += lineWitNumber + "\n";
 
-    for (int i = 0; i < board::kDimBoard; ++i)
-    {
-        std::string line(1, char(i + (battleships::coordinate::kMinY)));
-        for (int j = 0; j < board::kDimBoard; ++j)
-        {
-            line += b.matrix()[i][j];
-        }
-        line = board::spaced(line);
-        board::colorString(line);
-        output += line + "\n";
-    }
-    return os << output;
+    return os << b.to_string();
 }
+
 
 void replaceAll(std::string &str, const std::string &from, const std::string &to)
 {
@@ -107,4 +89,28 @@ const std::string &board::padWithSpace(std::string &s)
         l++;
     }
     return s;
+}
+std::string board::to_string() const
+{
+    std::string output;
+    std::string lineWitNumber(board::kDimForTable, ' '); //spazio iniziale nella riga
+    for (int i = battleships::coordinate::kMinX; i <= board::kDimBoard; ++i)
+    {
+        std::string s = std::to_string(i);
+        lineWitNumber += board::padWithSpace(s);
+    }
+    output += lineWitNumber + "\n";
+
+    for (int i = 0; i < board::kDimBoard; ++i)
+    {
+        std::string line(1, char(i + (battleships::coordinate::kMinY)));
+        for (int j = 0; j < board::kDimBoard; ++j)
+        {
+            line += _matrix[i][j];
+        }
+        line = board::spaced(line);
+        board::colorString(line);
+        output += line + "\n";
+    }
+    return output;
 }

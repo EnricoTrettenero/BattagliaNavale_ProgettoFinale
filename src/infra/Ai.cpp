@@ -6,3 +6,11 @@ std::string ai::doMove(std::string input)
 {
     return std::string();
 }
+std::string ai::to_string()
+{
+    return "Ai " + name_;
+}
+ai::ai(const std::string &name) : player(name)
+{
+
+}

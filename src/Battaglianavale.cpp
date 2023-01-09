@@ -14,8 +14,13 @@
 using namespace std;
 int main()
 {
-   unique_ptr<player> p1 = make_unique<human>();
-   unique_ptr<player> p2 = make_unique<human>();
+   unique_ptr<player> p1 = make_unique<human>("1");
+   unique_ptr<player> p2 = make_unique<human>("1");
     game g = game(std::move(p1),std::move(p2));
-  return 0;
+
+//    unique_ptr<ship>s = make_unique<battleship>(battleships::coordinate(5,'F'),ship::VERTICAL);
+//    defense d = defense();
+//    d.setShip(std::move(s));
+//    cout<<d<<endl;
+    return 0;
 }
