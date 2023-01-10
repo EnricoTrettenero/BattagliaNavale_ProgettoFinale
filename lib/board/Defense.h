@@ -21,11 +21,12 @@ class defense : public board
   bool move(battleships::coordinate init_xy, battleships::coordinate final_xy);
   void repair_ship(battleships::coordinate xy);
   bool isDamaged(battleships::coordinate xy);
+  int getShipCount();
 
  private:
   std::vector<std::unique_ptr<ship>> ships;
   void sunk(int index);
-
+  int shipCounter = 8;
 };
 
 #endif //BATTAGLIANAVALE_LIB_BOARD_DEFENSE_H_

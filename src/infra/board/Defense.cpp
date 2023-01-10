@@ -102,6 +102,7 @@ void defense::sunk(int index) //destroy the ship
     auto i = ships.begin() + index;
     ships.at(index).reset();
     ships.erase(i);
+    shipCounter--;
 }
 bool defense::isShip(battleships::coordinate xy) //coordinate self-check validity
 {
@@ -229,4 +230,9 @@ bool defense::isDamaged(battleships::coordinate xy)
             return true;
     }
     return false;
+}
+
+int defense::getShipCount()
+{
+    return shipCounter;
 }
