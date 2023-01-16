@@ -16,7 +16,7 @@ class game
   static constexpr int kNumberSupport = 3;
   static constexpr int kNumberSubmarine = 2;
   static constexpr int maxTurn = 100;
-  explicit game(std::unique_ptr<player> p1, std::unique_ptr<player> p2,const std::string &fileName);
+  explicit game(std::unique_ptr<player> p1, std::unique_ptr<player> p2, const std::string &fileName);
  private:
   std::unique_ptr<player> p1_, p2_;
   attack attackBoardP1_, attackBoardP2_;

@@ -10,8 +10,10 @@
 namespace battleships
 {
 
-namespace colors{
-static constexpr auto& reset() { return "\033[0m"; }
+namespace colors
+{
+static constexpr auto &reset()
+{ return "\033[0m"; }
 }
 
 class coordinate
@@ -35,10 +37,12 @@ class coordinate
   ~coordinate() = default;
 
   //getter
-  int x() const { return x_ - kMinX; }
-  int y() const { return y_ - kMinY; }
-  char y_ch() const { return y_; }
-
+  int x() const
+  { return x_ - kMinX; }
+  int y() const
+  { return y_ - kMinY; }
+  char y_ch() const
+  { return y_; }
 
   //operators overload
   friend std::ostream &operator<<(std::ostream &os, const coordinate &coordinate)
@@ -57,7 +61,7 @@ class coordinate
 
   coordinate &operator=(coordinate new_coord)
   {
-      this->x_ = new_coord.x()+1;
+      this->x_ = new_coord.x() + 1;
       this->y_ = new_coord.y_ch();
       return *this;
   }
@@ -67,8 +71,6 @@ class coordinate
 
   }
 };
-
-
 
 }
 #endif //BATTAGLIANAVALE_LIB_DEF_UTILITY_H_
