@@ -11,7 +11,7 @@ class replay : public player
 {
  public:
   std::string to_string() override;
-  std::string doMove(std::string input) override;
+  std::string doAction(std::string input) override;
   explicit replay(const std::string &name);
  private:
   std::ifstream file_;

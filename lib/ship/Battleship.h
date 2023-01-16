@@ -8,9 +8,11 @@
 #include "Ship.h"
 class battleship : public ship
 {
+
   static constexpr int kBattleshipDim = 5;
 
  public:
+  static std::string className() { return "battleship"; }
   virtual std::vector<std::pair<char, battleships::coordinate>> action(battleships::coordinate c) override;
   battleship(const battleships::coordinate &center, orientation orientation);
   static constexpr int kBattleshipChar = 'C';

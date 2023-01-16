@@ -10,7 +10,8 @@ class player
  protected:
   std::string name_;
  public:
-  virtual std::string doMove(std::string input) = 0;
+  virtual std::string doAction(std::string input) = 0;
+  virtual std::string doInsert(std::string input) = 0;
   virtual std::string to_string() = 0;
   explicit player(const std::string &name);
   virtual ~player();

@@ -21,7 +21,7 @@ class game
   std::unique_ptr<player> p1_, p2_;
   attack attackBoardP1_, attackBoardP2_;
   defense defenseBoardP1_, defenseBoardP2_;
-  void filler(std::unique_ptr<player> &p, defense &d, attack &a);
+  void fillPlayerBoards(std::unique_ptr<player> &p, defense &d, attack &a);
   void make_action(const std::vector<std::pair<char, battleships::coordinate>> &vec,
                    defense &ally_defense,
                    defense &enemy_defense,
@@ -36,6 +36,16 @@ class game
   std::ofstream file_;
   std::pair<battleships::coordinate, ship::orientation> getShipData(const std::string &s);
 
+  //utilities
+  void fillHumanBattleships(std::unique_ptr<player> &p, defense &d);
+  void fillHumanSupport(std::unique_ptr<player> &p, defense &d);
+  void fillHumanSubmarine(std::unique_ptr<player> &p, defense &d);
+
+
+  template<typename T>
+  void fillShip(int kNumber,std::unique_ptr<player> &p, defense &d,std::string type);
 };
+
+#include "Game.hpp"
 
 #endif //BATTAGLIANAVALE_LIB_GAME_H_

@@ -8,78 +8,23 @@
 #include "../../lib/ship/Submarine.h"
 #include <string>
 #include <iostream>
-game::game(std::unique_ptr<player> p1, std::unique_ptr<player> p2,const std::string &fileName) : p1_{std::move(p1)}, p2_{std::move(p2)}
+game::game(std::unique_ptr<player> p1, std::unique_ptr<player> p2, const std::string &fileName) : p1_{std::move(p1)},
+                                                                                                  p2_{std::move(p2)}
 {
     file_.open(fileName);
-    filler(p1_, defenseBoardP1_, attackBoardP1_);
-    filler(p2_, defenseBoardP2_, attackBoardP2_);
+    fillPlayerBoards(p1_, defenseBoardP1_, attackBoardP1_);
+    fillPlayerBoards(p2_, defenseBoardP2_, attackBoardP2_);
     play();
     file_.close();
 }
 
-void game::filler(std::unique_ptr<player> &p, defense &d, attack &a)
+void game::fillPlayerBoards(std::unique_ptr<player> &p, defense &d, attack &a)
 {
-    d=defense();
-    a=attack();
-    for (int i = 0; i < kNumberBattleship; ++i) //insert battleships
-    {
-        bool error;
-        do
-        {
-            error = false;
-            try
-            {
-                std::pair<battleships::coordinate, ship::orientation> input = getShipData(p->doMove(
-                    "input type 'coordinate orientation' insert Battleship no." + std::to_string(i)));
-                std::unique_ptr<ship> s = std::make_unique<battleship>(input.first, input.second);
-                error = !d.setShip(std::move(s));
-            }
-            catch (std::invalid_argument &ex)
-            {
-                error = true;
-            }
-        } while (error);
-    }
-    for (int i = 0; i < kNumberSupport; ++i) //insert support
-    {
-        bool error;
-        do
-        {
-            error = false;
-            try
-            {
-                std::pair<battleships::coordinate, ship::orientation>
-                    input = getShipData(p->doMove(
-                    "input type 'coordinate orientation' insert support no." + std::to_string(i)));
-                std::unique_ptr<ship> s = std::make_unique<support>(input.first, input.second);
-                error = !d.setShip(std::move(s));
-            }
-            catch (std::invalid_argument &ex)
-            {
-                error = true;
-            }
-        } while (error);
-    }
-    for (int i = 0; i < kNumberSubmarine; ++i) //insert submarine
-    {
-        bool error;
-        do
-        {
-            error = false;
-            try
-            {
-                std::pair<battleships::coordinate, ship::orientation>
-                    input = getShipData(p->doMove(
-                    "input type 'coordinate orientation' insert submarine no." + std::to_string(i)));
-                std::unique_ptr<ship> s = std::make_unique<submarine>(input.first, input.second);
-                error = !d.setShip(std::move(s));
-            }
-            catch (std::invalid_argument &ex)
-            {
-                error = true;
-            }
-        } while (error);
-    }
+    d = defense();
+    a = attack();
+    fillShip<submarine>(kNumberSubmarine,p,d, submarine::className()); //template function che usa una  virtual function di player (che potrebbe essere human o ai)
+    fillShip<battleship>(kNumberBattleship,p,d, battleship::className()); //TODO fare in modo che le Knumber siano intuibili dalla classe del template
+    fillShip<support>(kNumberSupport,p,d, support::colorHit());
 }
 
 std::pair<battleships::coordinate, ship::orientation> game::getShipData(const std::string &s)
@@ -129,13 +74,13 @@ void game::make_action(const std::vector<std::pair<char, battleships::coordinate
                 break;
 
             case ('E'):
-                if(enemy_defense.isShip(it->second)) {
+                if (enemy_defense.isShip(it->second))
+                {
                     if (enemy_defense.isDamaged(it->second))
                         ally_attack.hit(it->second);
                     else
                         ally_attack.find(it->second);
-                }
-                else
+                } else
                     ally_attack.water(it->second);
                 break;
         }
@@ -147,33 +92,32 @@ void game::play()
     turnCounter = 0;
     while (turnCounter < maxTurn)//tmp
     {
-        if(maxTurn - turnCounter < 10)
+        if (maxTurn - turnCounter < 10)
         {
-            std::cout<<"Pay attention: "<<maxTurn-turnCounter<<" turns remaining!";
+            std::cout << "Pay attention: " << maxTurn - turnCounter << " turns remaining!";
         };
         if (turn)
         {
             playTurn(p1_, defenseBoardP1_, attackBoardP1_, defenseBoardP2_);
-            if(hasLost(p2_,defenseBoardP2_))
+            if (hasLost(p2_, defenseBoardP2_))
                 endGame(p1_);
-        }
-        else
+        } else
         {
             playTurn(p2_, defenseBoardP2_, attackBoardP2_, defenseBoardP1_);
-            if(hasLost(p1_,defenseBoardP1_))
+            if (hasLost(p1_, defenseBoardP1_))
                 endGame(p2_);
         }
         turn = !turn;
         turnCounter++;
     }
 
-    if(turnCounter > maxTurn)
-        std::cout<<"Draw: max number of turns reached!";
+    if (turnCounter > maxTurn)
+        std::cout << "Draw: max number of turns reached!";
 }
 void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &enemyD)
 {
     // type input AA 4 | AA 10 | AA AA | XX XX | B1 F1 | B10 F1 | B10 F10
-    std::string input = p->doMove("insert move " + std::to_string(turnCounter) + " Player " + p->to_string());
+    std::string input = p->doAction("insert move " + std::to_string(turnCounter) + " Player " + p->to_string());
     bool repeat;
     do
     {
@@ -191,30 +135,30 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                 if (strLast == "AA")
                 {
                     a.reset();
-                    input = p->doMove("Special Moves Attack reset, insert new move ");
-                    file_<<strFirst+" "+strLast<<std::endl;
+                    input = p->doAction("Special Moves Attack reset, insert new move ");
+                    file_ << strFirst + " " + strLast << std::endl;
                 } else
                 {
                     try
                     {
                         int val = stoi(strLast); //reset before a specific turn
                         a.reset(val);
-                        input = p->doMove(
+                        input = p->doAction(
                             "Special Moves Attack reset for " + std::to_string(val) + " turn, insert new move ");
-                        file_<<strFirst+" "+strLast<<std::endl;
+                        file_ << strFirst + " " + strLast << std::endl;
                     }
                     catch (std::invalid_argument &ex)
                     {
-                        input = p->doMove("move Error AA second Parameter not valid");
+                        input = p->doAction("move Error AA second Parameter not valid");
                     }
                 }
                 repeat = true; //special moves
 
             } else if (strFirst == "XX" && strLast == "XX")
             {
-                input = p->doMove(d.to_string() + "\n" + a.to_string() + "\n Special Move XX XX, insert new Move ");
-                repeat=true;
-                file_<<strFirst+" "+strLast<<std::endl;
+                input = p->doAction(d.to_string() + "\n" + a.to_string() + "\n Special Move XX XX, insert new Move ");
+                repeat = true;
+                file_ << strFirst + " " + strLast << std::endl;
             } else //coordinate case
             {
                 try
@@ -223,18 +167,18 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                     battleships::coordinate XYtarget = getCoordinate(strLast);
                     make_action(d.useShip(XYorigin, XYtarget), d, enemyD, a); //implements error
                     a.nextTurn();
-                    file_<<strFirst+" "+strLast<<std::endl;
+                    file_ << strFirst + " " + strLast << std::endl;
                 }
                 catch (std::invalid_argument &ex)
                 {
                     repeat = true;
-                    input = p->doMove("Input Error, coordinate not valid, re-insert move");
+                    input = p->doAction("Input Error, coordinate not valid, re-insert move");
                 }
             }
         } else
         {
             repeat = true;
-            input = p->doMove("Input Error, input not valid, re-insert move");
+            input = p->doAction("Input Error, input not valid, re-insert move");
         }
     } while (repeat);
 }
@@ -254,12 +198,12 @@ battleships::coordinate game::getCoordinate(const std::string &s)
 
 void game::endGame(std::unique_ptr<player> &p)
 {
-    std::cout<<"Game ended with player "<<p->to_string()<<" winning"<<std::endl;
+    std::cout << "Game ended with player " << p->to_string() << " winning" << std::endl;
 }
 
 bool game::hasLost(std::unique_ptr<player> &p, defense &d)
 {
-    if(d.getShipCount()==0)
+    if (d.getShipCount() == 0)
         return true;
     return false;
 }

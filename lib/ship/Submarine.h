@@ -8,11 +8,12 @@
 #include "Ship.h"
 class submarine : public ship
 {
+
   static constexpr int kSubmarineDim = 1;
 
  public:
   virtual std::vector<std::pair<char, battleships::coordinate>> action(battleships::coordinate c) override;
-
+  static std::string className() { return "submarine"; }
   static constexpr int kSubmarineChar = 'E';
   //static constexpr char red[] = "\033[42;1m"; //molto più elegante ma c++11 non lo permette
   static constexpr auto &color()

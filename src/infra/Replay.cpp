@@ -6,7 +6,7 @@ std::string replay::to_string()
 {
     return "Replay " + name_;
 }
-std::string replay::doMove(std::string input)
+std::string replay::doAction(std::string input)
 {
     std::string tmp;
     getline(file_, tmp);
