@@ -60,7 +60,9 @@ void game::make_action(const std::vector<std::pair<char, battleships::coordinate
     {
         switch (it->first)
         {
-            case ('M'):ally_defense.move(it->second, (it + 1)->second);
+            case ('M'):
+                if (ally_defense.move(it->second, (it + 1)->second))
+                    throw std::invalid_argument("destination coordinate not valid");
                 it++; //dobbiamo andare al pair successivo
                 break;
 
