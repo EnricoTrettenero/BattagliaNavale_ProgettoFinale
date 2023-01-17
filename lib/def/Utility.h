@@ -70,6 +70,10 @@ class coordinate
   {
 
   }
+   std::string to_string() const
+  {
+      return  y_+std::to_string(x_);
+  }
 };
 
 }

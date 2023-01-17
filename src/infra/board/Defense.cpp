@@ -8,7 +8,8 @@ defense::defense() : board()
 {
     for (auto &i : _matrix)
     {
-        for (char &j : i) { j = '*'; }
+        for (char &j : i)
+        { j = '*'; }
     }
     ships = std::vector<std::unique_ptr<ship>>();
 }
@@ -19,17 +20,16 @@ bool defense::setShip(std::unique_ptr<ship> s)
     {
         if (s->getOrientation() == ship::HORIZONTAL)
         {
-            if ((s->center().x() + i - s->dim() / 2) < 0 || s->center().x() + i - s->dim() / 2 > kDimBoard-1
+            if ((s->center().x() + i - s->dim() / 2) < 0 || s->center().x() + i - s->dim() / 2 > kDimBoard - 1
                 || _matrix[s->center().y()][s->center().x() + i - s->dim() / 2] != '*') //assume all ship is odd
 
                 return false;
-        } else if(s->getOrientation()==ship::VERTICAL)
+        } else if (s->getOrientation() == ship::VERTICAL)
         {
-            if ((s->center().y() + i - s->dim() / 2) < 0 || s->center().y() + i - s->dim() / 2 > kDimBoard-1
+            if ((s->center().y() + i - s->dim() / 2) < 0 || s->center().y() + i - s->dim() / 2 > kDimBoard - 1
                 || _matrix[s->center().y() + i - s->dim() / 2][s->center().x()] != '*') //assume all ship is odd
                 return false;
-        }
-        else
+        } else
             throw std::invalid_argument("orientation not valid");
     }
     for (int i = 0; i < s->dim(); ++i)
@@ -37,16 +37,16 @@ bool defense::setShip(std::unique_ptr<ship> s)
         if (s->getOrientation() == ship::HORIZONTAL)
         {
             _matrix[s->center().y()][s->center().x() + i - s->dim() / 2] = s->armor()[i];//assume all ship is odd
-        } else if(s->getOrientation()==ship::VERTICAL)
+        } else if (s->getOrientation() == ship::VERTICAL)
         {
             _matrix[s->center().y() + i - s->dim() / 2][s->center().x()] = s->armor()[i];
-        }
-        else throw std::invalid_argument("orientation not valid");
+        } else throw std::invalid_argument("orientation not valid");
     }
     ships.push_back(std::move(s)); //siummm
     return true;
 }
-std::vector<std::pair<char,battleships::coordinate>> defense::useShip(battleships::coordinate xyShip, battleships::coordinate xyTarget)
+std::vector<std::pair<char, battleships::coordinate>> defense::useShip(battleships::coordinate xyShip,
+                                                                       battleships::coordinate xyTarget)
 {
     for (const auto &ship : ships)
         if (ship->center() == xyShip)
@@ -118,11 +118,12 @@ std::vector<battleships::coordinate> defense::isShip(battleships::coordinate xy,
     {
         for (int j = 0; j < radius; ++j)
         {
-            if (xy.x() + j - radius / 2 < 0 || xy.x() + j - radius / 2 > kDimBoard-1 || xy.y() + i - radius / 2 < 0
-                || xy.y() + i - radius / 2 > kDimBoard-1)
-                throw std::invalid_argument("radius error");
-            if (_matrix[xy.y() + i - radius / 2][xy.x() + j - radius / 2] != '*')
-                output.emplace_back(xy.x() + j - radius / 2 + 1, xy.y() + i - radius / 2 + 'A');
+            if (xy.x() + j - radius / 2 < 0 || xy.x() + j - radius / 2 > kDimBoard - 1 || xy.y() + i - radius / 2 < 0
+                || xy.y() + i - radius / 2 > kDimBoard - 1)
+            {
+                //out of range
+            } else if (_matrix[xy.y() + i - radius / 2][xy.x() + j - radius / 2] != '*')
+            { output.emplace_back(xy.x() + j - radius / 2 + 1, xy.y() + i - radius / 2 + 'A'); }
         }
     }
     return output; //copy
@@ -140,12 +141,12 @@ bool defense::move(battleships::coordinate init_xy, battleships::coordinate fina
                 {
                     if (i->getOrientation() == ship::HORIZONTAL)
                     {
-                        if ((final_xy.x() + j - i->dim() / 2) < 0 || final_xy.x() + j - i->dim() / 2 > kDimBoard-1
+                        if ((final_xy.x() + j - i->dim() / 2) < 0 || final_xy.x() + j - i->dim() / 2 > kDimBoard - 1
                             || _matrix[final_xy.y()][final_xy.x() + j - i->dim() / 2] != '*') //assume all ship is odd
                             return false;
                     } else
                     {
-                        if ((final_xy.y() + j - i->dim() / 2) < 0 || final_xy.y() + j - i->dim() / 2 > kDimBoard-1
+                        if ((final_xy.y() + j - i->dim() / 2) < 0 || final_xy.y() + j - i->dim() / 2 > kDimBoard - 1
                             || _matrix[final_xy.y() + j - i->dim() / 2][final_xy.x()] != '*') //assume all ship is odd
                             return false;
                     }
@@ -174,7 +175,6 @@ bool defense::move(battleships::coordinate init_xy, battleships::coordinate fina
                     }
                 }
 
-
                 return true;
             }
         }
@@ -189,33 +189,35 @@ void defense::repair_ship(battleships::coordinate xy)
         {
             if (ship->getOrientation() == ship::HORIZONTAL)
             {
-                for(int i = 0; i < ship->dim(); ++i)
+                for (int i = 0; i < ship->dim(); ++i)
                 {
                     if (ship->center().y() == xy.y()
-                        && ship->center().x() - ship->dim() / 2 + i == xy.x()) {
+                        && ship->center().x() - ship->dim() / 2 + i == xy.x())
+                    {
 
                         ship->repair_armor();
-                        for(int j = 0; j < ship->dim(); ++j)
+                        for (int j = 0; j < ship->dim(); ++j)
                         {
                             _matrix[ship->center().y()][ship->center().x() - ship->dim() / 2 + j] =
-                                    toupper(_matrix[ship->center().y()][ship->center().x()
-                                                                               - ship->dim() / 2 + j]);
+                                toupper(_matrix[ship->center().y()][ship->center().x()
+                                    - ship->dim() / 2 + j]);
                         }
                     }
                 }
             } else
             {
-                for(int i = 0; i < ship->dim(); ++i)
+                for (int i = 0; i < ship->dim(); ++i)
                 {
                     if (ship->center().x() == xy.x()
-                        && ship->center().y() - ship->dim() / 2 + i == xy.y()) {
+                        && ship->center().y() - ship->dim() / 2 + i == xy.y())
+                    {
 
                         ship->repair_armor();
-                        for(int j = 0; j < ship->dim(); ++j)
+                        for (int j = 0; j < ship->dim(); ++j)
                         {
                             _matrix[ship->center().y() - ship->dim() / 2 + j][ship->center().x()] =
-                                    tolower(_matrix[ship->center().y() - ship->dim() / 2
-                                                    + j][ship->center().x()]);
+                                tolower(_matrix[ship->center().y() - ship->dim() / 2
+                                    + j][ship->center().x()]);
                         }
                     }
                 }
@@ -225,7 +227,7 @@ void defense::repair_ship(battleships::coordinate xy)
 
 bool defense::isDamaged(battleships::coordinate xy)
 {
-    if(_matrix[xy.y()][xy.x()] != '*')
+    if (_matrix[xy.y()][xy.x()] != '*')
         return islower(_matrix[xy.y()][xy.x()]);
     return false;
 }
