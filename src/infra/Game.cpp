@@ -19,8 +19,6 @@ void game::fillPlayerBoards(std::unique_ptr<player> &p, defense &d, attack &a)
 {
     d = defense();
     a = attack();
-    //vale ti amo cazzo
-
     fillShip<submarine>(kNumberSubmarine, p, d, submarine::className());
     //template function che usa una  virtual function di player (che potrebbe essere human o ai)
     fillShip<battleship>(kNumberBattleship, p, d, battleship::className());
@@ -226,11 +224,6 @@ void game::endGame(std::unique_ptr<player> &p)
 
 bool game::hasLost(std::unique_ptr<player> &p, defense &d)
 {
-    if (d.getShipCount() == 0)
-        return true;
-    return false;
+    return d.getShipCount() == 0;
 }
-game::game()
-{
-
-}
+game::game(){}
