@@ -12,6 +12,8 @@
 #include "../lib/Game.h"
 #include "../lib/Replay.h"
 #include "../lib/ReplayGame.h"
+#include <chrono>
+#include <thread>
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -25,12 +27,24 @@ int main(int argc, char *argv[])
             for (const auto & board : boards)
             {
                 cout<<endl<<board<<endl;
+                this_thread::sleep_for(chrono::milliseconds(1000));
             }
     }
-    else if(input.size()==3&&input[0][0]=='f')
+    else if(input.size()==4&&input[0][0]=='f')
     {
-
+        replaygame rg = replaygame("input.txt");
+        vector<string> boards = rg.startReplay();
+        ofstream fileOutput(input[3]);
+        for (const auto & board : boards)
+        {
+            fileOutput<<board;
+        }
+        fileOutput.close();
     }
-    else throw std::invalid_argument("file not valid");
+
+    else
+    {
+        cout<<"Error: arguments not valid "<<endl;
+    }
     return 0;
 }

@@ -13,7 +13,7 @@ submarine::submarine(const battleships::coordinate &center, orientation orientat
 std::vector<std::pair<char, battleships::coordinate>> submarine::action(battleships::coordinate c)
 {
     std::vector<std::pair<char, battleships::coordinate>> output = std::vector<std::pair<char, battleships::coordinate>>();
-    int radius = 2;
+    int radius = 5;
     output.emplace_back(std::make_pair('M',center()));
     output.emplace_back(std::make_pair('M',c));
 
@@ -23,7 +23,7 @@ std::vector<std::pair<char, battleships::coordinate>> submarine::action(battlesh
         {
             if (c.x() + i - radius / 2 < 0 || c.x() + i - radius / 2 > 11 || c.y() + j - radius / 2 < 0
                 || c.y() + j - radius / 2 > 11)
-                throw std::invalid_argument("radius error");
+            {}
             else
                 output.emplace_back(std::make_pair('E', battleships::coordinate(c.x() + i - radius / 2 + 1,
                                                                                         c.y() + j - radius / 2 + 'A')));

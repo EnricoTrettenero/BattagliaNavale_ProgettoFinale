@@ -22,7 +22,7 @@ const std::vector<std::string> &replaygame::startReplay()
     {
         std::string line;
         std::getline(file, line);
-        if (line != "")
+        if (!line.empty())
         {
             int position = line.find(':');
             std::string playerID = line.substr(0, position);
