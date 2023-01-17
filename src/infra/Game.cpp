@@ -164,6 +164,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                     }
                     catch (std::invalid_argument &ex)
                     {
+                        std::cerr << "Formato di input non valido";
                         input = p->doAction("move Error AA second Parameter not valid");
                     }
                 }
@@ -186,6 +187,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                 }
                 catch (std::invalid_argument &ex)
                 {
+                    std::cerr << "Formato di input non valido";
                     repeat = true;
                     input = p->doAction("Input Error, coordinate not valid, re-insert move");
                 }
