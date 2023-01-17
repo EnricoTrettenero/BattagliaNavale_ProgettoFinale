@@ -21,14 +21,10 @@ void game::fillPlayerBoards(std::unique_ptr<player> &p, defense &d, attack &a)
     a = attack();
     //vale ti amo cazzo
 
-    fillShip<submarine>(kNumberSubmarine,
-                        p,
-                        d,
-                        submarine::className()); //template function che usa una  virtual function di player (che potrebbe essere human o ai)
-    fillShip<battleship>(kNumberBattleship,
-                         p,
-                         d,
-                         battleship::className()); //TODO fare in modo che le Knumber siano intuibili dalla classe del template
+    fillShip<submarine>(kNumberSubmarine, p, d, submarine::className());
+    //template function che usa una  virtual function di player (che potrebbe essere human o ai)
+    fillShip<battleship>(kNumberBattleship, p, d, battleship::className());
+    //TODO fare in modo che le Knumber siano intuibili dalla classe del template
     fillShip<support>(kNumberSupport, p, d, support::className());
 }
 
@@ -100,8 +96,8 @@ void game::play()
     {
         if (maxTurn - turnCounter < 10)
         {
-            std::cout << "Pay attention: " << maxTurn - turnCounter << " turns remaining!";
-        };
+            std::cout << "Pay attention: " << maxTurn - turnCounter << " turns remaining!" << std::endl;
+        }
         if (turn)
         {
             std::cout << defenseBoardP1_ << std::endl << attackBoardP1_ << std::endl;
@@ -161,7 +157,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                     }
                     catch (std::invalid_argument &ex)
                     {
-                       // std::cerr << "Formato di input non valido";
+                        // std::cerr << "Formato di input non valido";
                         input = p->doAction("move Error AA second Parameter not valid");
                     }
                 }
@@ -184,7 +180,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                 }
                 catch (std::invalid_argument &ex)
                 {
-                   // std::cerr << "Formato di input non valido";
+                    // std::cerr << "Formato di input non valido";
                     repeat = true;
                     input = p->doAction("Input Error, coordinate not valid, re-insert move");
                 }

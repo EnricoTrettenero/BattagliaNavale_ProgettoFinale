@@ -13,13 +13,24 @@ const std::vector<std::string> &replaygame::startReplay()
 {
     std::ifstream file(fileName_);
     if (!file.is_open()) throw std::invalid_argument("file not valid");
+    std::string player1Name;
+    std::string player2Name;
+    std::getline(file, player1Name);
+    std::getline(file, player2Name);
+
+
     do
     {
         std::string line;
         std::getline(file, line);
-        p1Moves.push_back(line);
-        std::getline(file, line);
-        p2Moves.push_back(line);
+        if (line != "")
+        {
+            int position = line.find(':');
+            std::string playerID = line.substr(0, position);
+            if (playerID == player1Name) { p1Moves.push_back(line.substr(position + 1, line.size())); }
+            else if (playerID == player2Name) { p2Moves.push_back(line.substr(position + 1, line.size())); }
+            else { throw std::invalid_argument("log file not valid"); }
+        }
     } while (!file.eof());
 
     file.close();

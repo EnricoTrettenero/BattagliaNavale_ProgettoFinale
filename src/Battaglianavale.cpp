@@ -15,7 +15,7 @@
 #include "../lib/ReplayGame.h"
 
 using namespace std;
-int main()
+int mainf()
 {
 //    game g = game(make_unique<ai>("player1"), make_unique<ai>("player2"),"input.txt");
 //    g.startNewGame();
