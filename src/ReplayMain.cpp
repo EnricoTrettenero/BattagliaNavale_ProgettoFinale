@@ -16,7 +16,7 @@
 #include <thread>
 using namespace std;
 
-int main(int argc, char *argv[])
+int mainf(int argc, char *argv[])
 {
     vector<string> input{&argv[0],&argv[0+argc]};
 

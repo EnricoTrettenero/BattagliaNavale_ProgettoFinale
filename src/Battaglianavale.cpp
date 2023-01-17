@@ -12,7 +12,7 @@
 #include "../lib/Game.h"
 
 using namespace std;
-int mainf(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     if (argc < 3)
     {
