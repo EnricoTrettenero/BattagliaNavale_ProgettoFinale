@@ -20,7 +20,6 @@ void ship::repair_armor()
     {
         armor_[i] = toupper(armor_[i]);
     }
-        //std::vector<char> armor_;
 }
 
 ship::~ship() = default;

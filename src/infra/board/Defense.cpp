@@ -216,8 +216,7 @@ void defense::repair_ship(battleships::coordinate xy)
                         for (int j = 0; j < ship->dim(); ++j)
                         {
                             _matrix[ship->center().y() - ship->dim() / 2 + j][ship->center().x()] =
-                                tolower(_matrix[ship->center().y() - ship->dim() / 2
-                                    + j][ship->center().x()]);
+                                toupper(_matrix[ship->center().y() - ship->dim() / 2 + j][ship->center().x()]);
                         }
                     }
                 }
