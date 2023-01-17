@@ -89,14 +89,14 @@ void game::play()
         }
         if (turn)
         {
-            std::cout << "GIOCATORE PORCODIO 1" << std::endl
+            std::cout << "GIOCATORE 1" << std::endl
                       << board::concat2string(defenseBoardP1_.to_string(), attackBoardP1_.to_string()) << std::endl;
             playTurn(p1_, defenseBoardP1_, attackBoardP1_, defenseBoardP2_);
             if (hasLost(p2_, defenseBoardP2_))
                 endGame(p1_);
         } else
         {
-            std::cout << "GIOCATORE PORCODIO 2" << std::endl
+            std::cout << "GIOCATORE 2" << std::endl
                       << board::concat2string(defenseBoardP2_.to_string(), attackBoardP2_.to_string()) << std::endl;
 
             playTurn(p2_, defenseBoardP2_, attackBoardP2_, defenseBoardP1_);
