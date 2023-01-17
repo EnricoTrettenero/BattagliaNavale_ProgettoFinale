@@ -2,6 +2,7 @@
 // Created by vale on 27/12/22.
 //
 
+#include <sstream>
 #include "../../../lib/board/Board.h"
 #include "../../../lib/def/Utility.h"
 #include "../../../lib/ship/Battleship.h"
@@ -14,7 +15,6 @@ std::ostream &operator<<(std::ostream &os, const board &b)
 
     return os << b.to_string();
 }
-
 
 void replaceAll(std::string &str, const std::string &from, const std::string &to)
 {
@@ -104,13 +104,27 @@ std::string board::to_string() const
     for (int i = 0; i < board::kDimBoard; ++i)
     {
         std::string line(1, char(i + (battleships::coordinate::kMinY)));
-        for (int j = 0; j < board::kDimBoard; ++j)
-        {
-            line += _matrix[i][j];
-        }
+        for (int j = 0; j < board::kDimBoard; ++j) { line += _matrix[i][j]; }
         line = board::spaced(line);
         board::colorString(line);
         output += line + "\n";
+    }
+    return output;
+}
+
+std::string board::concat2string(const std::string &str1, const std::string &str2)
+{
+    int i = 0;
+    std::stringstream ss1(str1);
+    std::stringstream ss2(str2);
+    std::string output;
+    while (i < str1.length())
+    {
+        std::string first, second;
+        std::getline(ss1, first, '\n');
+        std::getline(ss2, second, '\n');
+        output += first + "   " + second + '\n';
+        i += first.length() + 1;
     }
     return output;
 }

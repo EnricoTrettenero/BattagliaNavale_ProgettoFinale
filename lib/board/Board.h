@@ -14,6 +14,7 @@ class board
   static constexpr int kDimBoard = 12; //rappresenta dim lati matrice
   std::vector<std::vector<char>> matrix() const; //restituisce un vector di char chiamato matrix
   std::string to_string() const;
+  static std::string concat2string(const std::string &str1, const std::string &str2) ;
  protected:
   char _matrix[kDimBoard][kDimBoard]; //creazione matrice di char
   friend std::ostream &operator<<(std::ostream &os, const board &b);

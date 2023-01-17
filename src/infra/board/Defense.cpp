@@ -8,8 +8,7 @@ defense::defense() : board()
 {
     for (auto &i : _matrix)
     {
-        for (char &j : i)
-        { j = '*'; }
+        for (char &j : i) { j = '*'; }
     }
     ships = std::vector<std::unique_ptr<ship>>();
 }
@@ -123,7 +122,9 @@ std::vector<battleships::coordinate> defense::isShip(battleships::coordinate xy,
             {
                 //out of range
             } else if (_matrix[xy.y() + i - radius / 2][xy.x() + j - radius / 2] != '*')
-            { output.emplace_back(xy.x() + j - radius / 2 + 1, xy.y() + i - radius / 2 + 'A'); }
+            {
+                output.emplace_back(xy.x() + j - radius / 2 + 1, xy.y() + i - radius / 2 + 'A');
+            }
         }
     }
     return output; //copy
@@ -191,16 +192,14 @@ void defense::repair_ship(battleships::coordinate xy)
             {
                 for (int i = 0; i < ship->dim(); ++i)
                 {
-                    if (ship->center().y() == xy.y()
-                        && ship->center().x() - ship->dim() / 2 + i == xy.x())
+                    if (ship->center().y() == xy.y() && ship->center().x() - ship->dim() / 2 + i == xy.x())
                     {
 
                         ship->repair_armor();
                         for (int j = 0; j < ship->dim(); ++j)
                         {
                             _matrix[ship->center().y()][ship->center().x() - ship->dim() / 2 + j] =
-                                toupper(_matrix[ship->center().y()][ship->center().x()
-                                    - ship->dim() / 2 + j]);
+                                toupper(_matrix[ship->center().y()][ship->center().x() - ship->dim() / 2 + j]);
                         }
                     }
                 }
@@ -231,7 +230,4 @@ bool defense::isDamaged(battleships::coordinate xy)
     return false;
 }
 
-int defense::getShipCount() const
-{
-    return shipCounter;
-}
+int defense::getShipCount() const { return shipCounter; }
