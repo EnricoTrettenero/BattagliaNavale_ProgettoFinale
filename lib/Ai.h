@@ -12,6 +12,6 @@ class ai : public player
   std::string doAction(std::string input) override;
   std::string doInsert(std::string input) override;
   explicit ai(const std::string &name);
- private:
+
 };
 #endif //BATTAGLIANAVALE_LIB_AI_H_

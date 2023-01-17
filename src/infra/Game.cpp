@@ -12,9 +12,7 @@ game::game(std::unique_ptr<player> p1, std::unique_ptr<player> p2, const std::st
                                                                                                   p2_{std::move(p2)},
                                                                                                   fileName_{fileName}
 {
-    fillPlayerBoards(p1_, defenseBoardP1_, attackBoardP1_);
-    fillPlayerBoards(p2_, defenseBoardP2_, attackBoardP2_);
-    play();
+
 }
 
 void game::fillPlayerBoards(std::unique_ptr<player> &p, defense &d, attack &a)
@@ -98,7 +96,6 @@ void game::play()
 {
     turnCounter = 0;
     turn = true;
-    output_ = "";
     while (turnCounter < maxTurn)//tmp
     {
         if (maxTurn - turnCounter < 10)
@@ -164,7 +161,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                     }
                     catch (std::invalid_argument &ex)
                     {
-                        std::cerr << "Formato di input non valido";
+                       // std::cerr << "Formato di input non valido";
                         input = p->doAction("move Error AA second Parameter not valid");
                     }
                 }
@@ -187,7 +184,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                 }
                 catch (std::invalid_argument &ex)
                 {
-                    std::cerr << "Formato di input non valido";
+                   // std::cerr << "Formato di input non valido";
                     repeat = true;
                     input = p->doAction("Input Error, coordinate not valid, re-insert move");
                 }
@@ -198,6 +195,14 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
             input = p->doAction("Input Error, input not valid, re-insert move");
         }
     } while (repeat);
+}
+void game::startNewGame()
+{
+
+    output_ = "";
+    fillPlayerBoards(p1_, defenseBoardP1_, attackBoardP1_);
+    fillPlayerBoards(p2_, defenseBoardP2_, attackBoardP2_);
+    play();
 }
 battleships::coordinate game::getCoordinate(const std::string &s)
 {
@@ -223,4 +228,8 @@ bool game::hasLost(std::unique_ptr<player> &p, defense &d)
     if (d.getShipCount() == 0)
         return true;
     return false;
+}
+game::game()
+{
+
 }

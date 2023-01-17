@@ -17,7 +17,8 @@ class game
   static constexpr int kNumberSubmarine = 2;
   static constexpr int maxTurn = 100;
   explicit game(std::unique_ptr<player> p1, std::unique_ptr<player> p2, const std::string &fileName);
- private:
+  void startNewGame();
+ protected:
   std::string fileName_;
   std::unique_ptr<player> p1_, p2_;
   attack attackBoardP1_, attackBoardP2_;
@@ -36,9 +37,8 @@ class game
   int turnCounter;
   std::string output_;
   std::pair<battleships::coordinate, ship::orientation> getShipData(const std::string &s);
-
+    game();
   //utilities
-
   template<typename T>
   void fillShip(int kNumber,std::unique_ptr<player> &p, defense &d,std::string type);
 };

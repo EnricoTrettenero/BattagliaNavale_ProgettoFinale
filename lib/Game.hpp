@@ -24,12 +24,14 @@ void game::fillShip(int kNumber, std::unique_ptr<player> &p, defense &d, std::st
                     "input type 'coordinate orientation' insert " + type + " no." + std::to_string(i)));
                 std::unique_ptr<ship> s = std::make_unique<T>(input.first, input.second);
                 error = !d.setShip(std::move(s));
-                if(error) { std::cout << "Inserimento non riuscito"; }
-                else { std::cout << "Inserita correttamente"; }
+                if(error) {  }
+                else {
+                output_+= input.first.to_string()+" "+ (input.second==ship::VERTICAL ? "V" : "H") +"\n";
+                }
             }
             catch (std::invalid_argument &ex)
             {
-                std::cerr << "Formato di input non valido";
+                // std::cerr << "Formato di input non valido";
                 error = true;
             }
         } while (error);
