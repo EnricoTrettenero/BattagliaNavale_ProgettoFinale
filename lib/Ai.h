@@ -2,9 +2,6 @@
  * @file Ai.h
  * @author TODO
  * @brief This class represents a bot player
- * @date 2023-01-17
- *
- * @copyright Copyright (c) 2022
  *
  */
 

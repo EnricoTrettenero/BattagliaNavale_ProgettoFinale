@@ -5,9 +5,6 @@
  * It only has one public method, startNewGame(), used to start the game.
  * An istance of Game can be used to play one and only one game,
  * to play more other istances of Game must be created.
- * @date 2023-01-17
- *
- * @copyright Copyright (c) 2022
  *
  */
 
@@ -21,10 +18,16 @@
 class game
 {
  public:
+
   static constexpr int kNumberBattleship = 3;
   static constexpr int kNumberSupport = 3;
   static constexpr int kNumberSubmarine = 2;
   static constexpr int maxTurn = 100;
+  /**
+   * @brief start a new game with two player(abstract class) and a fileName with output
+   *
+   * @param p1 = player1, p2= player2, fileName=
+   */
   explicit game(std::unique_ptr<player> p1, std::unique_ptr<player> p2, const std::string &fileName);
   void startNewGame();
  protected:

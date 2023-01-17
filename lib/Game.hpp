@@ -3,9 +3,6 @@
  * @author TODO
  * @brief This class is used to implement a template function
  * used to fill the boards with the needed ships
- * @date 2023-01-17
- *
- * @copyright Copyright (c) 2022
  *
  */
 
