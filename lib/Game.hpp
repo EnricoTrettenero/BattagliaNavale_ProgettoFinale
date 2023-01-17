@@ -17,15 +17,15 @@ void game::fillShip(int kNumber, std::unique_ptr<player> &p, defense &d, std::st
         bool error;
         do
         {
-            error = true;
+            error = false;
             try
             {
                 std::pair<battleships::coordinate, ship::orientation> input = getShipData(p->doInsert(
                     "input type 'coordinate orientation' insert " + type + " no." + std::to_string(i)));
                 std::unique_ptr<ship> s = std::make_unique<T>(input.first, input.second);
                 error = !d.setShip(std::move(s));
-                if(error) { std::cout << "Inserita correttamente"; }
-                else { std::cout << "Inserimento non riuscito"; }
+                if(error) { std::cout << "Inserimento non riuscito"; }
+                else { std::cout << "Inserita correttamente"; }
             }
             catch (std::invalid_argument &ex)
             {
