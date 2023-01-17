@@ -11,6 +11,8 @@ class attack : public board
 {
  private:
   int turnMatrix[kDimBoard][kDimBoard]{};
+  static constexpr int kComputerChar = 'c';
+  static constexpr int kHumanChar = 'p';
  public:
   void hit(battleships::coordinate xy);
   void water(battleships::coordinate xy);

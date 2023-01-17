@@ -52,7 +52,6 @@ void replaygame::playReplay()
 
         if (turn)
         {
-
             printFinal_.push_back(board::concat2string(defenseBoardP1_.to_string(), attackBoardP1_.to_string()));
             playTurn(p1_, defenseBoardP1_, attackBoardP1_, defenseBoardP2_);
             if (hasLost(p2_, defenseBoardP2_))
