@@ -143,14 +143,30 @@ bool defense::move(battleships::coordinate init_xy, battleships::coordinate fina
                 {
                     if (i->getOrientation() == ship::HORIZONTAL)
                     {
-                        if ((final_xy.x() + j - i->dim() / 2) < 0 || final_xy.x() + j - i->dim() / 2 > kDimBoard - 1
-                            || _matrix[final_xy.y()][final_xy.x() + j - i->dim() / 2] != '*') //assume all ship is odd
-                            return false;
+                        if ((final_xy.x() + j - i->dim() / 2) < 0 || final_xy.x() + j - i->dim() / 2 > kDimBoard - 1) return false;
+                            if(_matrix[final_xy.y()][final_xy.x() + j - i->dim() / 2] != '*')
+                            {
+                                return false;
+                                for (int k = 0; k < i->dim(); ++k)
+                                {
+                                    if(!(final_xy.y()==init_xy.y()&&final_xy.x() + j - i->dim() / 2==init_xy.x()+k-i->dim()/2))
+                                        return false;
+                                }
+                            }//assume all ship is odd
+
                     } else
                     {
-                        if ((final_xy.y() + j - i->dim() / 2) < 0 || final_xy.y() + j - i->dim() / 2 > kDimBoard - 1
-                            || _matrix[final_xy.y() + j - i->dim() / 2][final_xy.x()] != '*') //assume all ship is odd
-                            return false;
+                        if ((final_xy.y() + j - i->dim() / 2) < 0 || final_xy.y() + j - i->dim() / 2 > kDimBoard - 1) return false;
+
+                            if(_matrix[final_xy.y() + j - i->dim() / 2][final_xy.x()] != '*') //assume all ship is odd
+                            {
+                                return false;
+                                for (int k = 0; k < i->dim(); ++k)
+                                {
+                                    if(!(final_xy.y() + j - i->dim() / 2==init_xy.y()+k-i->dim()/2 &&final_xy.x() ==init_xy.x()))
+                                        return false;
+                                }
+                            }
                     }
                 }
                 i->set_center_(final_xy);
@@ -173,7 +189,7 @@ bool defense::move(battleships::coordinate init_xy, battleships::coordinate fina
                         _matrix[final_xy.y()][final_xy.x() + j - i->dim() / 2] = i->armor()[j];//assume all ship is odd
                     } else
                     {
-                        _matrix[final_xy.y() + j - i->dim() / 2][final_xy.y()] = i->armor()[j];
+                        _matrix[final_xy.y() + j - i->dim() / 2][final_xy.x()] = i->armor()[j];
                     }
                 }
 
