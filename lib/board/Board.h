@@ -17,33 +17,54 @@ class board
 {
 public:
 
-    //matrix that represents the board
-    static constexpr int kDimBoard = 12; //rappresenta dim lati matrice
+    //static constexr int that represents the board dimension
+    static constexpr int kDimBoard = 12;
+
+    //vector<vector<char>> that represents the matrix
     std::vector<std::vector<char>> matrix() const; //restituisce un vector di char chiamato matrix
 
     /**
-    * @brief check if the move is valid
+    * @brief print the board
     *
-    * @param move a move from the human player
-    * @return true if valid
-    * @return false if invalid
+    * @return a string representing the board
     */
-
     std::string to_string() const;
+
+    /**
+    * @brief takes two string and concatenates them one beside the other
+    *
+    * @return a string representing the two paired strings
+    */
     static std::string concat2string(const std::string &str1, const std::string &str2) ;
 
 protected:
-    char _matrix[kDimBoard][kDimBoard]; //creazione matrice di char
+
+    //matrix of chars that represents the board
+    char _matrix[kDimBoard][kDimBoard];
+
+    //overloading of operator<<
     friend std::ostream &operator<<(std::ostream &os, const board &b);
 
 private:
-    //dimensione degli spazi tra un carattere e l'altro quando si stampa (si consiglia come minimo 3, NUMERI DISPARI PLIS)
+
+    //static constexr int representing the distance between a char and the other when printing
     static constexpr int kDimForTable = 3;
     static constexpr int kLeftSpace = (kDimForTable - 1) / 2;
     static constexpr int kRightSpace = (kDimForTable - 1) % 2 + 1;
 
+    /**
+    *
+    */
     static const std::string &padWithSpace(std::string &s);
+
+    /**
+    *
+    */
     static std::string spaced(const std::string &s);
+
+    /**
+    *
+    */
     static void colorString(std::string &s);
 };
 #endif //BATTAGLIANAVALE_LIB_BOARD_H_

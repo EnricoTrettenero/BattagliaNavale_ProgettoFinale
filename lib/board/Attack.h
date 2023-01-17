@@ -17,7 +17,7 @@ class attack : public board
 {
 private:
 
-    //matrix that represents the board
+    //matrix of ints that represents the turn board
     int turnMatrix[kDimBoard][kDimBoard]{};
 
     //static constexpr ints that represent both human and bot chars
