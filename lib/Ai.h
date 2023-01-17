@@ -1,6 +1,12 @@
-//
-// Created by Enry on 28/12/2022.
-//
+/**
+ * @file Ai.h
+ * @author TODO
+ * @brief This class represents a bot player
+ * @date 2023-01-17
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef BATTAGLIANAVALE_LIB_AI_H_
 #define BATTAGLIANAVALE_LIB_AI_H_

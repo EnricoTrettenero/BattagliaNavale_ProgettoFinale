@@ -1,6 +1,13 @@
-//
-// Created by vale on 10/01/23.
-//
+/**
+ * @file Game.hpp
+ * @author TODO
+ * @brief This class is used to implement a template function
+ * used to fill the boards with the needed ships
+ * @date 2023-01-17
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef BATTAGLIANAVALE_LIB_GAME_HPP_
 #define BATTAGLIANAVALE_LIB_GAME_HPP_

@@ -1,6 +1,12 @@
-//
-// Created by vale on 27/12/22.
-//
+/**
+ * @file Player.h
+ * @author TODO
+ * @brief This abstract class represents a generic player (human or bot)
+ * @date 2023-01-17
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef BATTAGLIANAVALE_LIB_PLAYER_H_
 #define BATTAGLIANAVALE_LIB_PLAYER_H_

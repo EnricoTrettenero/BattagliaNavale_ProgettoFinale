@@ -1,6 +1,12 @@
-//
-// Created by vale on 27/12/22.
-//
+/**
+ * @file Battleship.h
+ * @author TODO
+ * @brief This class represents a battleship
+ * @date 2023-01-17
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef BATTAGLIANAVALE_LIB_SHIP_BATTLESHIP_H_
 #define BATTAGLIANAVALE_LIB_SHIP_BATTLESHIP_H_

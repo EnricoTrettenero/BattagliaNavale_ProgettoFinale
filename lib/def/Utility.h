@@ -1,6 +1,12 @@
-//
-// Created by Enry on 22/12/2022.
-//
+/**
+ * @file Utility.h
+ * @author TODO
+ * @brief Entities commonly used across the whole library
+ * @date 2023-01-17
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef BATTAGLIANAVALE_LIB_DEF_UTILITY_H_
 #define BATTAGLIANAVALE_LIB_DEF_UTILITY_H_

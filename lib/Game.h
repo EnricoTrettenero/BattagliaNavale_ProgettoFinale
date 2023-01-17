@@ -1,6 +1,15 @@
-//
-// Created by vale on 27/12/22.
-//
+/**
+ * @file Player.h
+ * @author TODO
+ * @brief This class represents a game of "Battaglia Navale".
+ * It only has one public method, startNewGame(), used to start the game.
+ * An istance of Game can be used to play one and only one game,
+ * to play more other istances of Game must be created.
+ * @date 2023-01-17
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef BATTAGLIANAVALE_LIB_GAME_H_
 #define BATTAGLIANAVALE_LIB_GAME_H_

@@ -1,6 +1,12 @@
-//
-// Created by vale on 27/12/22.
-//
+/**
+ * @file Defense.h
+ * @author TODO
+ * @brief This class represents the defense board
+ * @date 2023-01-17
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef BATTAGLIANAVALE_LIB_BOARD_DEFENSE_H_
 #define BATTAGLIANAVALE_LIB_BOARD_DEFENSE_H_

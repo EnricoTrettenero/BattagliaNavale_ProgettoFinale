@@ -29,6 +29,7 @@ ship::ship(char shipChar,
            const battleships::coordinate &bow,
            const battleships::coordinate &stern)
 {
+
     shipChar_ = shipChar;
     armor_ = std::move(armor);
     if ((bow.x() + stern.x()) % 2 != 0 || (bow.y() + stern.y()) % 2 != 0)

@@ -1,6 +1,12 @@
-//
-// Created by Enry on 28/12/2022.
-//
+/**
+ * @file Human.h
+ * @author TODO
+ * @brief This class represents a human player
+ * @date 2023-01-17
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef BATTAGLIANAVALE_LIB_HUMAN_H_
 #define BATTAGLIANAVALE_LIB_HUMAN_H_

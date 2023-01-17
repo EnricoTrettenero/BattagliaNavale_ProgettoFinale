@@ -1,6 +1,12 @@
-//
-// Created by Enry on 17/01/2023.
-//
+/**
+ * @file Replay.h
+ * @author TODO
+ * @brief TODO.
+ * @date 2023-01-17
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
 
 #ifndef BATTAGLIANAVALE_LIB_REPLAYGAME_H_
 #define BATTAGLIANAVALE_LIB_REPLAYGAME_H_
