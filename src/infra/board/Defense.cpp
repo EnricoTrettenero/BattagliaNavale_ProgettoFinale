@@ -50,8 +50,9 @@ std::vector<std::pair<char, battleships::coordinate>> defense::useShip(battleshi
     for (const auto &ship : ships)
         if (ship->center() == xyShip)
             return ship->action(xyTarget);
-    throw std::invalid_argument("ships not find");
+    throw std::invalid_argument("ships not found");
 }
+
 bool defense::fire(battleships::coordinate xy) //return true if hit
 {
     if (_matrix[xy.y()][xy.x()] != '*')

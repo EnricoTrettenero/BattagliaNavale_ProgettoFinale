@@ -49,19 +49,16 @@ void replaygame::playReplay()
     output_ = "";
     while (turnCounter < maxTurn)
     {
-
         if (turn)
         {
             printFinal_.push_back(board::concat2string(defenseBoardP1_.to_string(), attackBoardP1_.to_string()));
             playTurn(p1_, defenseBoardP1_, attackBoardP1_, defenseBoardP2_);
-            if (hasLost(p2_, defenseBoardP2_))
-                endGame(p1_);
+            if (hasLost(p2_, defenseBoardP2_)) endGame(p1_);
         } else
         {
             printFinal_.push_back(board::concat2string(defenseBoardP2_.to_string(), attackBoardP2_.to_string()));
             playTurn(p2_, defenseBoardP2_, attackBoardP2_, defenseBoardP1_);
-            if (hasLost(p1_, defenseBoardP1_))
-                endGame(p2_);
+            if (hasLost(p1_, defenseBoardP1_)) endGame(p2_);
         }
         turn = !turn;
         turnCounter++;
