@@ -19,6 +19,7 @@ void game::fillPlayerBoards(std::unique_ptr<player> &p, defense &d, attack &a)
 {
     d = defense();
     a = attack();
+
     fillShip<submarine>(kNumberSubmarine, p, d, submarine::className());
     //template function che usa una  virtual function di player (che potrebbe essere human o ai)
     fillShip<battleship>(kNumberBattleship, p, d, battleship::className());
@@ -58,9 +59,7 @@ void game::make_action(const std::vector<std::pair<char, battleships::coordinate
     {
         switch (it->first)
         {
-            case ('M'):
-                if (ally_defense.move(it->second, (it + 1)->second))
-                    throw std::invalid_argument("destination coordinate not valid");
+            case ('M'):ally_defense.move(it->second, (it + 1)->second);
                 it++; //dobbiamo andare al pair successivo
                 break;
 
@@ -119,7 +118,7 @@ void game::play()
     }
 
     if (turnCounter > maxTurn)
-        std::cout << "Draw: max number of turns reached!";
+    std::cout << "Draw: max number of turns reached!";
     std::ofstream fileLog(fileName_);
     if (!fileLog.is_open()) throw std::invalid_argument("filename not valid");
     fileLog << output_;
