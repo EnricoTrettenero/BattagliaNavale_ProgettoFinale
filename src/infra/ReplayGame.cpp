@@ -32,10 +32,9 @@ const std::vector<std::string> &replaygame::startReplay()
             else { throw std::invalid_argument("log file not valid"); }
         }
     } while (!file.eof());
-
+    p1_ = std::make_unique<replay>(player1Name, p1Moves);
+    p2_ = std::make_unique<replay>(player2Name, p2Moves);
     file.close();
-    p1_ = std::make_unique<replay>("p1", p1Moves);
-    p2_ = std::make_unique<replay>("p1", p1Moves);
     fillPlayerBoards(p1_, defenseBoardP1_, attackBoardP1_);
     fillPlayerBoards(p2_, defenseBoardP2_, attackBoardP2_);
 

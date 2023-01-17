@@ -19,6 +19,6 @@ std::string human::doInsert(std::string input)
 }
 std::string human::to_string()
 {
-    return "Human: " + name_;
+    return name_;
 }
 human::human(const std::string &name) : player(name) {}

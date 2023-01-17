@@ -15,12 +15,9 @@ class replay : public player
   std::string doAction(std::string input) override;
   std::string doInsert(std::string input) override;
   explicit replay(const std::string &name, const std::vector<std::string>& moves);
-  const std::string& getOutputString() const;
 
  private:
-  std::string outputString_;
   std::vector<std::string> moves_;
-  bool printOrRead;
   int position;
 };
 #endif //BATTAGLIANAVALE_LIB_REPLAY_H_

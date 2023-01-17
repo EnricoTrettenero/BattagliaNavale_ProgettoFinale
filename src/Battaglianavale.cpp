@@ -17,15 +17,8 @@
 using namespace std;
 int mainf()
 {
-//    game g = game(make_unique<ai>("player1"), make_unique<ai>("player2"),"input.txt");
-//    g.startNewGame();
-     replaygame rg = replaygame("input.txt");
-    vector<string> boards = rg.startReplay();
-    for (const auto & board : boards)
-    {
-        cout<<endl<<board<<endl;
-        string tmp;
-        cin>>tmp;
-    }
+    game g = game(make_unique<ai>("player1"), make_unique<ai>("player2"),"input.txt");
+    g.startNewGame();
+
     return 0;
 }

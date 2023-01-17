@@ -26,7 +26,7 @@ void game::fillShip(int kNumber, std::unique_ptr<player> &p, defense &d, std::st
                 error = !d.setShip(std::move(s));
                 if(error) {  }
                 else {
-                output_+= input.first.to_string()+" "+ (input.second==ship::VERTICAL ? "V" : "H") +"\n";
+                    output_ += p->to_string() +":"+ input.first.to_string()+" "+ (input.second==ship::VERTICAL ? "V" : "H") +"\n";
                 }
             }
             catch (std::invalid_argument &ex)

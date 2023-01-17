@@ -21,7 +21,7 @@ std::string ai::doInsert(std::string input)
 }
 std::string ai::to_string()
 {
-    return "Ai: " + name_;
+    return  name_;
 }
 ai::ai(const std::string &name) : player(name)
 {
