@@ -49,7 +49,7 @@ void game::make_action(const std::vector<std::pair<char, battleships::coordinate
     {
         switch (it->first)
         {
-            case ('M'):if(!ally_defense.move(it->second, (it + 1)->second)) throw std::invalid_argument("not move");
+            case ('M'):if (!ally_defense.move(it->second, (it + 1)->second)) throw std::invalid_argument("not move");
                 it++; //dobbiamo andare al pair successivo
                 break;
 
@@ -108,7 +108,7 @@ void game::play()
     }
 
     if (turnCounter > maxTurn)
-    std::cout << "Draw: max number of turns reached!";
+        std::cout << "Draw: max number of turns reached!";
     std::ofstream fileLog(fileName_);
     if (!fileLog.is_open()) throw std::invalid_argument("filename not valid");
     fileLog << output_;
