@@ -27,27 +27,17 @@ void game::fillPlayerBoards(std::unique_ptr<player> &p, defense &d, attack &a)
     fillShip<support>(kNumberSupport, p, d, support::className());
 }
 
-std::pair<battleships::coordinate, ship::orientation> game::getShipData(const std::string &s)
+std::pair<battleships::coordinate, battleships::coordinate> game::getShipData(const std::string &s)
 {
-
-    ship::orientation outputOrientation;
-
-    if (s.length() != 4 && s.length() != 5) throw std::invalid_argument("invalid length");
+    if (s.length() != 5 && s.length() != 6 && s.length() != 7) throw std::invalid_argument("invalid length");
     int position = s.find(' ');
     if (position != 2 && position != 3) throw std::invalid_argument("separator char not found");
 
-    std::string stringCoordinate = s.substr(0, position);
-    std::string stringOrientation = s.substr(position + 1, 1);
-    for (auto &c : stringOrientation) c = toupper(c);
-
-    //pass-through exception
-    if (stringOrientation == "H")
-        outputOrientation = ship::HORIZONTAL;
-    else if (stringOrientation == "V")
-        outputOrientation = ship::VERTICAL;
-    else throw std::invalid_argument("Orientation not valid");
-
-    return std::make_pair(getCoordinate(stringCoordinate), outputOrientation);
+    std::string strFirst = s.substr(0, position);
+    std::string strLast = s.substr(position + 1, s.length() - position - 1);
+    battleships::coordinate bow = getCoordinate(strFirst);
+    battleships::coordinate stern = getCoordinate(strLast);
+    return std::make_pair(bow, stern);
 }
 
 void game::make_action(const std::vector<std::pair<char, battleships::coordinate>> &vec,
@@ -196,7 +186,6 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
 }
 void game::startNewGame()
 {
-
     output_ = p1_->to_string() + "\n" + p2_->to_string() + "\n";
     fillPlayerBoards(p1_, defenseBoardP1_, attackBoardP1_);
     fillPlayerBoards(p2_, defenseBoardP2_, attackBoardP2_);
@@ -225,4 +214,4 @@ bool game::hasLost(std::unique_ptr<player> &p, defense &d)
 {
     return d.getShipCount() == 0;
 }
-game::game(){}
+game::game() {}

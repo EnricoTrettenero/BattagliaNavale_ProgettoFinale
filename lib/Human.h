@@ -10,7 +10,6 @@ class human : public player
  public:
   std::string to_string() override;
   std::string doAction(std::string input) override;
-  std::string doInsert(std::string input) override;
   explicit human(const std::string &name);
 };
 

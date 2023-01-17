@@ -10,13 +10,6 @@ std::string human::doAction(std::string input)
     std::getline(std::cin, in, '\n'); //prendi il dato da std::cin, mettilo nella variabile in, carattere delimitante \n
     return in;
 }
-std::string human::doInsert(std::string input)
-{
-    std::cout << std::endl << input << std::endl;
-    std::string in;
-    std::getline(std::cin, in, '\n'); //prendi il dato da std::cin, mettilo nella variabile in, carattere delimitante \n
-    return in;
-}
 std::string human::to_string()
 {
     return name_;

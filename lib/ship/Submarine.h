@@ -9,7 +9,6 @@
 class submarine : public ship
 {
 
-  static constexpr int kSubmarineDim = 1;
 
  public:
   virtual std::vector<std::pair<char, battleships::coordinate>> action(battleships::coordinate c) override;
@@ -20,8 +19,9 @@ class submarine : public ship
   { return "\033[43m"; }
   static constexpr auto &colorHit()
   { return "\033[43;7m"; }
- public:
-  submarine(const battleships::coordinate &center, orientation orientation);
+  submarine(const battleships::coordinate &bow,
+            const battleships::coordinate &stern);
+  static constexpr int kSubmarineDim = 1;
 
 };
 

@@ -20,13 +20,14 @@ void game::fillShip(int kNumber, std::unique_ptr<player> &p, defense &d, std::st
             error = false;
             try
             {
-                std::pair<battleships::coordinate, ship::orientation> input = getShipData(p->doInsert(
+                std::pair<battleships::coordinate, battleships::coordinate> input = getShipData(p->doAction(
                     "input type 'coordinate orientation' insert " + type + " no." + std::to_string(i)));
                 std::unique_ptr<ship> s = std::make_unique<T>(input.first, input.second);
                 error = !d.setShip(std::move(s));
-                if(error) {  }
-                else {
-                    output_ += p->to_string() +":"+ input.first.to_string()+" "+ (input.second==ship::VERTICAL ? "V" : "H") +"\n";
+                if (error) {}
+                else
+                {
+                    output_ += p->to_string() + ":" + input.first.to_string() + " " + input.second.to_string() + "\n";
                 }
             }
             catch (std::invalid_argument &ex)

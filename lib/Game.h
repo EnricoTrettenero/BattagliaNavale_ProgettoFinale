@@ -36,7 +36,7 @@ class game
   bool turn;
   int turnCounter;
   std::string output_;
-  std::pair<battleships::coordinate, ship::orientation> getShipData(const std::string &s);
+  std::pair<battleships::coordinate, battleships::coordinate> getShipData(const std::string &s);
     game();
   //utilities
   template<typename T>

@@ -3,15 +3,15 @@
 //
 
 #include "../../../lib/ship/Support.h"
-
-support::support(const battleships::coordinate &center, orientation orientation) : ship(
+support::support(const battleships::coordinate &bow,
+                 const battleships::coordinate &stern) : ship(
     kSupportChar,
     std::vector<char>(kSupportDim, kSupportChar),
     kSupportDim,
-    center,
-    orientation
-)
-{}
+    bow,
+    stern
+) {}
+
 std::vector<std::pair<char, battleships::coordinate>> support::action(battleships::coordinate c)
 {
     std::vector<std::pair<char, battleships::coordinate>>

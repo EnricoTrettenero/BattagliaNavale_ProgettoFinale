@@ -3,16 +3,19 @@
 //
 
 #include "../../../lib/ship/Battleship.h"
-battleship::battleship(const battleships::coordinate &center, ship::orientation orientation) : ship(
+battleship::battleship(const battleships::coordinate &bow,
+                       const battleships::coordinate &stern) : ship(
     kBattleshipChar,
     std::vector<char>(kBattleshipDim, kBattleshipChar),
     kBattleshipDim,
-    center,
-    orientation
+    bow,
+    stern
 ) {}
+
 std::vector<std::pair<char, battleships::coordinate>> battleship::action(battleships::coordinate c)
 {
-    std::vector<std::pair<char, battleships::coordinate>> output = std::vector<std::pair<char, battleships::coordinate>>();
+    std::vector<std::pair<char, battleships::coordinate>>
+        output = std::vector<std::pair<char, battleships::coordinate>>();
     output.emplace_back('C', c);
     return output;
 }

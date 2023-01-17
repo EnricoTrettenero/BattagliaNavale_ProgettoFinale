@@ -12,9 +12,9 @@ class battleship : public ship
   static constexpr int kBattleshipDim = 5;
 
  public:
+  battleship(const battleships::coordinate &bow, const battleships::coordinate &stern);
   static std::string className() { return "battleship"; }
   virtual std::vector<std::pair<char, battleships::coordinate>> action(battleships::coordinate c) override;
-  battleship(const battleships::coordinate &center, orientation orientation);
   static constexpr int kBattleshipChar = 'C';
   //static constexpr char color[] = "\033[42;1m"; //molto più elegante ma c++11 non lo permette
   static constexpr auto &color()

@@ -22,26 +22,35 @@ void ship::repair_armor()
         armor_[i] = toupper(armor_[i]);
     }
 }
+
 ship::ship(char shipChar,
            std::vector<char> armor,
+           int dim,
            const battleships::coordinate &bow,
            const battleships::coordinate &stern)
 {
     shipChar_ = shipChar;
     armor_ = std::move(armor);
-    if ((bow.x() + stern.x()) % 2 != 0 || (bow.y() + stern.y()) % 2 != 0) throw std::invalid_argument("ships must have odd dimension");
-    int x = (bow.x() + stern.x()) / 2;
-    char y = char((bow.y() + stern.y()) / 2);
+    if ((bow.x() + stern.x()) % 2 != 0 || (bow.y() + stern.y()) % 2 != 0)
+        throw std::invalid_argument("ships must have odd dimension");
+    int x = (bow.x() + 1 + stern.x() + 1) / 2;
+    char y = char((bow.y_ch() + stern.y_ch()) / 2);
     battleships::coordinate center(x, y);
     center_ = center;
+    dim_ = dim;
     if (bow.x() == stern.x())
     {
         orientation_ = VERTICAL;
-        dim_ = bow.x() - stern.x();
+        if (std::abs(bow.y_ch() - stern.y_ch())+1 != dim){
+            throw std::invalid_argument("ships must have correct coordinates");
+        }
     } else if (bow.y() == stern.y())
     {
         orientation_ = HORIZONTAL;
-        dim_ = bow.y() - stern.y();
+        if ((std::abs(bow.x()- stern.x())+1) != dim)
+        {
+            throw std::invalid_argument("ships must have correct coordinates");
+        }
     } else throw std::invalid_argument("ships must have correct coordinates");
 
 }

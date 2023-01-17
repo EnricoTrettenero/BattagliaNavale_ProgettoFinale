@@ -49,7 +49,11 @@ class ship
        orientation orientation)
       : shipChar_{shipChar}, armor_(std::move(armor)), dim_(dim), center_(center), orientation_(orientation) {}
 
-  ship(char shipChar, std::vector<char> armor, const battleships::coordinate &bow, const battleships::coordinate &stern);
+  ship(char shipChar,
+       std::vector<char> armor,
+       int dim,
+       const battleships::coordinate &bow,
+       const battleships::coordinate &stern);
 };
 
 #endif //BATTAGLIANAVALE_LIB_SHIP_SHIP_H_

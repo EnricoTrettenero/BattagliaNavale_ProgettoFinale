@@ -11,13 +11,6 @@ std::string ai::doAction(std::string input)
     battleships::coordinate xyTarget = battleships::coordinate(rand() % 12 + 1, rand() % 12 + 65);
 
     return xyOrigin.to_string() + " " + xyTarget.to_string();
-
-}
-std::string ai::doInsert(std::string input)
-{
-    battleships::coordinate coordinate = battleships::coordinate(rand() % 12 + 1, rand() % 12 + 65);
-    char orientation = rand() % 2 == 0 ? 'H' : 'V';
-    return coordinate.to_string() + " " + orientation;
 }
 std::string ai::to_string()
 {

@@ -13,7 +13,6 @@ class player
   static constexpr int kComputerChar = 'c';
   static constexpr int kHumanChar = 'p';
   virtual std::string doAction(std::string input) = 0;
-  virtual std::string doInsert(std::string input) = 0;
   virtual std::string to_string() = 0;
   explicit player(const std::string &name);
   virtual ~player();
