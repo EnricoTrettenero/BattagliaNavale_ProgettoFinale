@@ -2,7 +2,6 @@
 // Created by vale on 27/12/22.
 //
 
-//TODO COMMENTS
 
 #include <sstream>
 #include "../../../lib/board/Board.h"
@@ -13,13 +12,13 @@
 
 std::ostream &operator<<(std::ostream &os, const board &b)
 {
-    //print numbers
+    //print board
     return os << b.to_string();
 }
 
+//utility function for board output
 void replaceAll(std::string &str, const std::string &from, const std::string &to)
 {
-    //TODO COMMENT
     if (from.empty())
         return;
     size_t start_pos = 0;
@@ -29,10 +28,9 @@ void replaceAll(std::string &str, const std::string &from, const std::string &to
         start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
     }
 }
-
+//add color to string
 void board::colorString(std::string &s)
 {
-    //TODO COMMENT
     std::string len = s.substr(kDimForTable); //remove the letters in front
     std::vector<std::pair<char, std::string>> colors{
         {char(battleship::kBattleshipChar), battleship::color()},
@@ -41,10 +39,12 @@ void board::colorString(std::string &s)
         {tolower(char(battleship::kBattleshipChar)), battleship::colorHit()},
         {tolower(char(submarine::kSubmarineChar)), submarine::colorHit()},
         {tolower(char(support::kSupportChar)), support::colorHit()}
-    };
+    }; //insert possible colors
+    //add space to char
     std::string leftSpaces(kLeftSpace, ' ');
     std::string rightSpaces(kRightSpace, ' ');
     std::string color;
+    //adding color
     for (const auto &a : colors)
     {
         color = a.second;
@@ -57,23 +57,22 @@ void board::colorString(std::string &s)
     s = s.substr(0, kDimForTable) + len;
 }
 
-std::vector<std::vector<char>> board::matrix() const //TODO
-{
-    //fill the vector<char> with the corresponding slots on the matrix
-    std::vector<std::vector<char>> v(kDimBoard);
-    for (int i = 0; i < kDimBoard; ++i)
-    {
-        for (int j = 0; j < kDimBoard; ++j)
-        {
-            v[i].push_back(_matrix[i][j]);
-        }
-    }
-    return v;
-}
+//std::vector<std::vector<char>> board::matrix() const //TODO
+//{
+//    std::vector<std::vector<char>> v(kDimBoard);
+//    for (int i = 0; i < kDimBoard; ++i)
+//    {
+//        for (int j = 0; j < kDimBoard; ++j)
+//        {
+//            v[i].push_back(_matrix[i][j]);
+//        }
+//    }
+//    return v;
+//}
 
+//utility print, add space to string
 std::string board::spaced(const std::string &s)
 {
-    //TODO COMMENT
     std::string spacedString;
     for (char itr : s)
     {
@@ -81,7 +80,7 @@ std::string board::spaced(const std::string &s)
     }
     return spacedString;
 }
-
+//utility print, add padding
 const std::string &board::padWithSpace(std::string &s)
 {
     //TODO COMMENT
@@ -96,11 +95,11 @@ const std::string &board::padWithSpace(std::string &s)
     }
     return s;
 }
+//print the board with color
 std::string board::to_string() const
 {
-    //TODO COMMENT
     std::string output;
-    std::string lineWitNumber(board::kDimForTable, ' '); //spazio iniziale nella riga
+    std::string lineWitNumber(board::kDimForTable, ' '); //print first line with number
     for (int i = battleships::coordinate::kMinX; i <= board::kDimBoard; ++i)
     {
         std::string s = std::to_string(i);
@@ -113,16 +112,16 @@ std::string board::to_string() const
         std::string line(1, char(i + (battleships::coordinate::kMinY)));
         for (int j = 0; j < board::kDimBoard; ++j) { line += _matrix[i][j]; }
         line = board::spaced(line);
-        board::colorString(line);
+        board::colorString(line); //add color
         output += line + "\n";
     }
     return output;
 }
+//print board without colors
 std::string board::to_stringNoColors() const
 {
-    //TODO COMMENT
     std::string output;
-    std::string lineWitNumber(board::kDimForTable, ' '); //spazio iniziale nella riga
+    std::string lineWitNumber(board::kDimForTable, ' ');
     for (int i = battleships::coordinate::kMinX; i <= board::kDimBoard; ++i)
     {
         std::string s = std::to_string(i);
@@ -135,15 +134,13 @@ std::string board::to_stringNoColors() const
         std::string line(1, char(i + (battleships::coordinate::kMinY)));
         for (int j = 0; j < board::kDimBoard; ++j) { line += _matrix[i][j]; }
         line = board::spaced(line);
-
         output += line + "\n";
     }
     return output;
 }
-
+//take 2 board and print on side
 std::string board::concat2string(const std::string &str1, const std::string &str2)
 {
-    //TODO COMMENT
     int i = 0;
     std::stringstream ss1(str1);
     std::stringstream ss2(str2);
@@ -153,7 +150,7 @@ std::string board::concat2string(const std::string &str1, const std::string &str
         std::string first, second;
         std::getline(ss1, first, '\n');
         std::getline(ss2, second, '\n');
-        output += (first + "   " + second + '\n');
+        output += (first + "   " + second + '\n'); //concat the 2 line for each line of boards
         i += first.length() + 1;
     }
     return output;

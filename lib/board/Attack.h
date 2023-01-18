@@ -15,12 +15,9 @@ class attack : public board
 {
 private:
 
-    //matrix of ints that represents the turn board
+    //matrix of ints that represents the turn board for the special move AA number
     int turnMatrix[kDimBoard][kDimBoard]{};
 
-    //static constexpr ints that represent both human and bot chars
- //   static constexpr int kComputerChar = 'c';
-  //  static constexpr int kHumanChar = 'p';
 
 public:
     /**
@@ -46,7 +43,7 @@ public:
     void find(battleships::coordinate xy);
 
     /**
-    * @brief reset the board
+    * @brief reset the turn board (call with AA command)
     */
     void reset();
 
@@ -64,6 +61,7 @@ public:
     * @brief Construct a new attack board
     */
     attack();
+
 };
 
 #endif //BATTAGLIANAVALE_LIB_BOARD_ATTACK_H_

@@ -45,7 +45,7 @@ public:
     //static constexpr int representing the char symbol of the ship
     static constexpr int kSupportChar = 'S';
 
-    //static constexpr auto used for colors TODO
+    //static constexpr auto used for colors
     static constexpr auto &color()
     { return "\033[41m"; }
     static constexpr auto &colorHit()

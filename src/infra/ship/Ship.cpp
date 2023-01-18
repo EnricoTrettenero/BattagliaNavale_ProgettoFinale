@@ -14,7 +14,7 @@ bool ship::hit(int position) //true if health=0, position reference the position
     //lower the char of the armor of the ship in the position
     armor_.at(position) = char(tolower((unsigned char) armor_.at(position)));
 
-    //TODO COMMENT
+    //check if all char is lower
     return std::all_of(armor_.begin(), armor_.end(), [](char i)
     { return islower(i); });
 }

@@ -19,7 +19,7 @@ class board
   static constexpr int kDimBoard = 12;
 
   //vector<vector<char>> that represents the matrix
-  std::vector<std::vector<char>> matrix() const; //restituisce un vector di char chiamato matrix
+  // std::vector<std::vector<char>> matrix() const;
 
   /**
   * @brief print the board
@@ -34,12 +34,15 @@ class board
     */
   std::string to_stringNoColors() const;
   /**
-  * @brief takes two string and concatenates them one beside the other
+  * @brief takes two boards and concatenates them one beside the other
   *
-  * @return a string representing the two paired strings
+  * @return a string representing the two paired boards
   */
   static std::string concat2string(const std::string &str1, const std::string &str2);
-
+  /*
+   * @brief destructor standard
+   */
+  ~board() = default;
  protected:
 
   //matrix of chars that represents the board
@@ -56,17 +59,22 @@ class board
   static constexpr int kRightSpace = (kDimForTable - 1) % 2 + 1;
 
   /**
-  * TODO
+  * @brief center the string s in according to the matrix length
+   * @param s = input string
+   * @return input string with padded space
   */
   static const std::string &padWithSpace(std::string &s);
 
   /**
-  * TODO
-  */
+   * @brief insert space in the string for optimal board output
+    * @param s = input string
+    * @return input string with padded space
+   */
   static std::string spaced(const std::string &s);
 
   /**
-  * TODO
+  * @brief add the color on the string for the ships
+   * @param s = input string
   */
   static void colorString(std::string &s);
 };

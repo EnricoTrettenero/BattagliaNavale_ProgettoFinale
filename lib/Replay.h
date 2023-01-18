@@ -1,7 +1,7 @@
 /**
  * @file Replay.h
  * @author TODO
- * @brief TODO
+ * @brief alternative version of player used to perform replay, use old player move passed by array
  */
 
 #ifndef BATTAGLIANAVALE_LIB_REPLAY_H_
@@ -16,7 +16,7 @@ class replay : public player
 public:
 
     /**
-    * @brief return move via vector of strings moves (precedent player moves) //TODO
+    * @brief return move via vector of strings moves (precedent player moves)
     *
     * @param input useless string derivative from player
     * @return the string with the move

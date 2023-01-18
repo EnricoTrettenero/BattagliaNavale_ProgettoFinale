@@ -11,7 +11,8 @@ defense::defense() : board()
     for (auto &i : _matrix)
     {
         //...set the char of the slot to '*'
-        for (char &j : i) { j = '*'; }
+        for (char &j : i)
+        { j = '*'; }
     }
 
     //create the vector containing the ships
@@ -159,34 +160,45 @@ bool defense::isShip(battleships::coordinate xy)
 bool defense::move(battleships::coordinate init_xy, battleships::coordinate final_xy)
 {
     //moving on its own is not allowed (would mean turning around and no rotation is admitted)
-    if(init_xy == final_xy) return false;
+    if (init_xy == final_xy) return false;
     if (isShip(init_xy))
     {
+        //find the ship
         for (auto &i : ships)
         {
             if (i->centre() == init_xy)
             {
+                //check if new space is available
                 for (int j = 0; j < i->dim(); ++j)
                 {
-                    //TODO COMMENT
+
                     if (i->getOrientation() == ship::HORIZONTAL)
                     {
-                        if ((final_xy.x() + j - i->dim() / 2) < 0 || final_xy.x() + j - i->dim() / 2 > kDimBoard - 1) return false;
-                            if(_matrix[final_xy.y()][final_xy.x() + j - i->dim() / 2] != '*')
-                            {
-                                if(!isPartOf(battleships::coordinate(final_xy.x() + j - i->dim() / 2 +1,final_xy.y_ch()),i))
-                                    return false;
-                            }
+                        //search horizontally
+                        if ((final_xy.x() + j - i->dim() / 2) < 0
+                            || final_xy.x() + j - i->dim() / 2 > kDimBoard - 1)
+                            return false;
+                        //if find !* don't necessary mean that is invalid for example the case of move+1 in horizontal way
+                        if (_matrix[final_xy.y()][final_xy.x() + j - i->dim() / 2] != '*')
+                        {
+                            //check if !* si part of herself
+                            if (!isPartOf(battleships::coordinate(final_xy.x() + j - i->dim() / 2 + 1, final_xy.y_ch()),
+                                          i))
+                                return false;
+                        }
 
                     } else
                     {
-                        if ((final_xy.y() + j - i->dim() / 2) < 0 || final_xy.y() + j - i->dim() / 2 > kDimBoard - 1) return false;
+                        if ((final_xy.y() + j - i->dim() / 2) < 0
+                            || final_xy.y() + j - i->dim() / 2 > kDimBoard - 1)
+                            return false;
 
-                            if(_matrix[final_xy.y() + j - i->dim() / 2][final_xy.x()] != '*') //assume all ship is odd
-                            {
-                                if(!isPartOf(battleships::coordinate(final_xy.x() +1,final_xy.y_ch()+ j - i->dim() / 2),i))
-                                    return false;
-                            }
+                        if (_matrix[final_xy.y() + j - i->dim() / 2][final_xy.x()] != '*') //assume all ship is odd
+                        {
+                            if (!isPartOf(battleships::coordinate(final_xy.x() + 1, final_xy.y_ch() + j - i->dim() / 2),
+                                          i))
+                                return false;
+                        }
                     }
                 }
                 //set the centre of the ship to the new position
@@ -279,21 +291,23 @@ bool defense::isDamaged(battleships::coordinate xy)
     return false;
 }
 
-int defense::getShipCount() const { return shipCounter; }
+int defense::getShipCount() const
+{ return shipCounter; }
 
-bool defense::isPartOf(battleships::coordinate xy, std::unique_ptr<ship>& s)
+bool defense::isPartOf(battleships::coordinate xy, std::unique_ptr<ship> &s)
 {
     //tells if the coordinate corresponds to a portion of the ship
     for (int i = 0; i < s->dim(); ++i)
     {
-        if(s->getOrientation()==ship::HORIZONTAL)
+        if (s->getOrientation() == ship::HORIZONTAL)
         {
-            if(xy.x() == s->centre().x() + i - s->dim()/2 && xy.y() == s->centre().y())
+            if (xy.x() == s->centre().x() + i - s->dim() / 2 && xy.y() == s->centre().y())
+                return true;
+        } else
+        {
+            if (xy.x() == s->centre().x() && xy.y() == s->centre().y() + i - s->dim() / 2)
                 return true;
         }
-        else
-        if(xy.x() == s->centre().x() && xy.y()==s->centre().y() + i - s->dim()/2)
-            return true;
     }
     return false;
 }

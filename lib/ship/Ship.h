@@ -84,7 +84,7 @@ public:
     void repair_armor();
 
     /**
-    * @brief destructor for ship
+    * @brief virtual destructor for ship need for abstract class
     */
     virtual ~ship();
 

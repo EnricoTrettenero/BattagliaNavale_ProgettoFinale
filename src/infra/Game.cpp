@@ -99,8 +99,8 @@ void game::play()
     turn = rand()%2==0;
     while (turnCounter < maxTurn)
     {
-        //TODO
-        if (maxTurn - turnCounter < 10)
+        //print when the turn start to be low 10%
+        if (maxTurn - turnCounter < turnCounter/10)
         {
             std::cout << "Pay attention: " << maxTurn - turnCounter << " turns remaining!" << std::endl;
         }
