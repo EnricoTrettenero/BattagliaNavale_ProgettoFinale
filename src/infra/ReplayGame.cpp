@@ -1,6 +1,8 @@
-//
-// Created by Enry on 17/01/2023.
-//
+/**
+ * @file ReplayGame.cpp
+ * @author Enrico Trettenero
+ *
+ */
 #include "../../lib/ReplayGame.h"
 
 #include <memory>

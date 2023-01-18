@@ -1,6 +1,6 @@
 /**
  * @file Utility.h
- * @author TODO
+ * @author Davide Redana
  * @brief Entities commonly used across the whole library
  *
  */
@@ -44,7 +44,7 @@ namespace battleships
         /**
         * @brief construct a empty coordinate
         */
-        explicit coordinate() : x_{1}, y_{'A'}
+        explicit coordinate() : x_{kMinX}, y_{kMinY}
         {
 
         }

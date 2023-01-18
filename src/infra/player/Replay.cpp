@@ -1,7 +1,9 @@
-//
-// Created by Enry on 09/01/2023.
-//
-#include "../../lib/Replay.h"
+/**
+ * @file Replay.cpp
+ * @author Enrico Trettenero
+ *
+ */
+#include "../../../lib/player/Replay.h"
 
 std::string replay::doAction(std::string input) {
     if(position==moves_.size()) throw std::out_of_range("moves out of range"); //check end of array

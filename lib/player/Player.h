@@ -1,6 +1,6 @@
 /**
  * @file Player.h
- * @author TODO
+ * @author Valentin Necula
  * @brief This abstract class represents a generic player (human or bot)
  *
  */

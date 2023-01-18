@@ -1,7 +1,8 @@
-//
-// Created by vale on 27/12/22.
-//
-
+/**
+ * @file Submarine.cpp
+ * @author Valentin Necula
+ *
+ */
 #include "../../../lib/ship/Submarine.h"
 submarine::submarine(const battleships::coordinate &bow,
                      const battleships::coordinate &stern) : ship(
@@ -28,8 +29,8 @@ std::vector<std::pair<char, battleships::coordinate>> submarine::action(battlesh
         for (int j = 0; j < radius; ++j)
         {
             //if radius goes out of range of the board do nothing
-            if (c.x() + i - radius / 2 < 0 || c.x() + i - radius / 2 > 11 || c.y() + j - radius / 2 < 0
-                || c.y() + j - radius / 2 > 11) {}
+            if (c.x() + i - radius / 2 < 0 || c.x() + i - radius / 2 > board::kDimBoard-1 || c.y() + j - radius / 2 < 0
+                || c.y() + j - radius / 2 > board::kDimBoard-1) {}
 
             //emplace_back the pairs needed for the exploration
             else

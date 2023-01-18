@@ -1,7 +1,8 @@
-//
-// Created by vale on 27/12/22.
-//
-
+/**
+ * @file Game.cpp
+ * @author Enrico Trettenero
+ *
+ */
 #include "../../lib/Game.h"
 #include "../../lib/ship/Battleship.h"
 #include "../../lib/ship/Support.h"

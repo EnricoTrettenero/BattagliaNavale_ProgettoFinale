@@ -1,6 +1,6 @@
 /**
  * @file Ai.h
- * @author TODO
+ * @author Valentin Necula
  * @brief This class represents a bot player
  *
  */

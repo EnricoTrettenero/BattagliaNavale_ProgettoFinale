@@ -1,6 +1,8 @@
-//
-// Created by Enry on 29/12/2022.
-//
+/**
+ * @file Ship.cpp
+ * @author Valentin Necula
+ *
+ */
 
 #include <algorithm>
 #include <utility>

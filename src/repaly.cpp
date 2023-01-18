@@ -1,15 +1,17 @@
-////
-//// Created by Enry on 16/01/2023.
-////
+/**
+ * @file ReplayMain.cpp
+ * @author Enrico Trettenero
+ *
+ */
 #include <string>
 #include <vector>
 #include <fstream>
 #include "../lib/ship/Battleship.h"
 #include "../lib/board/Attack.h"
 #include "../lib/board/Defense.h"
-#include "../lib/Player.h"
+#include "../lib/player/Player.h"
 #include "../lib/Game.h"
-#include "../lib/Replay.h"
+#include "../lib/player/Replay.h"
 #include "../lib/ReplayGame.h"
 #include <chrono>
 #include <thread>

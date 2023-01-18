@@ -1,6 +1,6 @@
 /**
  * @file Ship.h
- * @author TODO
+ * @author Valentin Necula
  * @brief This abstract class represents a generic Ship
  *
  */

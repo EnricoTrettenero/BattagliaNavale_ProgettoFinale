@@ -1,14 +1,16 @@
-//
-// Created by Enry on 22/12/2022.
-//
+/**
+ * @file BattagliaNavale.cpp
+ * @author Enrico Trettenero
+ *
+ */
 #include <iostream>
 #include <memory>
 #include "../lib/ship/Battleship.h"
 #include "../lib/board/Attack.h"
 #include "../lib/board/Defense.h"
-#include "../lib/Player.h"
-#include "../lib/Human.h"
-#include "../lib/Ai.h"
+#include "../lib/player/Player.h"
+#include "../lib/player/Human.h"
+#include "../lib/player/Ai.h"
 #include "../lib/Game.h"
 
 using namespace std;

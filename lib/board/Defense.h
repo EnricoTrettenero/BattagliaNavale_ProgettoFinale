@@ -1,6 +1,6 @@
 /**
  * @file Defense.h
- * @author TODO
+ * @author Davide Redana
  * @brief This class represents the defense board
  *
  */

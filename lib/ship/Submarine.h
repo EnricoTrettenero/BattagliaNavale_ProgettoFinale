@@ -1,6 +1,6 @@
 /**
  * @file Submarine.h
- * @author TODO
+ * @author Valentin Necula
  * @brief This class represents a submarine
  *
  */

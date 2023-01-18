@@ -1,6 +1,6 @@
 /**
  * @file Player.h
- * @author TODO
+ * @author Enrico Trettenero
  * @brief This class represents a game of "Battaglia Navale".
  * It only has one public method, startNewGame(), used to start the game.
  * An instance of Game can be used to play one and only one game,

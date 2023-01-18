@@ -1,6 +1,8 @@
-//
-// Created by vale on 27/12/22.
-//
+/**
+ * @file Player.cpp
+ * @author Valentin Necula
+ *
+ */
 
 #include "../../lib/Player.h"
 

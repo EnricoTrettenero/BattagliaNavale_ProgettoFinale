@@ -1,6 +1,6 @@
 /**
  * @file Attack.h
- * @author TODO
+ * @author Davide Redana
  * @brief This class represents the attack board
  *
  */
@@ -20,6 +20,16 @@ private:
 
 
 public:
+  static constexpr int kFindChar = 'Y';
+  static constexpr int kWaterChar = 'O';
+  static constexpr int kHitChar = 'X';
+  //static constexpr auto used for colors
+  static constexpr auto &colorFind()
+  { return "\033[44;7m"; }
+  static constexpr auto &colorWater()
+  { return "\033[44m"; }
+  static constexpr auto &colorHit()
+  { return "\033[101m"; }
     /**
     * @brief insert a X on the board (happens when a enemy board on the enemy defense board is hit)
     *

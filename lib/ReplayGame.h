@@ -1,6 +1,6 @@
 /**
  * @file Replay.h
- * @author TODO
+ * @author Enrico Trettenero
  * @brief derivative from Game with modify method to perform replay
  *
  */

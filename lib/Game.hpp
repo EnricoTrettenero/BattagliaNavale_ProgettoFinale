@@ -1,6 +1,6 @@
 /**
  * @file Game.hpp
- * @author TODO
+ * @author Valentin Necula
  * @brief This class is used to implement a template function
  * used to fill the boards with the needed ships
  *

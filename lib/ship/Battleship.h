@@ -1,6 +1,6 @@
 /**
  * @file Battleship.h
- * @author TODO
+ * @author Valentin Necula
  * @brief This class represents a battleship
  *
  */

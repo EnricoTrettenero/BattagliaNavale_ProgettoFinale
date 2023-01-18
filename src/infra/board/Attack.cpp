@@ -1,7 +1,8 @@
-//
-// Created by vale on 27/12/22.
-//
-
+/**
+ * @file Attack.cpp
+ * @author Davide Redana
+ *
+ */
 #include "../../../lib/board/Attack.h"
 
 attack::attack() : board()
@@ -35,7 +36,7 @@ void attack::reset()
         {
             //reset each slot of _matrix from the previous char to '*'
             turnMatrix[i][j] = 0;
-            if (_matrix[i][j] == 'Y' || _matrix[i][j] == 'O' || _matrix[i][j] == 'X')
+            if (_matrix[i][j] == kFindChar || _matrix[i][j] == kWaterChar || _matrix[i][j] == kHitChar)
                 _matrix[i][j] = '*';
         }
     }

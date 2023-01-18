@@ -1,6 +1,6 @@
 /**
  * @file Replay.h
- * @author TODO
+ * @author Enrico Trettenero
  * @brief alternative version of player used to perform replay, use old player move passed by array
  */
 

@@ -1,7 +1,8 @@
-//
-// Created by vale on 27/12/22.
-//
-
+/**
+ * @file Board.cpp
+ * @author Davide Redana
+ *
+ */
 
 #include <sstream>
 #include "../../../lib/board/Board.h"
@@ -9,7 +10,7 @@
 #include "../../../lib/ship/Battleship.h"
 #include "../../../lib/ship/Submarine.h"
 #include "../../../lib/ship/Support.h"
-
+#include "../../../lib/board/Attack.h"
 std::ostream &operator<<(std::ostream &os, const board &b)
 {
     //print board
@@ -36,6 +37,9 @@ void board::colorString(std::string &s)
         {char(battleship::kBattleshipChar), battleship::color()},
         {char(submarine::kSubmarineChar), submarine::color()},
         {char(support::kSupportChar), support::color()},
+        {char(attack::kWaterChar), attack::colorWater()},
+        {char(attack::kFindChar), attack::colorFind()},
+        {char(attack::kHitChar), attack::colorHit()},
         {tolower(char(battleship::kBattleshipChar)), battleship::colorHit()},
         {tolower(char(submarine::kSubmarineChar)), submarine::colorHit()},
         {tolower(char(support::kSupportChar)), support::colorHit()}

@@ -1,6 +1,8 @@
-//
-// Created by Enry on 08/01/2023.
-//
+/**
+ * @file Human.cpp
+ * @author Valentin Necula
+ *
+ */
 #include <iostream>
 #include "../../lib/Human.h"
 

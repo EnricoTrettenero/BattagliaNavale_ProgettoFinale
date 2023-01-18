@@ -1,6 +1,8 @@
-//
-// Created by vale on 27/12/22.
-//
+/**
+ * @file Support.cpp
+ * @author Valentin Necula
+ *
+ */
 
 #include "../../../lib/ship/Support.h"
 support::support(const battleships::coordinate &bow,
