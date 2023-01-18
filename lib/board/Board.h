@@ -13,7 +13,8 @@
 
 class board
 {
- public:
+
+public:
 
 //board dimension
 static constexpr int kDimBoard = 12;
