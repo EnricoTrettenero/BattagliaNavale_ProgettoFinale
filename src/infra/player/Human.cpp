@@ -4,7 +4,7 @@
  *
  */
 #include <iostream>
-#include "../../lib/Human.h"
+#include "../../../lib/player/Human.h"
 
 std::string human::doAction(std::string input)
 {

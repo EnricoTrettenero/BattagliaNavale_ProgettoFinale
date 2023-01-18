@@ -9,7 +9,7 @@
 #define BATTAGLIANAVALE_LIB_REPLAYGAME_H_
 
 #include "Game.h"
-#include "Replay.h"
+#include "player/Replay.h"
 
 class replaygame : public game
 {

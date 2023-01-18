@@ -1,6 +1,8 @@
-//
-// Created by vale on 27/12/22.
-//
+/**
+ * @file Defence.cpp
+ * @author Davide Redana
+ *
+ */
 
 #include <iostream>
 #include "../../../lib/board/Defense.h"
@@ -134,28 +136,6 @@ bool defense::isShip(battleships::coordinate xy)
     return _matrix[xy.y()][xy.x()] != '*'; //check if the slot xy in the board is empty
 }
 
-//std::vector<battleships::coordinate> defense::isShip(battleships::coordinate xy,
-//                                                     unsigned int radius) //radius must be and odd number
-//{
-//    //create a vector that will hold the coordinates of the portions of ships found
-//    std::vector<battleships::coordinate> output = std::vector<battleships::coordinate>();
-//    for (int i = 0; i < radius; ++i)
-//    {
-//        for (int j = 0; j < radius; ++j)
-//        {
-//            //if out of range do nothing
-//            if (xy.x() + j - radius / 2 < 0 || xy.x() + j - radius / 2 > kDimBoard - 1 || xy.y() + i - radius / 2 < 0
-//                || xy.y() + i - radius / 2 > kDimBoard - 1)
-//            {
-//                //else emplace_back the coordinate of the portion of the ship found in the vector
-//            } else if (_matrix[xy.y() + i - radius / 2][xy.x() + j - radius / 2] != '*')
-//            {
-//                output.emplace_back(xy.x() + j - radius / 2 + 1, xy.y() + i - radius / 2 + 'A');
-//            }
-//        }
-//    }
-//    return output;
-//}
 
 bool defense::move(battleships::coordinate init_xy, battleships::coordinate final_xy)
 {

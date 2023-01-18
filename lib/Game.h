@@ -13,7 +13,7 @@
 
 #include <memory>
 #include <fstream>
-#include "Player.h"
+#include "player/Player.h"
 #include "board/Attack.h"
 #include "board/Defense.h"
 

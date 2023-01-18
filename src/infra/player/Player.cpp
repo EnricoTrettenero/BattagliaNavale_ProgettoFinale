@@ -4,7 +4,7 @@
  *
  */
 
-#include "../../lib/Player.h"
+#include "../../../lib/player/Player.h"
 
 //virtual destructor
 player::~player() = default;
