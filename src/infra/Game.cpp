@@ -14,7 +14,7 @@ game::game(std::unique_ptr<player> p1, std::unique_ptr<player> p2, const std::st
                                                                                                   turn{true},
                                                                                                   turnCounter{0}
 {
-    srand(time(nullptr)); //use for random first move
+    srand(time(nullptr)); //set the random seed
 }
 
 void game::fillPlayerBoards(std::unique_ptr<player> &p, defense &d, attack &a)
@@ -25,20 +25,19 @@ void game::fillPlayerBoards(std::unique_ptr<player> &p, defense &d, attack &a)
 
     //fill defense board with different type of ship via template function
     fillShip<submarine>(kNumberSubmarine, p, d, submarine::className());
-
     fillShip<battleship>(kNumberBattleship, p, d, battleship::className());
-
     fillShip<support>(kNumberSupport, p, d, support::className());
 }
+
 //take a string and return a ship (to check)
-//format accepted B1 B1 | B10 B1 | B1 B10 | B10 B10
+//format accepted "B1 B1" | "B10 B1" | "B1 B10" | "B10 B10"
 std::pair<battleships::coordinate, battleships::coordinate> game::getShipData(const std::string &s)
 {
     //check length valid
     if (s.length() != 5 && s.length() != 6 && s.length() != 7) throw std::invalid_argument("invalid length");
     //find divisor char (' ')
     int position = s.find(' ');
-    //divisor char must be in the center
+    //divisor char must be in the centre
     if (position != 2 && position != 3) throw std::invalid_argument("separator char not found");
     //extract the coordinates
     std::string strFirst = s.substr(0, position);
@@ -48,6 +47,7 @@ std::pair<battleships::coordinate, battleships::coordinate> game::getShipData(co
     battleships::coordinate stern = getCoordinate(strLast);
     return std::make_pair(bow, stern);
 }
+
 //try to execute the list of action by the ship
 void game::make_action(const std::vector<std::pair<char, battleships::coordinate>> &vec,
                        defense &ally_defense,
@@ -62,7 +62,7 @@ void game::make_action(const std::vector<std::pair<char, battleships::coordinate
         {
             //move
             case ('M'):if (!ally_defense.move(it->second, (it + 1)->second)) throw std::invalid_argument("not move");
-                it++; //need to element to move the ship
+                it++; //only action that needs two pairs to move the ship, so we increment the iterator
                 break;
             //repair
             case ('S'):ally_defense.repair_ship(it->second);
@@ -88,11 +88,13 @@ void game::make_action(const std::vector<std::pair<char, battleships::coordinate
         }
     }
 }
-//start the second phase of the game
+
+//start the second phase of the game, immediately after the fill
 void game::play()
 {
     //initialized parameter
     turnCounter = 0;
+
     //random first move
     turn = rand()%2==0;
     while (turnCounter < maxTurn)
@@ -127,18 +129,20 @@ void game::play()
         turnCounter++;
     }
 
-    if (turnCounter > maxTurn) //draw
+    if (turnCounter > maxTurn) //draw if number of turns exceeds
         std::cout << "Draw: max number of turns reached!";
+
     //print the log on file
     std::ofstream fileLog(fileName_);
     if (!fileLog.is_open()) throw std::invalid_argument("filename not valid");
     fileLog << output_;
     fileLog.close();
 }
-//do player turn
+
+//do the player turn
 void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &enemyD)
 {
-    // type input AA 4 | AA 10 | AA AA | XX XX | B1 F1 | B10 F1 | B10 F10
+    // type input "AA 4" | "AA 10" | "AA AA" | "XX XX" | "B1 F1" | "B10 F1" | "B10 F10"
     //take input from player virtual doAction
     std::string input = p->doAction("insert move " + std::to_string(turnCounter) + " Player " + p->to_string());
     bool repeat;
@@ -156,14 +160,14 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
             // special moves check
             if (strFirst == "AA")
             {
-                //reset all attack point
+                //reset on attack board
                 if (strLast == "AA")
                 {
                     a.reset();
                     input = p->doAction("Special Moves Attack reset, insert new move ");
                     output_ += p->to_string() + ":" + strFirst + " " + strLast + "\n"; //register on log file the move
                 }
-                //reset attack point by x turn
+                //reset on attack board the slots update before x turn
                 else
                 {
                     try
@@ -189,6 +193,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                 repeat = true;
 
             }
+
             //coordinate case
             else
             {
@@ -207,6 +212,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                 }
             }
         }
+
         //general error
         else
         {
@@ -215,6 +221,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
         }
     } while (repeat);
 }
+
 void game::startNewGame()
 {
     output_ = p1_->to_string() + "\n" + p2_->to_string() + "\n"; //print the player name on log file
@@ -222,6 +229,7 @@ void game::startNewGame()
     fillPlayerBoards(p2_, defenseBoardP2_, attackBoardP2_);
     play(); //start the came
 }
+
 //convert string to coordinate throw std::invalid_argument if not valid
 battleships::coordinate game::getCoordinate(const std::string &s)
 {
@@ -236,16 +244,19 @@ battleships::coordinate game::getCoordinate(const std::string &s)
 
     return outputCoordinate;
 }
+
 //show end game
 void game::endGame(std::unique_ptr<player> &p)
 {
     std::cout << "Game ended with player " << p->to_string() << " winning" << std::endl;
 }
-//check if lost
+
+//check if the player with the defense board passed has lost
 bool game::hasLost(defense &d)
 {
     return d.getShipCount() == 0;
 }
+
 //protected constructor
-game::game()=default;
+game::game() = default;
 

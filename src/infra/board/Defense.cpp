@@ -26,15 +26,15 @@ bool defense::setShip(std::unique_ptr<ship> s)
         if (s->getOrientation() == ship::HORIZONTAL)
         {
             //check if the space needed for a horizontal insertion is free
-            if ((s->center().x() + i - s->dim() / 2) < 0 || s->center().x() + i - s->dim() / 2 > kDimBoard - 1
-                || _matrix[s->center().y()][s->center().x() + i - s->dim() / 2] != '*')
+            if ((s->centre().x() + i - s->dim() / 2) < 0 || s->centre().x() + i - s->dim() / 2 > kDimBoard - 1
+                || _matrix[s->centre().y()][s->centre().x() + i - s->dim() / 2] != '*')
                 return false; //if it's not free return false
 
         } else if (s->getOrientation() == ship::VERTICAL)
         {
             //check if the space needed for a vertical insertion is free
-            if ((s->center().y() + i - s->dim() / 2) < 0 || s->center().y() + i - s->dim() / 2 > kDimBoard - 1
-                || _matrix[s->center().y() + i - s->dim() / 2][s->center().x()] != '*')
+            if ((s->centre().y() + i - s->dim() / 2) < 0 || s->centre().y() + i - s->dim() / 2 > kDimBoard - 1
+                || _matrix[s->centre().y() + i - s->dim() / 2][s->centre().x()] != '*')
                 return false; //if it's not free return false
         } else
             throw std::invalid_argument("orientation not valid");
@@ -44,11 +44,11 @@ bool defense::setShip(std::unique_ptr<ship> s)
         if (s->getOrientation() == ship::HORIZONTAL)
         {
             //insert the horizontal ship on the board with the corresponding chars
-            _matrix[s->center().y()][s->center().x() + i - s->dim() / 2] = s->armor()[i];
+            _matrix[s->centre().y()][s->centre().x() + i - s->dim() / 2] = s->armor()[i];
         } else if (s->getOrientation() == ship::VERTICAL)
         {
             //insert the horizontal ship on the board with the corresponding chars
-            _matrix[s->center().y() + i - s->dim() / 2][s->center().x()] = s->armor()[i];
+            _matrix[s->centre().y() + i - s->dim() / 2][s->centre().x()] = s->armor()[i];
         } else throw std::invalid_argument("orientation not valid");
     }
 
@@ -62,7 +62,7 @@ std::vector<std::pair<char, battleships::coordinate>> defense::useShip(battleshi
 {
     //for each ship
     for (const auto &ship : ships)
-        if (ship->center() == xyShip) //if the centre of the ships corresponds with the coordinate xyShip
+        if (ship->centre() == xyShip) //if the centre of the ships corresponds with the coordinate xyShip
             return ship->action(xyTarget); //return the action of the ship in that position
     throw std::invalid_argument("ships not found");
 }
@@ -79,12 +79,12 @@ bool defense::fire(battleships::coordinate xy)
                 if (ships.at(i)->getOrientation() == ship::HORIZONTAL)
                 {
                     //if the coordinate xy corresponds to a portion of the horizontal ship
-                    if (ships.at(i)->center().y() == xy.y()
-                        && ships.at(i)->center().x() - ships.at(i)->dim() / 2 + j == xy.x())
+                    if (ships.at(i)->centre().y() == xy.y()
+                        && ships.at(i)->centre().x() - ships.at(i)->dim() / 2 + j == xy.x())
                     {
                         //lower the char on the board and on the armor because it has been hit
-                        _matrix[ships.at(i)->center().y()][ships.at(i)->center().x() - ships.at(i)->dim() / 2 + j] =
-                            tolower(_matrix[ships.at(i)->center().y()][ships.at(i)->center().x()
+                        _matrix[ships.at(i)->centre().y()][ships.at(i)->centre().x() - ships.at(i)->dim() / 2 + j] =
+                            tolower(_matrix[ships.at(i)->centre().y()][ships.at(i)->centre().x()
                                 - ships.at(i)->dim() / 2 + j]);
                         if (ships.at(i)->hit(j))
                             sunk(i);
@@ -93,13 +93,13 @@ bool defense::fire(battleships::coordinate xy)
                 } else
                 {
                     //if the coordinate xy corresponds to a portion of the vertical ship
-                    if (ships.at(i)->center().x() == xy.x()
-                        && ships.at(i)->center().y() - ships.at(i)->dim() / 2 + j == xy.y())
+                    if (ships.at(i)->centre().x() == xy.x()
+                        && ships.at(i)->centre().y() - ships.at(i)->dim() / 2 + j == xy.y())
                     {
                         //lower the char on the board and on the armor because it has been hit
-                        _matrix[ships.at(i)->center().y() - ships.at(i)->dim() / 2 + j][ships.at(i)->center().x()] =
-                            tolower(_matrix[ships.at(i)->center().y() - ships.at(i)->dim() / 2
-                                + j][ships.at(i)->center().x()]);
+                        _matrix[ships.at(i)->centre().y() - ships.at(i)->dim() / 2 + j][ships.at(i)->centre().x()] =
+                            tolower(_matrix[ships.at(i)->centre().y() - ships.at(i)->dim() / 2
+                                + j][ships.at(i)->centre().x()]);
                         if (ships.at(i)->hit(j))
                             sunk(i);
                         return true;
@@ -116,11 +116,11 @@ void defense::sunk(int index) //destroy the ship
     //set the chars of the slots corresponding to the ship on the board to '*'
     if (ships.at(index)->getOrientation() == ship::HORIZONTAL)
         for (int i = 0; i < ships.at(index)->dim(); ++i)
-            _matrix[ships.at(index)->center().y()][ships.at(index)->center().x() - ships.at(index)->dim() / 2 + i] =
+            _matrix[ships.at(index)->centre().y()][ships.at(index)->centre().x() - ships.at(index)->dim() / 2 + i] =
                 '*';
     else
         for (int i = 0; i < ships.at(index)->dim(); ++i)
-            _matrix[ships.at(index)->center().y() - ships.at(index)->dim() / 2 + i][ships.at(index)->center().x()] =
+            _matrix[ships.at(index)->centre().y() - ships.at(index)->dim() / 2 + i][ships.at(index)->centre().x()] =
                 '*';
     auto i = ships.begin() + index;
     ships.at(index).reset(); //reset the unique_ptr in the "index" position of the vector
@@ -164,7 +164,7 @@ bool defense::move(battleships::coordinate init_xy, battleships::coordinate fina
     {
         for (auto &i : ships)
         {
-            if (i->center() == init_xy)
+            if (i->centre() == init_xy)
             {
                 for (int j = 0; j < i->dim(); ++j)
                 {
@@ -190,7 +190,7 @@ bool defense::move(battleships::coordinate init_xy, battleships::coordinate fina
                     }
                 }
                 //set the centre of the ship to the new position
-                i->set_center_(final_xy);
+                i->set_centre_(final_xy);
 
                 //reset the chars of the ship corresponding to the old position on the board
                 if (i->getOrientation() == ship::HORIZONTAL)
@@ -235,7 +235,7 @@ void defense::repair_ship(battleships::coordinate xy)
                 for (int i = 0; i < ship->dim(); ++i)
                 {
                     //find the ship
-                    if (ship->center().y() == xy.y() && ship->center().x() - ship->dim() / 2 + i == xy.x())
+                    if (ship->centre().y() == xy.y() && ship->centre().x() - ship->dim() / 2 + i == xy.x())
                     {
                         //repair the armor of the ship fully
                         ship->repair_armor();
@@ -243,8 +243,8 @@ void defense::repair_ship(battleships::coordinate xy)
                         //reset the chars of the ship on the board to full health
                         for (int j = 0; j < ship->dim(); ++j)
                         {
-                            _matrix[ship->center().y()][ship->center().x() - ship->dim() / 2 + j] =
-                                toupper(_matrix[ship->center().y()][ship->center().x() - ship->dim() / 2 + j]);
+                            _matrix[ship->centre().y()][ship->centre().x() - ship->dim() / 2 + j] =
+                                toupper(_matrix[ship->centre().y()][ship->centre().x() - ship->dim() / 2 + j]);
                         }
                     }
                 }
@@ -253,8 +253,8 @@ void defense::repair_ship(battleships::coordinate xy)
                 for (int i = 0; i < ship->dim(); ++i)
                 {
                     //find the ship
-                    if (ship->center().x() == xy.x()
-                        && ship->center().y() - ship->dim() / 2 + i == xy.y())
+                    if (ship->centre().x() == xy.x()
+                        && ship->centre().y() - ship->dim() / 2 + i == xy.y())
                     {
                         //repair the armor of the ship fully
                         ship->repair_armor();
@@ -262,8 +262,8 @@ void defense::repair_ship(battleships::coordinate xy)
                         //reset the chars of the ship on the board to full health
                         for (int j = 0; j < ship->dim(); ++j)
                         {
-                            _matrix[ship->center().y() - ship->dim() / 2 + j][ship->center().x()] =
-                                toupper(_matrix[ship->center().y() - ship->dim() / 2 + j][ship->center().x()]);
+                            _matrix[ship->centre().y() - ship->dim() / 2 + j][ship->centre().x()] =
+                                toupper(_matrix[ship->centre().y() - ship->dim() / 2 + j][ship->centre().x()]);
                         }
                     }
                 }
@@ -288,11 +288,11 @@ bool defense::isPartOf(battleships::coordinate xy, std::unique_ptr<ship>& s)
     {
         if(s->getOrientation()==ship::HORIZONTAL)
         {
-            if(xy.x() == s->center().x() + i - s->dim()/2 && xy.y() == s->center().y())
+            if(xy.x() == s->centre().x() + i - s->dim()/2 && xy.y() == s->centre().y())
                 return true;
         }
         else
-        if(xy.x() == s->center().x() && xy.y()==s->center().y() + i - s->dim()/2)
+        if(xy.x() == s->centre().x() && xy.y()==s->centre().y() + i - s->dim()/2)
             return true;
     }
     return false;

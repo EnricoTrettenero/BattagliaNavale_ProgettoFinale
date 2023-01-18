@@ -3,11 +3,14 @@
 //
 
 #include "../../lib/Player.h"
+
 //virtual destructor
 player::~player() = default;
+
 //constructor
 player::player(const std::string &name) : name_{name}
 {}
+
 //to string
 std::string player::to_string() const
 {

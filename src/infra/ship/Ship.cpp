@@ -45,9 +45,9 @@ ship::ship(char shipChar,
     //set the centre of the ship to the midpoint between bow and stern
     int x = (bow.x() + 1 + stern.x() + 1) / 2;
     char y = char((bow.y_ch() + stern.y_ch()) / 2);
-    battleships::coordinate center(x, y);
+    battleships::coordinate centre(x, y);
 
-    center_ = center;
+    centre_ = centre;
     dim_ = dim;
 
     //set the orientation of the ship,

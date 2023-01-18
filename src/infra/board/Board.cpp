@@ -48,11 +48,11 @@ void board::colorString(std::string &s)
     for (const auto &a : colors)
     {
         color = a.second;
-        std::string center = leftSpaces + a.first;
-        center.append(rightSpaces);
-        color.append(center);
+        std::string centre = leftSpaces + a.first;
+        centre.append(rightSpaces);
+        color.append(centre);
         color.append(battleships::colors::reset());
-        replaceAll(len, center, color);
+        replaceAll(len, centre, color);
     }
     s = s.substr(0, kDimForTable) + len;
 }

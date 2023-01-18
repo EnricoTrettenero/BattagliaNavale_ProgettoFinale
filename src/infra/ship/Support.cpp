@@ -20,7 +20,7 @@ std::vector<std::pair<char, battleships::coordinate>> support::action(battleship
     int radius = 3; //radius of the support action
 
     //the first two pairs will be for the move
-    output.emplace_back('M', center()); //action: "M"=move from coordinate centre...
+    output.emplace_back('M', centre()); //action: "M"=move from coordinate centre...
     output.emplace_back('M', c); //...action: "M"=move to coordinate c
 
     for (int i = 0; i < radius; ++i)

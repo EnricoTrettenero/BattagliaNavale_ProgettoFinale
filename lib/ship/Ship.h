@@ -35,7 +35,7 @@ public:
     *
     * @return const coordinate representing the centre of the ship
     */
-    const battleships::coordinate &center() const { return center_; }
+    const battleships::coordinate &centre() const { return centre_; }
 
     /**
     * @brief getter
@@ -74,9 +74,9 @@ public:
     /**
     * @brief change the centre of the ship
     *
-    * @param new_center representing the new centre of the ship
+    * @param new_centre representing the new centre of the ship
     */
-    void set_center_(battleships::coordinate new_center) { center_ = new_center; }
+    void set_centre_(battleships::coordinate new_centre) { centre_ = new_centre; }
 
     /**
     * @brief set the armor of the ship to full health
@@ -94,7 +94,7 @@ private:
     unsigned int dim_;
 
     //coordinate representing the centre of the ship
-    battleships::coordinate center_;
+    battleships::coordinate centre_;
 
     //enum orientation representing the orientation of the ship (vertical/horizontal)
     enum orientation orientation_;
@@ -113,16 +113,16 @@ protected:
     * @param shipChar
     * @param armor
     * @param dim
-    * @param center
+    * @param centre
     * @param orientation
     * ...each one representing the corresponding data member
     */
     ship(char shipChar,
        std::vector<char> armor,
        unsigned int dim,
-       const battleships::coordinate &center,
+       const battleships::coordinate &centre,
        orientation orientation)
-      : shipChar_{shipChar}, armor_(std::move(armor)), dim_(dim), center_(center), orientation_(orientation) {}
+      : shipChar_{shipChar}, armor_(std::move(armor)), dim_(dim), centre_(centre), orientation_(orientation) {}
     //TODO
 
     /**
