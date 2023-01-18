@@ -64,7 +64,7 @@ void replaygame::playReplay()
         {
             printFinal_.push_back(board::concat2string(defenseBoardP1_.to_string(), attackBoardP1_.to_string()));
             playTurn(p1_, defenseBoardP1_, attackBoardP1_, defenseBoardP2_);
-            if (hasLost(defenseBoardP1_)) //check win
+            if (hasLost(defenseBoardP2_)) //check win
             {
                 endGame(p2_);
                 break;
@@ -77,7 +77,6 @@ void replaygame::playReplay()
             {
                 endGame(p2_);
                 break;
-
             }
         }
         turn = !turn;
