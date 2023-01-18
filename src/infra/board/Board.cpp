@@ -19,6 +19,7 @@ std::ostream &operator<<(std::ostream &os, const board &b)
 
 void replaceAll(std::string &str, const std::string &from, const std::string &to)
 {
+    //TODO COMMENT
     if (from.empty())
         return;
     size_t start_pos = 0;
@@ -31,6 +32,7 @@ void replaceAll(std::string &str, const std::string &from, const std::string &to
 
 void board::colorString(std::string &s)
 {
+    //TODO COMMENT
     std::string len = s.substr(kDimForTable); //remove the letters in front
     std::vector<std::pair<char, std::string>> colors{
         {char(battleship::kBattleshipChar), battleship::color()},
@@ -57,6 +59,7 @@ void board::colorString(std::string &s)
 
 std::vector<std::vector<char>> board::matrix() const
 {
+    //fill the vector<char> with the corresponding slots on the matrix
     std::vector<std::vector<char>> v(kDimBoard);
     for (int i = 0; i < kDimBoard; ++i)
     {
@@ -70,6 +73,7 @@ std::vector<std::vector<char>> board::matrix() const
 
 std::string board::spaced(const std::string &s)
 {
+    //TODO COMMENT
     std::string spacedString;
     for (char itr : s)
     {
@@ -80,6 +84,7 @@ std::string board::spaced(const std::string &s)
 
 const std::string &board::padWithSpace(std::string &s)
 {
+    //TODO COMMENT
     int l = 1;
     std::string leftSpaces(kLeftSpace, ' ');
     std::string rightSpaces(kRightSpace, ' ');
@@ -93,6 +98,7 @@ const std::string &board::padWithSpace(std::string &s)
 }
 std::string board::to_string() const
 {
+    //TODO COMMENT
     std::string output;
     std::string lineWitNumber(board::kDimForTable, ' '); //spazio iniziale nella riga
     for (int i = battleships::coordinate::kMinX; i <= board::kDimBoard; ++i)
@@ -114,6 +120,7 @@ std::string board::to_string() const
 }
 std::string board::to_stringNoColors() const
 {
+    //TODO COMMENT
     std::string output;
     std::string lineWitNumber(board::kDimForTable, ' '); //spazio iniziale nella riga
     for (int i = battleships::coordinate::kMinX; i <= board::kDimBoard; ++i)
@@ -136,6 +143,7 @@ std::string board::to_stringNoColors() const
 
 std::string board::concat2string(const std::string &str1, const std::string &str2)
 {
+    //TODO COMMENT
     int i = 0;
     std::stringstream ss1(str1);
     std::stringstream ss2(str2);
