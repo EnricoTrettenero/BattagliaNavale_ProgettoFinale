@@ -7,7 +7,6 @@
 #include "../../../lib/ship/Support.h"
 support::support(const battleships::coordinate &bow,
                  const battleships::coordinate &stern) : ship(
-    kSupportChar,
     std::vector<char>(kSupportDim, kSupportChar),
     kSupportDim,
     bow,

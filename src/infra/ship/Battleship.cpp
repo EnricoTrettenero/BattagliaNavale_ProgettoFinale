@@ -8,7 +8,6 @@
 
 battleship::battleship(const battleships::coordinate &bow,
                        const battleships::coordinate &stern) : ship(
-    kBattleshipChar,
     std::vector<char>(kBattleshipDim, kBattleshipChar),
     kBattleshipDim,
     bow,

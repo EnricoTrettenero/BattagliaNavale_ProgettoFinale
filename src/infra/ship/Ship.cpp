@@ -30,14 +30,12 @@ void ship::repair_armor()
     }
 }
 
-ship::ship(char shipChar,
-           std::vector<char> armor,
+ship::ship(std::vector<char> armor,
            int dim,
            const battleships::coordinate &bow,
            const battleships::coordinate &stern)
 {
 
-    shipChar_ = shipChar;
     armor_ = std::move(armor);
 
     //if the dimension deduced by stern and bow is not odd throw invalid_argument

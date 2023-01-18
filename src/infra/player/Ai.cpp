@@ -3,6 +3,7 @@
  * @author Valentin Necula
  *
  */
+
 #include "../../../lib/player/Ai.h"
 #include "../../../lib/def/Utility.h"
 

@@ -6,7 +6,6 @@
 #include "../../../lib/ship/Submarine.h"
 submarine::submarine(const battleships::coordinate &bow,
                      const battleships::coordinate &stern) : ship(
-    kSubmarineChar,
     std::vector<char>(kSubmarineDim, kSubmarineChar),
     kSubmarineDim,
     bow,

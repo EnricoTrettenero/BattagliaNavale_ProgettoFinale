@@ -3,6 +3,7 @@
  * @author Valentin Necula
  *
  */
+
 #include <iostream>
 #include "../../../lib/player/Human.h"
 

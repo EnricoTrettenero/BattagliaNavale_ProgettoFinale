@@ -25,6 +25,7 @@ public:
     static constexpr int kFindChar = 'Y';
     static constexpr int kWaterChar = 'O';
     static constexpr int kHitChar = 'X';
+
     //static constexpr auto used for colors
     static constexpr auto &colorFind()
     { return "\033[44;7m"; }
@@ -32,6 +33,7 @@ public:
     { return "\033[44m"; }
     static constexpr auto &colorHit()
     { return "\033[101m"; }
+
     /**
     * @brief insert a X on the board (happens when a enemy board on the enemy defense board is hit)
     *
@@ -73,7 +75,6 @@ public:
     * @brief Construct a new attack board
     */
     attack();
-
 };
 
 #endif //BATTAGLIANAVALE_LIB_BOARD_ATTACK_H_

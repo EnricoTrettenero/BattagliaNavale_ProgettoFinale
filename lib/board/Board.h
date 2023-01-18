@@ -79,4 +79,5 @@ public:
     */
     static void colorString(std::string &s);
 };
+
 #endif //BATTAGLIANAVALE_LIB_BOARD_H_

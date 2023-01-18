@@ -11,6 +11,7 @@
 #include "../../../lib/ship/Submarine.h"
 #include "../../../lib/ship/Support.h"
 #include "../../../lib/board/Attack.h"
+
 std::ostream &operator<<(std::ostream &os, const board &b)
 {
     //print board
@@ -29,6 +30,7 @@ void replaceAll(std::string &str, const std::string &from, const std::string &to
         start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
     }
 }
+
 //add color to string
 void board::colorString(std::string &s)
 {
@@ -84,10 +86,10 @@ std::string board::spaced(const std::string &s)
     }
     return spacedString;
 }
+
 //utility print, add padding
 const std::string &board::padWithSpace(std::string &s)
 {
-    //TODO COMMENT
     int l = 1;
     std::string leftSpaces(kLeftSpace, ' ');
     std::string rightSpaces(kRightSpace, ' ');
@@ -99,6 +101,7 @@ const std::string &board::padWithSpace(std::string &s)
     }
     return s;
 }
+
 //print the board with color
 std::string board::to_string() const
 {
@@ -121,6 +124,7 @@ std::string board::to_string() const
     }
     return output;
 }
+
 //print board without colors
 std::string board::to_stringNoColors() const
 {
@@ -142,6 +146,7 @@ std::string board::to_stringNoColors() const
     }
     return output;
 }
+
 //take 2 board and print on side
 std::string board::concat2string(const std::string &str1, const std::string &str2)
 {

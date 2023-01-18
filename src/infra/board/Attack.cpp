@@ -3,6 +3,7 @@
  * @author Davide Redana
  *
  */
+
 #include "../../../lib/board/Attack.h"
 
 attack::attack() : board()
@@ -62,6 +63,7 @@ void attack::water(battleships::coordinate xy)
     _matrix[xy.y()][xy.x()] = kWaterChar;
     turnMatrix[xy.y()][xy.x()] = 0;
 }
+
 void attack::reset(int turn)
 {
     for (int i = 0; i < kDimBoard; ++i)

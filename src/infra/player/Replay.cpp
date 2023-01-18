@@ -3,6 +3,7 @@
  * @author Enrico Trettenero
  *
  */
+
 #include "../../../lib/player/Replay.h"
 
 std::string replay::doAction(std::string input) {

@@ -110,36 +110,31 @@ protected:
     /**
     * @brief Construct a new ship
     *
-    * @param shipChar
     * @param armor
     * @param dim
     * @param centre
     * @param orientation
     * ...each one representing the corresponding data member
     */
-    ship(char shipChar,
-       std::vector<char> armor,
-       unsigned int dim,
-       const battleships::coordinate &centre,
-       orientation orientation)
-      : shipChar_{shipChar}, armor_(std::move(armor)), dim_(dim), centre_(centre), orientation_(orientation) {}
-    //TODO
+    ship(std::vector<char> armor,
+        unsigned int dim,
+        const battleships::coordinate &centre,
+        orientation orientation)
+        :  armor_(std::move(armor)), dim_(dim), centre_(centre), orientation_(orientation) {}
 
     /**
     * @brief Construct a new ship
     *
-    * @param shipChar
     * @param armor
     * @param dim
     * ...each one representing the corresponding data member
     * @param bow representing the coordinate of the bow of the ship
     * @param stern representing the coordinate of the stern of the ship
     */
-    ship(char shipChar,
-       std::vector<char> armor,
-       int dim,
-       const battleships::coordinate &bow,
-       const battleships::coordinate &stern);
+    ship(std::vector<char> armor,
+        int dim,
+        const battleships::coordinate &bow,
+        const battleships::coordinate &stern);
 };
 
 #endif //BATTAGLIANAVALE_LIB_SHIP_SHIP_H_
