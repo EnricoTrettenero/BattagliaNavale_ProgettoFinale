@@ -9,9 +9,7 @@
 
 //constructor
 replaygame::replaygame(const std::string &inputFile) : game(), fileName_{inputFile} //call the empty protected game constructor
-{
-
-}
+{}
 
 //primary function method, return the vector of board of each turn throw exception if file not valid
 const std::vector<std::string> &replaygame::startReplay(bool mode)
@@ -77,7 +75,7 @@ void replaygame::playReplay()
             if(mode_)
                 printFinal_.push_back(p1_->to_string()+"\n"+board::concat2string(defenseBoardP1_.to_string(), attackBoardP1_.to_string()));
             else
-                printFinal_.push_back(p1_->to_string()+"\n"+board::concat2string(defenseBoardP1_.to_stringNoColors(), attackBoardP1_.to_stringNoColors()));
+                printFinal_.push_back(p1_->to_string()+" Moves Counter="+std::to_string(turnCounter)+"\n"+board::concat2string(defenseBoardP1_.to_stringNoColors(), attackBoardP1_.to_stringNoColors()));
             if (hasLost(defenseBoardP2_)) //check win
             {
                 endGame(p1_);

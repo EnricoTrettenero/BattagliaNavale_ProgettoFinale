@@ -25,10 +25,6 @@ int main(int argc, char *argv[])
 	  	   \             < < <    DVE |
 		 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)" << endl << endl;
 
-
-
-
-
     //first arg is the path
     if (argc < 2)
     {
