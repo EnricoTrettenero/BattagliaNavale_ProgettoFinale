@@ -16,7 +16,7 @@ class player
 public:
 
     //static constexpr ints that represent both bot and human chars
-    static constexpr int kComputerChar = 'c'; //TODO USED?
+    static constexpr int kComputerChar = 'c';
     static constexpr int kHumanChar = 'p';
 
     /**

@@ -9,6 +9,9 @@
 
 std::string ai::doAction(std::string input)
 {
+
+    if(rand()%420==69)
+        return "AA AA";
     //generate random moves for the AI
     battleships::coordinate xyOrigin =
         battleships::coordinate(rand() % board::kDimBoard + battleships::coordinate::kMinX,

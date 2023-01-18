@@ -63,19 +63,6 @@ void board::colorString(std::string &s)
     s = s.substr(0, kDimForTable) + len;
 }
 
-//std::vector<std::vector<char>> board::matrix() const //TODO
-//{
-//    std::vector<std::vector<char>> v(kDimBoard);
-//    for (int i = 0; i < kDimBoard; ++i)
-//    {
-//        for (int j = 0; j < kDimBoard; ++j)
-//        {
-//            v[i].push_back(_matrix[i][j]);
-//        }
-//    }
-//    return v;
-//}
-
 //utility print, add space to string
 std::string board::spaced(const std::string &s)
 {

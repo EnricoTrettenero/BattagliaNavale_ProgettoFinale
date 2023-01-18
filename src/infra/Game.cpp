@@ -101,7 +101,7 @@ void game::play()
     while (turnCounter < maxTurn)
     {
         //print when the turn start to be low 10%
-        if (maxTurn - turnCounter < turnCounter/10)
+        if (maxTurn - turnCounter <= maxTurn/10)
         {
             std::cout << "Pay attention: " << maxTurn - turnCounter << " turns remaining!" << std::endl;
         }
@@ -175,7 +175,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                 if (strLast == "AA")
                 {
                     a.reset();
-                    input = p->doAction("Special Moves Attack reset, insert new move ");
+                    input = p->doAction("Special Moves Attack reset, insert new move "+possibleMoves);
                     output_ += p->to_string() + ":" + strFirst + " " + strLast + "\n"; //register on log file the move
                 }
                 //reset on attack board the slots update before x turn
@@ -186,7 +186,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                         int val = stoi(strLast); //reset before a specific turn
                         a.reset(val);
                         input = p->doAction(
-                            "Special Moves Attack reset for " + std::to_string(val) + " turn, insert new move ");
+                            "Special Moves Attack reset for " + std::to_string(val) + " turn, insert new move"+possibleMoves);
                         output_ += p->to_string() + ":" + strFirst + " " + strLast + "\n";
                     }
                     catch (std::invalid_argument &ex)
@@ -200,7 +200,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
             //print board
             else if (strFirst == "XX" && strLast == "XX")
             {
-                input = p->doAction(board::concat2string(d.to_string() , a.to_string()) + "\n Special Move XX XX, insert new Move ");
+                input = p->doAction(board::concat2string(d.to_string() , a.to_string()) + "\n Special Move XX XX, insert new Move"+possibleMoves);
                 repeat = true;
 
             }
@@ -219,7 +219,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
                 catch (std::invalid_argument &ex)
                 {
                     repeat = true;
-                    input = p->doAction("Input Error, coordinate not valid, re-insert move");
+                    input = p->doAction("Input Error, coordinate not valid, re-insert move"+possibleMoves);
                 }
             }
         }
@@ -228,7 +228,7 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
         else
         {
             repeat = true;
-            input = p->doAction("Input Error, input not valid, re-insert move");
+            input = p->doAction("Input Error, input not valid, re-insert move"+possibleMoves);
         }
     } while (repeat);
 }

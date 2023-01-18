@@ -75,7 +75,7 @@ void replaygame::playReplay()
         {
             playTurn(p1_, defenseBoardP1_, attackBoardP1_, defenseBoardP2_);
             if(mode_)
-                printFinal_.push_back(board::concat2string(defenseBoardP1_.to_string(), attackBoardP1_.to_string()));
+                printFinal_.push_back(p1_->to_string()+"\n"+board::concat2string(defenseBoardP1_.to_string(), attackBoardP1_.to_string()));
             else
                 printFinal_.push_back(p1_->to_string()+"\n"+board::concat2string(defenseBoardP1_.to_stringNoColors(), attackBoardP1_.to_stringNoColors()));
             if (hasLost(defenseBoardP2_)) //check win
@@ -87,7 +87,7 @@ void replaygame::playReplay()
         {
             playTurn(p2_, defenseBoardP2_, attackBoardP2_, defenseBoardP1_);
             if(mode_)
-                printFinal_.push_back(board::concat2string(defenseBoardP2_.to_string(), attackBoardP2_.to_string()));
+                printFinal_.push_back(p2_->to_string()+"\n"+board::concat2string(defenseBoardP2_.to_string(), attackBoardP2_.to_string()));
             else
                 printFinal_.push_back(p2_->to_string()+"\n"+board::concat2string(defenseBoardP2_.to_stringNoColors(), attackBoardP2_.to_stringNoColors()));
             if (hasLost(defenseBoardP1_)) //check win

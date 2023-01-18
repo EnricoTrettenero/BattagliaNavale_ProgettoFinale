@@ -102,9 +102,6 @@ private:
     //vector<char> representing the armor of the ship, format: "CcCCc", "sSS", "E"
     std::vector<char> armor_;
 
-    //char representing the char of the ship
-    char shipChar_; //TODO
-
 protected:
 
     /**
