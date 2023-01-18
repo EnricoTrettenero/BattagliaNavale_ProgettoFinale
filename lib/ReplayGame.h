@@ -23,9 +23,10 @@ public:
     explicit replaygame(const std::string& inputFile);
     /*
     * @brief do the replay = started the game with 2 replay player and do the moves from the file
+     * @param mode = true print with color, false without color
     * @return = vector of string where each string is a couple of defense and attack for print on file or consolle
     */
-    const std::vector<std::string> & startReplay();
+    const std::vector<std::string> & startReplay(bool mode);
 
 private:
 
@@ -39,6 +40,9 @@ private:
      * @brief start a new replay and print the log of all moves
     */
     void playReplay();
+
+    //mode = print with or without colors
+    bool mode_;
 };
 
 #endif //BATTAGLIANAVALE_LIB_REPLAYGAME_H_

@@ -11,8 +11,9 @@ replaygame::replaygame(const std::string &inputFile) : game(), fileName_{inputFi
 
 }
 //primary function method, return the vector of board of each turn throw exception if file not valid
-const std::vector<std::string> &replaygame::startReplay()
+const std::vector<std::string> &replaygame::startReplay(bool mode)
 {
+    mode_=mode;
     std::ifstream file(fileName_);
     if (!file.is_open()) throw std::invalid_argument("file not valid"); //check file
     std::string player1Name;
@@ -53,7 +54,7 @@ const std::vector<std::string> &replaygame::startReplay()
 
     return printFinal_;
 }
-//alternative versione of game::replay
+//alternative version of game::replay
 void replaygame::playReplay()
 {
     turnCounter = 0;
@@ -62,7 +63,10 @@ void replaygame::playReplay()
     { //same as Game
         if (turn)
         {
-            printFinal_.push_back(board::concat2string(defenseBoardP1_.to_string(), attackBoardP1_.to_string()));
+            if(mode_)
+                printFinal_.push_back(board::concat2string(defenseBoardP1_.to_string(), attackBoardP1_.to_string()));
+            else
+                printFinal_.push_back(board::concat2string(defenseBoardP1_.to_stringNoColors(), attackBoardP1_.to_stringNoColors()));
             playTurn(p1_, defenseBoardP1_, attackBoardP1_, defenseBoardP2_);
             if (hasLost(defenseBoardP2_)) //check win
             {
@@ -71,7 +75,10 @@ void replaygame::playReplay()
             }
         } else
         {
-            printFinal_.push_back(board::concat2string(defenseBoardP2_.to_string(), attackBoardP2_.to_string()));
+            if(mode_)
+                printFinal_.push_back(board::concat2string(defenseBoardP2_.to_string(), attackBoardP2_.to_string()));
+            else
+                printFinal_.push_back(board::concat2string(defenseBoardP2_.to_stringNoColors(), attackBoardP2_.to_stringNoColors()));
             playTurn(p2_, defenseBoardP2_, attackBoardP2_, defenseBoardP1_);
             if (hasLost(defenseBoardP1_)) //check win
             {

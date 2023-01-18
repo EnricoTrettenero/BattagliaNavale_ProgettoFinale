@@ -112,6 +112,27 @@ std::string board::to_string() const
     }
     return output;
 }
+std::string board::to_stringNoColors() const
+{
+    std::string output;
+    std::string lineWitNumber(board::kDimForTable, ' '); //spazio iniziale nella riga
+    for (int i = battleships::coordinate::kMinX; i <= board::kDimBoard; ++i)
+    {
+        std::string s = std::to_string(i);
+        lineWitNumber += board::padWithSpace(s);
+    }
+    output += lineWitNumber + "\n";
+
+    for (int i = 0; i < board::kDimBoard; ++i)
+    {
+        std::string line(1, char(i + (battleships::coordinate::kMinY)));
+        for (int j = 0; j < board::kDimBoard; ++j) { line += _matrix[i][j]; }
+        line = board::spaced(line);
+
+        output += line + "\n";
+    }
+    return output;
+}
 
 std::string board::concat2string(const std::string &str1, const std::string &str2)
 {

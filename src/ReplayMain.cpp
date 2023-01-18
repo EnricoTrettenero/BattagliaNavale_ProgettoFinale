@@ -25,10 +25,10 @@ int main(int argc, char *argv[])
     {
         //try replay
         replaygame rg = replaygame(input[2]);
-        vector<string> boards = rg.startReplay();
+
         if (input.size() == 3 && input[1] == "v") //case output on screen
         {
-
+            vector<string> boards = rg.startReplay(true); //true if is on screen display with color
             for (const auto &board : boards)
             {
                 cout << endl << board << endl;
@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
             }
         } else if (input.size() == 4 && input[1] == "f") //case ouput on file
         {
+            vector<string> boards = rg.startReplay(false); //if is print without colors
             ofstream fileOutput(input[3]);
             for (const auto &board : boards)
             {
