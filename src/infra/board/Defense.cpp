@@ -152,6 +152,7 @@ std::vector<battleships::coordinate> defense::isShip(battleships::coordinate xy,
 
 bool defense::move(battleships::coordinate init_xy, battleships::coordinate final_xy)
 {
+    if(init_xy==final_xy) return false;
     if (isShip(init_xy))
     {
         for (auto &i : ships)
@@ -165,12 +166,8 @@ bool defense::move(battleships::coordinate init_xy, battleships::coordinate fina
                         if ((final_xy.x() + j - i->dim() / 2) < 0 || final_xy.x() + j - i->dim() / 2 > kDimBoard - 1) return false;
                             if(_matrix[final_xy.y()][final_xy.x() + j - i->dim() / 2] != '*')
                             {
-                                return false;
-                                for (int k = 0; k < i->dim(); ++k)
-                                {
-                                    if(!(final_xy.y()==init_xy.y()&&final_xy.x() + j - i->dim() / 2==init_xy.x()+k-i->dim()/2))
-                                        return false;
-                                }
+                                if(!isPartOf(battleships::coordinate(final_xy.x() + j - i->dim() / 2 +1,final_xy.y_ch()),i))
+                                    return false;
                             }//assume all ship is odd
 
                     } else
@@ -179,12 +176,8 @@ bool defense::move(battleships::coordinate init_xy, battleships::coordinate fina
 
                             if(_matrix[final_xy.y() + j - i->dim() / 2][final_xy.x()] != '*') //assume all ship is odd
                             {
-                                return false;
-                                for (int k = 0; k < i->dim(); ++k)
-                                {
-                                    if(!(final_xy.y() + j - i->dim() / 2==init_xy.y()+k-i->dim()/2 &&final_xy.x() ==init_xy.x()))
-                                        return false;
-                                }
+                                if(!isPartOf(battleships::coordinate(final_xy.x() +1,final_xy.y_ch()+ j - i->dim() / 2),i))
+                                    return false;
                             }
                     }
                 }
@@ -267,3 +260,19 @@ bool defense::isDamaged(battleships::coordinate xy)
 }
 
 int defense::getShipCount() const { return shipCounter; }
+
+bool defense::isPartOf(battleships::coordinate xy, std::unique_ptr<ship>& s)
+{
+    for (int i = 0; i < s->dim(); ++i)
+    {
+        if(s->getOrientation()==ship::HORIZONTAL)
+        {
+            if(xy.x()==s->center().x()+i-s->dim()/2&&xy.y()==s->center().y())
+                return true;
+        }
+        else
+        if(xy.x()==s->center().x()&&xy.y()==s->center().y()+i-s->dim()/2)
+            return true;
+    }
+    return false;
+}

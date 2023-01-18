@@ -66,8 +66,8 @@ void game::make_action(const std::vector<std::pair<char, battleships::coordinate
             case ('S'):ally_defense.repair_ship(it->second);
                 break;
             //fire
-            case ('C'):enemy_defense.fire(it->second);
-                if (enemy_defense.isDamaged(it->second))
+            case ('C'):
+                if (enemy_defense.fire(it->second))
                     ally_attack.hit(it->second);
                 else
                     ally_attack.water(it->second);
@@ -106,15 +106,25 @@ void game::play()
                       << board::concat2string(defenseBoardP1_.to_string(), attackBoardP1_.to_string()) << std::endl;
             playTurn(p1_, defenseBoardP1_, attackBoardP1_, defenseBoardP2_); //do p1 turn
             if (hasLost(defenseBoardP2_)) //check win
+            {
                 endGame(p1_);
+                break;
+
+            }
+
         } else
         {
             std::cout << "GIOCATORE 2" << std::endl
                       << board::concat2string(defenseBoardP2_.to_string(), attackBoardP2_.to_string()) << std::endl;
 
             playTurn(p2_, defenseBoardP2_, attackBoardP2_, defenseBoardP1_);
-            if (hasLost(defenseBoardP1_))
+            if (hasLost(defenseBoardP1_)) //end game
+            {
                 endGame(p2_);
+                break;
+
+
+            }
         }
         turn = !turn; //flip flop
         turnCounter++;

@@ -16,7 +16,7 @@ std::vector<std::pair<char, battleships::coordinate>> support::action(battleship
 {
     std::vector<std::pair<char, battleships::coordinate>>
         output = std::vector<std::pair<char, battleships::coordinate>>();
-    int radius = 5;
+    int radius = 3;
     output.emplace_back('M', center());
     output.emplace_back('M', c);
 
@@ -29,22 +29,14 @@ std::vector<std::pair<char, battleships::coordinate>> support::action(battleship
             {
                 if (getOrientation() == HORIZONTAL)
                 {
-                    if (battleships::coordinate(c.x() + i - radius / 2 + 1, c.y() + j - radius / 2 + 'A') != center()
-                        && battleships::coordinate(c.x() + i - radius / 2 + 1, c.y() + j - radius / 2 + 'A')
-                            != battleships::coordinate(center().x(), center().y_ch())
-                        && battleships::coordinate(c.x() + i - radius / 2 + 1, c.y() + j - radius / 2 + 'A') !=
-                            battleships::coordinate(center().x()+2, center().y_ch()))
+                    if (!(j==1&&(i==0||i==1||i==2)))
                     {
                         output.emplace_back('S', battleships::coordinate(c.x() + i - radius / 2 + 1,
                                                                          c.y() + j - radius / 2 + 'A'));
                     }
                 } else
                 {
-                    if (battleships::coordinate(c.x() + i - radius / 2 + 1, c.y() + j - radius / 2 + 'A') != center()
-                        && battleships::coordinate(c.x() + i - radius / 2 + 1, c.y() + j - radius / 2 + 'A') !=
-                            battleships::coordinate(center().x() +1, center().y_ch()-1)
-                        && battleships::coordinate(c.x() + i - radius / 2 + 1, c.y() + j - radius / 2 + 'A') !=
-                            battleships::coordinate(center().x() + 1, center().y_ch()+1))
+                    if (!(i==1&&(j==0||j==1||j==2)))
                     {
                         output.emplace_back('S', battleships::coordinate(c.x() + i - radius / 2 + 1,
                                                                          c.y() + j - radius / 2 + 'A'));

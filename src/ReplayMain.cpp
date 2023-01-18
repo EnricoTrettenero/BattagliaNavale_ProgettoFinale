@@ -16,7 +16,7 @@
 #include <thread>
 using namespace std;
 
-int mainf(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     //convert argv to vector for easy use
     vector<string> input{&argv[0], &argv[0 + argc]};
@@ -24,7 +24,7 @@ int mainf(int argc, char *argv[])
     try
     {
         //try replay
-        replaygame rg = replaygame("input.txt");
+        replaygame rg = replaygame(input[2]);
         vector<string> boards = rg.startReplay();
         if (input.size() == 3 && input[1] == "v") //case output on screen
         {

@@ -12,7 +12,7 @@
 #include "../lib/Game.h"
 
 using namespace std;
-int main(int argc, char *argv[])
+int mainf(int argc, char *argv[])
 {
     //first arg is the path
     if (argc < 2)

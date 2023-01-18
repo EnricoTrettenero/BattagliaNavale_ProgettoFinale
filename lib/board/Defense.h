@@ -114,7 +114,13 @@ private:
     * on the vector<unique_ptr<ship>> that will be removed
     */
     void sunk(int index);
-
+/**
+    * @brief check if coordinate xy is part of ship s
+    *
+    * @param xy = coordinate to verify, s = ship to control
+    * @return = true if is part else false
+    */
+    bool isPartOf(battleships::coordinate xy, std::unique_ptr<ship>& s);
     //int counter representing the number of ships
     int shipCounter = 8;
 };
