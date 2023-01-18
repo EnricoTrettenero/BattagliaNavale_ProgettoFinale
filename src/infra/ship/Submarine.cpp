@@ -33,8 +33,8 @@ std::vector<std::pair<char, battleships::coordinate>> submarine::action(battlesh
 
             //emplace_back the pairs needed for the exploration
             else
-                output.emplace_back(std::make_pair('E', battleships::coordinate(c.x() + i - radius / 2 + 1,
-                                                                                c.y() + j - radius / 2 + 'A')));
+                output.emplace_back('E', battleships::coordinate(c.x() + i - radius / 2 + 1,
+                                                                                c.y() + j - radius / 2 + 'A'));
         }
     }
     return output;

@@ -40,7 +40,7 @@ public:
     * ...in this case we have only two types of action: move to a target
     * coordinate and heal a ally ship if in radius
     */
-    virtual std::vector<std::pair<char, battleships::coordinate>> action(battleships::coordinate c) override;
+    std::vector<std::pair<char, battleships::coordinate>> action(battleships::coordinate c) override;
 
     //static constexpr int representing the char symbol of the ship
     static constexpr int kSupportChar = 'S';

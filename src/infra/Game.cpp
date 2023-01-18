@@ -10,7 +10,9 @@
 #include <iostream>
 game::game(std::unique_ptr<player> p1, std::unique_ptr<player> p2, const std::string &fileName) : p1_{std::move(p1)},
                                                                                                   p2_{std::move(p2)},
-                                                                                                  fileName_{fileName}
+                                                                                                  fileName_{fileName},
+                                                                                                  turn{true},
+                                                                                                  turnCounter{0}
 {
     srand(time(nullptr)); //use for random first move
 }
@@ -41,7 +43,7 @@ std::pair<battleships::coordinate, battleships::coordinate> game::getShipData(co
     //extract the coordinates
     std::string strFirst = s.substr(0, position);
     std::string strLast = s.substr(position + 1, s.length() - position - 1);
-    //try to make the coordinate else coordinate throw an std::invalid_argument()
+    //try to make the coordinate else coordinate throw a std::invalid_argument()
     battleships::coordinate bow = getCoordinate(strFirst);
     battleships::coordinate stern = getCoordinate(strLast);
     return std::make_pair(bow, stern);
@@ -102,8 +104,6 @@ void game::play()
         }
         if (turn) //flip flop method
         {
-            std::cout << "GIOCATORE 1" << std::endl
-                      << board::concat2string(defenseBoardP1_.to_string(), attackBoardP1_.to_string()) << std::endl;
             playTurn(p1_, defenseBoardP1_, attackBoardP1_, defenseBoardP2_); //do p1 turn
             if (hasLost(defenseBoardP2_)) //check win
             {
@@ -114,9 +114,6 @@ void game::play()
 
         } else
         {
-            std::cout << "GIOCATORE 2" << std::endl
-                      << board::concat2string(defenseBoardP2_.to_string(), attackBoardP2_.to_string()) << std::endl;
-
             playTurn(p2_, defenseBoardP2_, attackBoardP2_, defenseBoardP1_);
             if (hasLost(defenseBoardP1_)) //end game
             {
@@ -250,4 +247,5 @@ bool game::hasLost(defense &d)
     return d.getShipCount() == 0;
 }
 //protected constructor
-game::game() {}
+game::game()=default;
+

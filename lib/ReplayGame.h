@@ -24,7 +24,7 @@ public:
     /*
     * @brief do the replay = started the game with 2 replay player and do the moves from the file
      * @param mode = true print with color, false without color
-    * @return = vector of string where each string is a couple of defense and attack for print on file or consolle
+    * @return = vector of string where each string is a couple of defense and attack for print on file or console
     */
     const std::vector<std::string> & startReplay(bool mode);
 

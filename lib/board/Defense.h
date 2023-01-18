@@ -15,7 +15,7 @@ class defense : public board
 {
 public:
     //static constexpr int representing the max number of boats
-    static constexpr int kMaxBoat = 8;
+   // static constexpr int kMaxBoat = 8;
 
     /**
     * @brief tells if the coordinate contains a ship
@@ -33,7 +33,7 @@ public:
     * @return a vector<coordinate> that contains all the coordinates
     * in the radius that contain a ship
     */
-    std::vector<battleships::coordinate> isShip(battleships::coordinate xy, unsigned int radius);
+  //  std::vector<battleships::coordinate> isShip(battleships::coordinate xy, unsigned int radius);
 
     /**
     * @brief if there is a ship in the coordinate lowers the
@@ -120,7 +120,7 @@ private:
     * @param xy = coordinate to verify, s = ship to control
     * @return = true if is part else false
     */
-    bool isPartOf(battleships::coordinate xy, std::unique_ptr<ship>& s);
+    static bool isPartOf(battleships::coordinate xy, std::unique_ptr<ship>& s);
     //int counter representing the number of ships
     int shipCounter = 8;
 };

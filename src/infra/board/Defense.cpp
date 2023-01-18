@@ -152,6 +152,26 @@ std::vector<battleships::coordinate> defense::isShip(battleships::coordinate xy,
     }
     return output;
 }
+//std::vector<battleships::coordinate> defense::isShip(battleships::coordinate xy,
+//                                                     unsigned int radius) //radius must be and odd number
+//{
+//    std::vector<battleships::coordinate> output = std::vector<battleships::coordinate>();
+//    for (int i = 0; i < radius; ++i)
+//    {
+//        for (int j = 0; j < radius; ++j)
+//        {
+//            if (xy.x() + j - radius / 2 < 0 || xy.x() + j - radius / 2 > kDimBoard - 1 || xy.y() + i - radius / 2 < 0
+//                || xy.y() + i - radius / 2 > kDimBoard - 1)
+//            {
+//                //out of range
+//            } else if (_matrix[xy.y() + i - radius / 2][xy.x() + j - radius / 2] != '*')
+//            {
+//                output.emplace_back(xy.x() + j - radius / 2 + 1, xy.y() + i - radius / 2 + 'A');
+//            }
+//        }
+//    }
+//    return output; //copy
+//}
 
 bool defense::move(battleships::coordinate init_xy, battleships::coordinate final_xy)
 {
