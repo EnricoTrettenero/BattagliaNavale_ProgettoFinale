@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
                 cout << endl << board << endl;
                 this_thread::sleep_for(chrono::milliseconds(1000)); //for 1 sec pause
             }
-        } else if (input.size() == 4 && input[0][0] == 'f') //case ouput on file
+        } else if (input.size() == 4 && input[1] == "f") //case ouput on file
         {
             ofstream fileOutput(input[3]);
             for (const auto &board : boards)
