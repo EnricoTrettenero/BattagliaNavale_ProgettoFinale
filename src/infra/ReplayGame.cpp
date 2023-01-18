@@ -66,7 +66,7 @@ void replaygame::playReplay()
             playTurn(p1_, defenseBoardP1_, attackBoardP1_, defenseBoardP2_);
             if (hasLost(defenseBoardP2_)) //check win
             {
-                endGame(p2_);
+                endGame(p1_);
                 break;
             }
         } else
