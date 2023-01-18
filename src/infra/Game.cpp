@@ -145,7 +145,17 @@ void game::playTurn(std::unique_ptr<player> &p, defense &d, attack &a, defense &
 {
     // type input "AA 4" | "AA 10" | "AA AA" | "XX XX" | "B1 F1" | "B10 F1" | "B10 F10"
     //take input from player virtual doAction
-    std::string input = p->doAction("insert move " + std::to_string(turnCounter) + " Player " + p->to_string());
+
+    //extract the center of the ships in order to show them on the console input
+    std::string possibleMoves;
+    char separator = ',';
+    char sep = ' ';
+    for(auto &x : d.getShips()) {
+        possibleMoves += sep + x->centre().to_string();
+        sep = separator;
+    }
+
+    std::string input = p->doAction("Insert move " + std::to_string(turnCounter) + " Player " + p->to_string()+"\nYou can use these ships:"+possibleMoves );
     bool repeat;
     do //repeat if input not valid
     {

@@ -94,8 +94,8 @@ public:
     * @brief Construct a new defense board
     */
     defense();
-
-private:
+  const std::vector<std::unique_ptr<ship>> &getShips() const;
+ private:
 
     //vector<unique_ptr<ship>> representing the ships
     std::vector<std::unique_ptr<ship>> ships;

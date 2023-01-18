@@ -14,8 +14,21 @@
 #include "../lib/Game.h"
 
 using namespace std;
-int mainf(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
+    cout << "Battleship Game" << endl;
+    cout << R"(
+                             ~~
+		                  __/___
+		           _____/______|
+		   _______/_____\_______\_____
+	  	   \             < < <    DVE |
+		 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)" << endl << endl;
+
+
+
+
+
     //first arg is the path
     if (argc < 2)
     {

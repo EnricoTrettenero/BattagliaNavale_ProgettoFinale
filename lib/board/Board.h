@@ -18,7 +18,7 @@ public:
 
     //board dimension
     static constexpr int kDimBoard = 12;
-
+    static constexpr int kBoardChar = '*';
     /**
     * @brief print the board
     *
