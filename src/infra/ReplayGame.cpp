@@ -2,8 +2,7 @@
 // Created by Enry on 17/01/2023.
 //
 #include "../../lib/ReplayGame.h"
-#include "../../lib/Replay.h"
-#include "../../lib/Human.h"
+
 #include <memory>
 //constructor
 replaygame::replaygame(const std::string &inputFile) : game(), fileName_{inputFile} //call the empty protected game constructor
@@ -89,5 +88,7 @@ void replaygame::playReplay()
         turn = !turn;
         turnCounter++;
     }
+    if (turnCounter > maxTurn) //draw
+        std::cout << "Draw: max number of turns reached!"<<std::endl;
 
 }

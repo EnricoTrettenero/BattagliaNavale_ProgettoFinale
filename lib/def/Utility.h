@@ -44,7 +44,7 @@ namespace battleships
         /**
         * @brief construct a empty coordinate
         */
-        explicit coordinate()
+        explicit coordinate() : x_{1}, y_{'A'}
         {
 
         }

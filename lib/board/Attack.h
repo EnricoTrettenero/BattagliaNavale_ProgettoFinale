@@ -19,8 +19,8 @@ private:
     int turnMatrix[kDimBoard][kDimBoard]{};
 
     //static constexpr ints that represent both human and bot chars
-    static constexpr int kComputerChar = 'c';
-    static constexpr int kHumanChar = 'p';
+ //   static constexpr int kComputerChar = 'c';
+  //  static constexpr int kHumanChar = 'p';
 
 public:
     /**

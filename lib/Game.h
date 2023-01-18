@@ -3,8 +3,8 @@
  * @author TODO
  * @brief This class represents a game of "Battaglia Navale".
  * It only has one public method, startNewGame(), used to start the game.
- * An istance of Game can be used to play one and only one game,
- * to play more other istances of Game must be created.
+ * An instance of Game can be used to play one and only one game,
+ * to play more other instances of Game must be created.
  *
  */
 
@@ -74,7 +74,7 @@ protected:
     * @param enemy_defense enemy player defense board
     * @param ally_attack personal player attack board
     */
-    void make_action(const std::vector<std::pair<char, battleships::coordinate>> &vec,
+    static void make_action(const std::vector<std::pair<char, battleships::coordinate>> &vec,
                    defense &ally_defense,
                    defense &enemy_defense,
                    attack &ally_attack);
@@ -99,14 +99,14 @@ protected:
     *
     * @param p representing winner player
     */
-    void endGame(std::unique_ptr<player> &p);
+    static void endGame(std::unique_ptr<player> &p);
 
     /**
     * @brief check if the player has lost
     *
     * @param d personal player defense board where to check
     */
-    bool hasLost(defense &d);
+    static bool hasLost(defense &d);
 
     /**
     * @brief convert an input string to a coordinate
@@ -115,7 +115,7 @@ protected:
     * @throws throw invalid argument if the string isn't valid
     * @return the coordinate
     */
-    battleships::coordinate getCoordinate(const std::string &s);
+    static battleships::coordinate getCoordinate(const std::string &s);
 
     /**
     * @brief receive the input string from player and convert in an valid pair of "coordinate coordinate"
@@ -124,7 +124,7 @@ protected:
     * @throws throw invalid argument if the string isn't valid
     * @return the pair<coordinate,coordinate>
     */
-    std::pair<battleships::coordinate, battleships::coordinate> getShipData(const std::string &s);
+    static std::pair<battleships::coordinate, battleships::coordinate> getShipData(const std::string &s);
 
     //bool which represents the flip-flop way to control the turn, true = p1 turn | false = p2 turn
     bool turn;

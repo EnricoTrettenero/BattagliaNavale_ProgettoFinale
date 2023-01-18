@@ -3,7 +3,6 @@
 ////
 #include <string>
 #include <vector>
-#include <stdexcept>
 #include <fstream>
 #include "../lib/ship/Battleship.h"
 #include "../lib/board/Attack.h"
@@ -20,7 +19,6 @@ int main(int argc, char *argv[])
 {
     //convert argv to vector for easy use
     vector<string> input{&argv[0], &argv[0 + argc]};
-
     try
     {
         //try replay
@@ -34,7 +32,7 @@ int main(int argc, char *argv[])
                 cout << endl << board << endl;
                 this_thread::sleep_for(chrono::milliseconds(1000)); //for 1 sec pause
             }
-        } else if (input.size() == 4 && input[1] == "f") //case ouput on file
+        } else if (input.size() == 4 && input[1] == "f") //case output on file
         {
             vector<string> boards = rg.startReplay(false); //if is print without colors
             ofstream fileOutput(input[3]);

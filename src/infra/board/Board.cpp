@@ -55,7 +55,7 @@ void board::colorString(std::string &s)
     s = s.substr(0, kDimForTable) + len;
 }
 
-std::vector<std::vector<char>> board::matrix() const
+std::vector<std::vector<char>> board::matrix() const //TODO
 {
     std::vector<std::vector<char>> v(kDimBoard);
     for (int i = 0; i < kDimBoard; ++i)
@@ -145,7 +145,7 @@ std::string board::concat2string(const std::string &str1, const std::string &str
         std::string first, second;
         std::getline(ss1, first, '\n');
         std::getline(ss2, second, '\n');
-        output += first + "   " + second + '\n';
+        output += (first + "   " + second + '\n');
         i += first.length() + 1;
     }
     return output;
