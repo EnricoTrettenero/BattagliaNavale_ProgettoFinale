@@ -20,8 +20,8 @@ std::vector<std::pair<char, battleships::coordinate>> submarine::action(battlesh
     int radius = 5; //radius of the submarine action
 
     //the first two pairs will be for the move
-    output.emplace_back(std::make_pair('M', center())); //action: "M"=move from coordinate centre...
-    output.emplace_back(std::make_pair('M', c)); //...action: "M"=move to coordinate c
+    output.emplace_back('M', center()); //action: "M"=move from coordinate centre...
+    output.emplace_back('M', c); //...action: "M"=move to coordinate c
 
     for (int i = 0; i < radius; ++i)
     {
