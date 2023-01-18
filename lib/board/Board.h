@@ -10,6 +10,7 @@
 
 #include <ostream>
 #include <vector>
+
 class board
 {
 public:

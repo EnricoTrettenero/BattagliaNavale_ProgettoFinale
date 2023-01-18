@@ -10,6 +10,7 @@
 
 #include "Board.h"
 #include "../def/Utility.h"
+
 class attack : public board
 {
 private:

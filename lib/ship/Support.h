@@ -2,9 +2,6 @@
  * @file Support.h
  * @author TODO
  * @brief This class represents a support ship
- * @date 2023-01-17
- *
- * @copyright Copyright (c) 2022
  *
  */
 
@@ -13,6 +10,7 @@
 
 #include "../def/Utility.h"
 #include "Ship.h"
+
 class support : public ship
 {
 

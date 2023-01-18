@@ -7,6 +7,7 @@
 
 #ifndef BATTAGLIANAVALE_LIB_DEF_UTILITY_H_
 #define BATTAGLIANAVALE_LIB_DEF_UTILITY_H_
+
 #include <stdexcept>
 #include <ostream>
 #include "../board/Board.h"

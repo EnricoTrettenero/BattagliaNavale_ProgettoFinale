@@ -10,6 +10,7 @@
 
 #include "../ship/Ship.h"
 #include <memory>
+
 class defense : public board
 {
 public:

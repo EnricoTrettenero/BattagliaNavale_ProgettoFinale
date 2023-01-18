@@ -2,9 +2,6 @@
  * @file Battleship.h
  * @author TODO
  * @brief This class represents a battleship
- * @date 2023-01-17
- *
- * @copyright Copyright (c) 2022
  *
  */
 
@@ -12,6 +9,7 @@
 #define BATTAGLIANAVALE_LIB_SHIP_BATTLESHIP_H_
 
 #include "Ship.h"
+
 class battleship : public ship
 {
 
