@@ -2,9 +2,6 @@
  * @file Attack.h
  * @author TODO
  * @brief This class represents the attack board
- * @date 2023-01-17
- *
- * @copyright Copyright (c) 2022
  *
  */
 

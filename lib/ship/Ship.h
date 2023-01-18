@@ -2,9 +2,6 @@
  * @file Ship.h
  * @author TODO
  * @brief This abstract class represents a generic Ship
- * @date 2023-01-17
- *
- * @copyright Copyright (c) 2022
  *
  */
 
@@ -18,44 +15,127 @@
 
 class ship
 {
- public:
-  enum orientation
-  {
+public:
+
+    //plain enum representing the orientation of the ship
+    enum orientation
+    {
     VERTICAL, HORIZONTAL
-  };
+    };
 
-  //getters
-  unsigned int dim() const { return dim_; }
-  const battleships::coordinate &center() const { return center_; }
-  orientation getOrientation() const { return orientation_; }
-  const std::vector<char> &armor() const { return armor_; }
+    /**
+    * @brief getter
+    *
+    * @return unsigned int representing the dimension of the ship
+    */
+    unsigned int dim() const { return dim_; }
 
-  //virtual method
-  virtual std::vector<std::pair<char, battleships::coordinate>> action(battleships::coordinate c) = 0;
+    /**
+    * @brief getter
+    *
+    * @return const coordinate representing the centre of the ship
+    */
+    const battleships::coordinate &center() const { return center_; }
 
-  //utilities
-  bool hit(int position);
-  void set_center_(battleships::coordinate new_center) { center_ = new_center; }
-  void repair_armor();
+    /**
+    * @brief getter
+    *
+    * @return the orientation of the ship
+    */
+    orientation getOrientation() const { return orientation_; }
 
-  virtual ~ship(); //https://stackoverflow.com/questions/69081119/that-is-abstract-but-has-non-virtual-destructor-the-delete-is-causing-an-error
- private:
+    /**
+    * @brief getter
+    *
+    * @return const vector<char> representing the armor of the ship, format: "CCcCC", "E", "sSS"
+    */
+    const std::vector<char> &armor() const { return armor_; }
 
-  unsigned int dim_;
-  battleships::coordinate center_;
-  enum orientation orientation_;
-  std::vector<char> armor_;
-  char shipChar_;
+    /**
+    * @brief virtual function representing the action of the ship
+    *
+    * @param c representing the target coordinate of the action
+    * @return vector<pair<char,coordinate>>, which is a vector containing
+    * pairs <specific action represented by a char, the target coordinate>
+    *
+    */
+    virtual std::vector<std::pair<char, battleships::coordinate>> action(battleships::coordinate c) = 0;
 
- protected:
-  ship(char shipChar,
+    /**
+    * @brief tells if the portion of the ship has been hit and lowers the char of the position
+    *
+    * @param position representing the position on the vector<char> of the armor
+    * @throw invalid_argument if the position exceeds the vector length
+    * @return true if the portion of the ship has been successfully hit
+    * @return true if the portion of the ship hasn't been successfully hit
+    */
+    bool hit(int position);
+
+    /**
+    * @brief change the centre of the ship
+    *
+    * @param new_center representing the new centre of the ship
+    */
+    void set_center_(battleships::coordinate new_center) { center_ = new_center; }
+
+    /**
+    * @brief set the armor of the ship to full health
+    */
+    void repair_armor();
+
+    /**
+    * @brief destructor for ship
+    */
+    virtual ~ship();
+
+private:
+
+    //unsigned int representing the dimension of the ship
+    unsigned int dim_;
+
+    //coordinate representing the centre of the ship
+    battleships::coordinate center_;
+
+    //enum orientation representing the orientation of the ship (vertical/horizontal)
+    enum orientation orientation_;
+
+    //vector<char> representing the armor of the ship, format: "CcCCc", "sSS", "E"
+    std::vector<char> armor_;
+
+    //char representing the char of the ship
+    char shipChar_; //TODO
+
+protected:
+
+    /**
+    * @brief Construct a new ship
+    *
+    * @param shipChar
+    * @param armor
+    * @param dim
+    * @param center
+    * @param orientation
+    * ...each one representing the corresponding data member
+    */
+    ship(char shipChar,
        std::vector<char> armor,
        unsigned int dim,
        const battleships::coordinate &center,
        orientation orientation)
       : shipChar_{shipChar}, armor_(std::move(armor)), dim_(dim), center_(center), orientation_(orientation) {}
+    //TODO
 
-  ship(char shipChar,
+    /**
+    * @brief Construct a new ship
+    *
+    * @param shipChar
+    * @param armor
+    * @param dim
+    * ...each one representing the corresponding data member
+    * @param bow representing the coordinate of the bow of the ship
+    * @param stern representing the coordinate of the stern of the ship
+    */
+    ship(char shipChar,
        std::vector<char> armor,
        int dim,
        const battleships::coordinate &bow,

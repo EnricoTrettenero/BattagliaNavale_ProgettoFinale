@@ -2,9 +2,6 @@
  * @file Board.h
  * @author TODO
  * @brief This abstract class represents a generic board
- * @date 2023-01-17
- *
- * @copyright Copyright (c) 2022
  *
  */
 
@@ -53,17 +50,17 @@ private:
     static constexpr int kRightSpace = (kDimForTable - 1) % 2 + 1;
 
     /**
-    *
+    * TODO
     */
     static const std::string &padWithSpace(std::string &s);
 
     /**
-    *
+    * TODO
     */
     static std::string spaced(const std::string &s);
 
     /**
-    *
+    * TODO
     */
     static void colorString(std::string &s);
 };
