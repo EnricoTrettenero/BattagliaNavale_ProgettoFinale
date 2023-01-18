@@ -2,6 +2,8 @@
 // Created by vale on 27/12/22.
 //
 
+//TODO COMMENTS
+
 #include <sstream>
 #include "../../../lib/board/Board.h"
 #include "../../../lib/def/Utility.h"
@@ -12,7 +14,6 @@
 std::ostream &operator<<(std::ostream &os, const board &b)
 {
     //print numbers
-
     return os << b.to_string();
 }
 

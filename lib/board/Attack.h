@@ -24,21 +24,21 @@ private:
 
 public:
     /**
-    * @brief insert a X on the board if a enemy board on the enemy defense board is hit
+    * @brief insert a X on the board (happens when a enemy board on the enemy defense board is hit)
     *
     * @param battleships::coordinate which represents the coordinate on the enemy defense board
     */
     void hit(battleships::coordinate xy);
 
     /**
-    * @brief insert a 0 on the board if a no enemy board on the enemy defense board is hit
+    * @brief insert a 0 on the board (happens when no enemy board on the enemy defense board is hit)
     *
     * @param battleships::coordinate which represents the coordinate on the enemy defense board
     */
     void water(battleships::coordinate xy);
 
     /**
-    * @brief insert a Y on the board if the submarine has found a enemy ship
+    * @brief insert a Y on the board (happens when the submarine has found a enemy ship)
      * on the enemy defense board
     *
     * @param battleships::coordinate which represents the coordinate on the enemy defense board

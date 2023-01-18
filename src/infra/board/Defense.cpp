@@ -4,30 +4,38 @@
 
 #include <iostream>
 #include "../../../lib/board/Defense.h"
+
 defense::defense() : board()
 {
+    //for each slot of the matrix...
     for (auto &i : _matrix)
     {
+        //...set the char of the slot to '*'
         for (char &j : i) { j = '*'; }
     }
+
+    //create the vector containing the ships
     ships = std::vector<std::unique_ptr<ship>>();
 }
+
 bool defense::setShip(std::unique_ptr<ship> s)
 {
-    //check space on board
+    //check if there is space on the board for the insertion
     for (int i = 0; i < s->dim(); ++i)
     {
         if (s->getOrientation() == ship::HORIZONTAL)
         {
+            //check if the space needed for a horizontal insertion is free
             if ((s->center().x() + i - s->dim() / 2) < 0 || s->center().x() + i - s->dim() / 2 > kDimBoard - 1
-                || _matrix[s->center().y()][s->center().x() + i - s->dim() / 2] != '*') //assume all ship is odd
+                || _matrix[s->center().y()][s->center().x() + i - s->dim() / 2] != '*')
+                return false; //if it's not free return false
 
-                return false;
         } else if (s->getOrientation() == ship::VERTICAL)
         {
+            //check if the space needed for a vertical insertion is free
             if ((s->center().y() + i - s->dim() / 2) < 0 || s->center().y() + i - s->dim() / 2 > kDimBoard - 1
-                || _matrix[s->center().y() + i - s->dim() / 2][s->center().x()] != '*') //assume all ship is odd
-                return false;
+                || _matrix[s->center().y() + i - s->dim() / 2][s->center().x()] != '*')
+                return false; //if it's not free return false
         } else
             throw std::invalid_argument("orientation not valid");
     }
@@ -35,26 +43,33 @@ bool defense::setShip(std::unique_ptr<ship> s)
     {
         if (s->getOrientation() == ship::HORIZONTAL)
         {
-            _matrix[s->center().y()][s->center().x() + i - s->dim() / 2] = s->armor()[i];//assume all ship is odd
+            //insert the horizontal ship on the board with the corresponding chars
+            _matrix[s->center().y()][s->center().x() + i - s->dim() / 2] = s->armor()[i];
         } else if (s->getOrientation() == ship::VERTICAL)
         {
+            //insert the horizontal ship on the board with the corresponding chars
             _matrix[s->center().y() + i - s->dim() / 2][s->center().x()] = s->armor()[i];
         } else throw std::invalid_argument("orientation not valid");
     }
-    ships.push_back(std::move(s)); //siummm
+
+    //insert the ship in the vector holding the ships
+    ships.push_back(std::move(s));
     return true;
 }
+
 std::vector<std::pair<char, battleships::coordinate>> defense::useShip(battleships::coordinate xyShip,
                                                                        battleships::coordinate xyTarget)
 {
+    //for each ship
     for (const auto &ship : ships)
-        if (ship->center() == xyShip)
-            return ship->action(xyTarget);
+        if (ship->center() == xyShip) //if the centre of the ships corresponds with the coordinate xyShip
+            return ship->action(xyTarget); //return the action of the ship in that position
     throw std::invalid_argument("ships not found");
 }
 
-bool defense::fire(battleships::coordinate xy) //return true if hit
+bool defense::fire(battleships::coordinate xy)
 {
+    //if the slot is not empty
     if (_matrix[xy.y()][xy.x()] != '*')
     {
         for (int i = 0; i < ships.size(); ++i)
@@ -63,9 +78,11 @@ bool defense::fire(battleships::coordinate xy) //return true if hit
             {
                 if (ships.at(i)->getOrientation() == ship::HORIZONTAL)
                 {
+                    //if the coordinate xy corresponds to a portion of the horizontal ship
                     if (ships.at(i)->center().y() == xy.y()
                         && ships.at(i)->center().x() - ships.at(i)->dim() / 2 + j == xy.x())
                     {
+                        //lower the char on the board and on the armor because it has been hit
                         _matrix[ships.at(i)->center().y()][ships.at(i)->center().x() - ships.at(i)->dim() / 2 + j] =
                             tolower(_matrix[ships.at(i)->center().y()][ships.at(i)->center().x()
                                 - ships.at(i)->dim() / 2 + j]);
@@ -75,9 +92,11 @@ bool defense::fire(battleships::coordinate xy) //return true if hit
                     }
                 } else
                 {
+                    //if the coordinate xy corresponds to a portion of the vertical ship
                     if (ships.at(i)->center().x() == xy.x()
                         && ships.at(i)->center().y() - ships.at(i)->dim() / 2 + j == xy.y())
                     {
+                        //lower the char on the board and on the armor because it has been hit
                         _matrix[ships.at(i)->center().y() - ships.at(i)->dim() / 2 + j][ships.at(i)->center().x()] =
                             tolower(_matrix[ships.at(i)->center().y() - ships.at(i)->dim() / 2
                                 + j][ships.at(i)->center().x()]);
