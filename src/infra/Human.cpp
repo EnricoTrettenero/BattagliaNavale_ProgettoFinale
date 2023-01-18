@@ -5,13 +5,10 @@
 #include "../../lib/Human.h"
 std::string human::doAction(std::string input)
 {
-    std::cout << std::endl << input << std::endl;
+    std::cout << std::endl << input << std::endl; //print the input communication string
     std::string in;
-    std::getline(std::cin, in, '\n'); //prendi il dato da std::cin, mettilo nella variabile in, carattere delimitante \n
+    std::getline(std::cin, in, '\n'); //read line from std in and sto at the end of line
     return in;
 }
-std::string human::to_string()
-{
-    return name_;
-}
+//constructor
 human::human(const std::string &name) : player(name) {}

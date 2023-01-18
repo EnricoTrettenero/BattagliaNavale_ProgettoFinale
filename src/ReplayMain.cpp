@@ -18,33 +18,41 @@ using namespace std;
 
 int mainf(int argc, char *argv[])
 {
-    vector<string> input{&argv[0],&argv[0+argc]};
+    //convert argv to vector for easy use
+    vector<string> input{&argv[0], &argv[0 + argc]};
 
-    if(input.size()==3 && input[1]=="v")
+    try
     {
-        replaygame rg = replaygame("input.txt");
-            vector<string> boards = rg.startReplay();
-            for (const auto & board : boards)
-            {
-                cout<<endl<<board<<endl;
-                this_thread::sleep_for(chrono::milliseconds(1000));
-            }
-    }
-    else if(input.size()==4&&input[0][0]=='f')
-    {
+        //try replay
         replaygame rg = replaygame("input.txt");
         vector<string> boards = rg.startReplay();
-        ofstream fileOutput(input[3]);
-        for (const auto & board : boards)
+        if (input.size() == 3 && input[1] == "v") //case output on screen
         {
-            fileOutput<<board;
+
+            for (const auto &board : boards)
+            {
+                cout << endl << board << endl;
+                this_thread::sleep_for(chrono::milliseconds(1000)); //for 1 sec pause
+            }
+        } else if (input.size() == 4 && input[0][0] == 'f') //case ouput on file
+        {
+            ofstream fileOutput(input[3]);
+            for (const auto &board : boards)
+            {
+                fileOutput << board;
+            }
+            fileOutput.close();
+        } else
+        {
+            cout << "Error: arguments not valid " << endl;
+            return 1;
         }
-        fileOutput.close();
+    }
+    catch (exception &ex)
+    {
+        cout<<"log file not valid"<<endl;
+        return 1;
     }
 
-    else
-    {
-        cout<<"Error: arguments not valid "<<endl;
-    }
     return 0;
 }

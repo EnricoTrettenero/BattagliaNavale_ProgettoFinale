@@ -2,9 +2,6 @@
  * @file Ai.h
  * @author TODO
  * @brief This class represents a bot player
- * @date 2023-01-17
- *
- * @copyright Copyright (c) 2022
  *
  */
 
@@ -14,8 +11,17 @@
 class ai : public player
 {
  public:
-  std::string to_string() override;
+  /*
+   * @brief generate random moves
+   * @param input = string for communicate with player
+   * @return = string with the move
+   */
   std::string doAction(std::string input) override;
+  /*
+   * @brief call player constructor with the player name
+   * @param name = player name
+  * @return = string from player input
+   */
   explicit ai(const std::string &name);
 
 };
